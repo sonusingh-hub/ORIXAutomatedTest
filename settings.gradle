@@ -1,0 +1,9 @@
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.6.0'
+}
+
+rootProject.name = 'AutomatedTestForAppian'
+include 'appian-selenium-api'
+include 'fitnesse-for-appian'
+include 'cucumber-for-appian'
+

@@ -1,0 +1,251 @@
+plugins {
+    id 'java'
+    id 'checkstyle'
+    id 'org.gradle.test-retry' version '1.5.10'
+}
+
+checkstyle {
+    toolVersion =  '10.23.0'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.deprecation = true
+}
+
+// Load common gradle properties
+project.ext["repo_root"] = "$rootDir"
+def commonPropertiesFile = file("$rootDir/shared/gradle/common_gradle.properties")
+if (commonPropertiesFile.exists()) {
+    commonPropertiesFile.withReader { reader ->
+        def properties = new Properties()
+        properties.load(reader)
+        properties.each { key, value ->
+            project.ext[key] = value
+        }
+    }
+}
+
+group 'com.appiancorp.ps.automatedtest'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
+def finalDestinationDir = file("${buildDir}/RELEASE-FILES")
+apply from: "$rootDir/shared/gradle/commons.gradle"
+
+dependencies {
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.18.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.3'
+    implementation 'com.google.code.gson:gson:2.12.1'
+    implementation 'com.jayway.jsonpath:json-path:2.9.0'
+    implementation 'commons-codec:commons-codec:1.18.0'
+    implementation 'commons-io:commons-io:2.18.0'
+    implementation 'org.slf4j:slf4j-api:2.0.17'
+    implementation 'org.apache.logging.log4j:log4j-core:2.24.3'
+    implementation 'org.apache.commons:commons-lang3:3.17.0'
+    implementation 'org.json:json:20250107'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.13.0'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+
+}
+
+/**
+ * ------------------------Development Tasks-----------------------
+ */
+
+test {
+    //Required to execute JUnit 5 tests
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+    include 'com/appiancorp/ps/automatedtest/fixture/**'
+}
+
+if (System.getenv("CI") == "true") {
+    tasks.named('test', Test) {
+        retry {
+            maxRetries = 1
+            maxFailures = 50
+        }
+    }
+}
+
+jar {
+    archiveFileName = "appian-selenium-api.jar"
+}
+
+task assembleExampleProjects() {
+    dependsOn jar
+    doFirst {
+        addDependentFilesToExampleProjectDirectory("examples/appian-selenium-api-java")
+        addDependentFilesToExampleProjectDirectory("examples/appian-selenium-api-cucumber")
+    }
+    doLast {
+        assembleDirectoryForExampleProject("examples/appian-selenium-api-java")
+        assembleDirectoryForExampleProject("examples/appian-selenium-api-cucumber")
+    }
+}
+
+task setup() {
+    dependsOn clean, assemble, jar, assembleExampleProjects
+    jar.mustRunAfter('clean')
+    assembleExampleProjects.mustRunAfter('jar')
+    doLast {
+        exec {
+            workingDir "${rootDir}/shared"
+            commandLine 'bash', 'setupCustomPropertiesForMac.sh', 'local'
+        }
+    }
+}
+
+task createJavaDocForAPI(type: Javadoc) {
+    source = file('src/main/java/com/appiancorp/ps/automatedtest/fixture')
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task zipJavaDoc(type: Zip) {
+    dependsOn createJavaDocForAPI
+    from "${buildDir}/docs"
+    archiveFileName = "JavaDoc.zip"
+    destinationDirectory = finalDestinationDir
+}
+
+task zipExampleProjects(type: Zip) {
+    dependsOn assembleExampleProjects
+    from "${buildDir}/exampleProjects"
+    archiveFileName = "ExampleProjects.zip"
+    destinationDirectory = finalDestinationDir
+}
+
+gradle.taskGraph.whenReady { taskGraph ->
+    if (taskGraph.hasTask(releaseAppianSeleniumAPI)) {
+        test.enabled = false
+    }
+}
+
+def validateVersionNumber(version) {
+    if (!(validVersionNumber(version, true))) {
+        throw new GradleException("Must provide a valid MAJOR version number such as 21.2, got " + version)
+    }
+}
+
+/**
+ * Execute this task in this format: ./gradlew addSupportForNewAppianVersion -PnewVersion=22.1
+ */
+task addSupportForNewAppianVersion() {
+    doFirst {
+        validateVersionNumber(newVersion)
+    }
+    doLast {
+        addNewVersionToMetadataJson(newVersion)
+        updateSiteVersionInAbstractTestClass(newVersion)
+    }
+}
+
+/**
+ * Execute this task in this format: ./gradlew removeSupportForOldAppianVersion -PoldVersion=19.2
+ */
+task removeSupportForOldAppianVersion() {
+    doFirst {
+        validateVersionNumber(oldVersion)
+    }
+    doLast {
+        delete "${projectDir}/../apps/Automated Testing - ${oldVersion}.zip"
+        updateOldestSupportAppianVersionIfNecessary(oldVersion)
+    }
+}
+
+/**
+ * ------------------------Release Tasks-----------------------
+ */
+task setReleaseVersion() {
+    validateReleaseNumbers(project)
+}
+
+/**
+ * Execute this task from terminal in this format: ./gradlew releaseAppianSeleniumAPI
+ */
+task releaseAppianSeleniumAPI() {
+    dependsOn setReleaseVersion, clean, build, zipJavaDoc, zipExampleProjects
+    build.mustRunAfter('clean')
+    doLast {
+        copy {
+            from "${buildDir}/libs"
+            into finalDestinationDir
+        }
+    }
+}
+
+def addDependentFilesToExampleProjectDirectory(exampleProject) {
+    delete "${projectDir}/../${exampleProject}/lib/"
+    delete "${projectDir}/../${exampleProject}/configs/"
+    copy {
+        from "${projectDir}/build/libs"
+        into "${projectDir}/../${exampleProject}/lib/appian"
+    }
+    copy {
+        from "${projectDir}/../shared"
+        into "${projectDir}/../${exampleProject}"
+    }
+}
+
+def assembleDirectoryForExampleProject(exampleProject) {
+    copy {
+        from "${projectDir}/../${exampleProject}"
+        exclude "**/build/**"
+        exclude "**/logs/**"
+        into "${buildDir}/exampleProjects/${exampleProject}"
+    }
+    version = project["version"]
+    copy {
+        from "${projectDir}/../${exampleProject}/src"
+        into "${buildDir}/exampleProjects/${exampleProject}/src"
+        filter { line -> line.replaceAll('DEFAULT_APPIAN_VERSION_REPLACEMENT_KEY', version.toString().substring(0, 4)) }
+    }
+}
+
+def addNewVersionToMetadataJson(newVersionNumber) {
+    def newReleaseMetadata = new groovy.json.JsonBuilder()
+    newReleaseMetadata {
+        version(newVersionNumber)
+        locales([])
+        byConstants([])
+    }
+    def metadataFilePath = "${projectDir}/src/main/resources/metadata.json"
+    def oldMetadata = file(metadataFilePath)
+    def parsedJson = new groovy.json.JsonSlurper().parseText(oldMetadata.text)
+    if (!parsedJson.appianVersions.version.contains(newVersionNumber)) {
+        parsedJson.appianVersions << newReleaseMetadata.content
+        new File("${projectDir}/src/main/resources/metadata.json").text = new groovy.json.JsonBuilder(parsedJson).toPrettyString()
+    }
+}
+
+def updateSiteVersionInAbstractTestClass(newVersionNumber) {
+    def path = "${projectDir}/src/test/java/com/appiancorp/ps/automatedtest/test/AbstractTest.java"
+    def updatedClass = file(path).text.replaceAll("protected static String TEST_SITE_VERSION.*", "protected static String TEST_SITE_VERSION = System.getenv(\"version\") == null ? \"${newVersionNumber}\" : System.getenv(\"version\");")
+    new File(path).text = updatedClass
+}
+
+def updateOldestSupportAppianVersionIfNecessary(appianVersionToRemove) {
+    Properties properties = new Properties()
+    def file = new File("${projectDir}/../shared/gradle/common_gradle.properties")
+    file.withInputStream {
+        properties.load(it)
+    }
+    def currentOldestSupport = properties.oldestSupportAppianVersion.toString().toDouble()
+    if (appianVersionToRemove.toDouble() >= currentOldestSupport) {
+        def newOldestSupport = getNextVersion(appianVersionToRemove)
+        def update = file.text.replaceAll("oldestSupportAppianVersion=.*", "oldestSupportAppianVersion=" + newOldestSupport)
+        file.write(update)
+    }
+}

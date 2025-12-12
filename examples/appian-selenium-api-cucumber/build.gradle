@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+}
+
+group 'com.appiancorp.example'
+version '1.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation fileTree(dir: 'lib/appian', include: ['*.jar'])
+
+    implementation 'io.cucumber:cucumber-java:6.8.2'
+
+    /* appian-selenium-api jar is a thin jar, these are the dependencies loaded from mavenCentral. If your
+    organization has its own repository, edit the dependencies below accordingly.*/
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.jayway.jsonpath:json-path:2.7.0'
+    implementation 'commons-codec:commons-codec:1.15'
+    implementation 'commons-io:commons-io:2.11.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
+    implementation 'org.apache.commons:commons-lang3:3.0'
+    implementation 'org.json:json:20201115'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.1.2'
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+task cucumber() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', 'com.appiancorp.example', 'src/test/resources']
+        }
+    }
+}

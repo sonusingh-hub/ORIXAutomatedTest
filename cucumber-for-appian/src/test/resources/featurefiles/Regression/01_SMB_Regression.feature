@@ -1,0 +1,107 @@
+@Regression
+Feature: 01 SMB Regression feature
+
+  Background: Setup background and environment
+    Given I setup browser
+    Then I setup appian URL to "appian.active.url"
+    And I setup appian version
+    And I setup appian locale
+
+  Scenario: TC_001_Verify introducer login on selected environment
+    Given I setup environment and login with role "introducer"
+    Then I get grid "" column "Application Number" row "1" value and store in excel "excel:ApplicationGridData.Application Number"
+    Then I get grid "" column "Quote Number" row "1" value and store in excel "excel:ApplicationGridData.Quote Number"
+    Then I get grid "" column "Client (Applicant)" row "1" value and store in excel "excel:ApplicationGridData.Client (Applicant)"
+    Then I get grid "" column "Application Status" row "1" value and store in excel "excel:ApplicationGridData.Application Status"
+    Then I get grid "" column "Date Created" row "1" value and store in excel "excel:ApplicationGridData.Date Created"
+    Then I get grid "" column "Last Updated User" row "1" value and store in excel "excel:ApplicationGridData.Last Updated User"
+    Then I click on button from excel "excel:ButtonData.RequestAQuote"
+    Then I populate field "Search Journeys" with excel "excel:ClientData.ABN"
+    Then I click on button from excel "excel:ButtonData.SearchClient"
+    Then I select grid "[2]" row "[1]"
+    Then I click on button from excel "excel:ButtonData.Next"
+    Then I click on element with text from excel "excel:RequestQuoteData.Asset Type"
+    Then I click on element with text from excel "excel:RequestQuoteData.Specific Vehicle"
+    Then I click on element with text from excel "excel:RequestQuoteData.New or Used"
+    Then I click on element with text from excel "excel:RequestQuoteData.Pricing"
+    Then I click on card direct from excel "excel:RequestQuoteData.Product Type"
+    Then I populate field "Vehicle Category" with excel "excel:VehicleData.Vehicle Category"
+    Then I populate field "Vehicle Description" with excel "excel:VehicleData.Vehicle Description"
+    Then I populate field "Total Asset Cost (incl. GST)" with excel "excel:AmountBrokerage.Total Asset Cost (incl. GST)"
+    Then I populating field "Deposit Amount" with excel "excel:AmountBrokerage.Deposit Amount"
+    Then I populate field "Dealer Origination Fee (excl. GST)" with excel "excel:AmountBrokerage.Dealer Origination Fee (excl. GST)"
+    Then I populate field "Brokerage % (excl. GST)" with excel "excel:AmountBrokerage.Brokerage % (excl. GST)"
+    Then I populate field "Balloon %" with excel "excel:AmountBrokerage.Balloon %"
+    Then I click on radio option from excel "excel:RequestQuoteData.Payment Method"
+    Then I click on card direct from excel "excel:RequestQuoteData.Services"
+    Then I click on term card from excel "excel:RequestQuoteData.Select a Term"
+    Then I get field "Vehicle Category" value and store in excel "excel:OutputVehicleData.Vehicle Category"
+    Then I get field "Vehicle Description" value and store in excel "excel:OutputVehicleData.Vehicle Description"
+    Then I click on button from excel "excel:ButtonData.Next"
+    Then I populate field "Make" with excel "excel:VehicleData.Make"
+    Then I populate field "Model" with excel "excel:VehicleData.Model"
+    Then I populate field "Sub Model" with excel "excel:VehicleData.Sub Model"
+    Then I click on button from excel "excel:ButtonData.SearchVehicle"
+    Then I click on button from excel "excel:ButtonData.SelectVehicle"
+    Then I populate field "VIN" with excel "excel:VehicleData.VIN"
+    Then I populate field "Registration Number" with excel "excel:VehicleData.Registration Number"
+    Then I populate field "Engine Number" with excel "excel:VehicleData.Engine Number"
+    Then I populate field "Other Comments" with excel "excel:VehicleData.Other Comments"
+    Then I click on button from excel "excel:ButtonData.Next"
+    Then I verify text "A value is required" is present
+    Then I populate field "Quote Document" with excel "excel:UploadData.Quote Document"
+    Then I click on button from excel "excel:ButtonData.Next"
+    Then I verify text "Indicative Quote Summary" is present
+    Then I verify text "Chattel Mortgage" is present
+    Then I verify text "Your Passenger or Light Commercial Vehicle" is present
+    Then I verify text "Passenger or Light Commercial Vehicle Description" is present
+    Then I verify text "Total Cost of Loan" is present
+    Then I verify text "Net Asset Cost (incl GST)" is present
+    Then I click on button from excel "excel:ButtonData.CompleteQuote"
+    Then I click on button from excel "excel:ButtonData.ProceedQuote"
+    Then I click on element with text from excel "excel:RequestQuoteData.Application Type"
+    Then I click on button from excel "excel:ButtonData.Next"
+#   Business tab Inputs and data verification
+    Then I verify field "ABN" contains excel "excel:ClientData.ABN"
+    Then I verify field "Registered Business Name" contains excel "excel:ClientData.Registered Business Name"
+    Then I verify field "Business Address" contains excel "excel:ClientData.Business Address"
+    Then I verify field "Industry ANZSIC Code" contains excel "excel:ClientData.Industry ANZSIC Code"
+    Then I verify field "Industry Classification" contains excel "excel:ClientData.Industry Classification"
+    Then I populate field "Business Background" with excel "excel:ClientData.Business Background"
+    Then I populate field "Asset Purpose" with excel "excel:ClientData.Asset Purpose"
+    Then I click on button from excel "excel:ButtonData.Next"
+    Then I verify field "First Name" contains "darren"
+    Then I verify field "Last Name" contains "davies"
+    Then I verify field "Citizenship Status" contains "Australian Citizen"
+    Then I verify field "Date Of Birth" contains "27/05/1981"
+    Then I verify field "Residential Status" contains "Renting"
+    Then I verify field "Gender" contains "Male"
+    Then I verify field "Residential Address" contains "34 Rochester Dr, Mindarie WA 6030"
+    Then I verify field "Phone Number" contains "+61400000000"
+    Then I verify field "Email" contains "chandu.nagu+60@gmail.com"
+    Then I verify field "License Type" contains "Full Licence"
+    Then I verify field "License Class" contains "Heavy Rigid (HR)"
+    Then I verify field "License State" contains "NSW"
+    Then I verify field "Drivers Licence Number" contains "88310877"
+    Then I click on button from excel "excel:ButtonData.Next"
+#   Financial tab Inputs and data verification
+    Then I verify field "Income" contains "$30,000.00"
+    Then I verify field "Expenses" contains "$2,000.00"
+    Then I click on button from excel "excel:ButtonData.Next"
+#   Summary tab Inputs and data verification
+    Then I verify field "ABN" contains "68173780899"
+    Then I verify field "Registered Business Name" contains "AGARWAL, ANGEL"
+    Then I verify field "First Name" contains "darren"
+    Then I verify field "Last Name" contains "davies"
+    Then I verify field "Income" contains "$30,000.00"
+    Then I verify field "Expenses" contains "$2,000.00"
+    Then I click on checkbox option "[1]"
+    Then I click on checkbox option "[2]"
+    Then I click on checkbox option "[3]"
+    Then I click on checkbox option "[4]"
+    Then I click on button from excel "excel:ButtonData.Submit"
+    Then I click on element with text from excel "excel:RequestQuoteData.BEGIN"
+    Then I click on element with text from excel "excel:RequestQuoteData.Send SMS"
+    Then I verify text "The link sent via SMS will be active for 48 hours." is present
+    Then I populates field "File Upload" with excel "excel:UploadData.File Upload"
+    Then I click on button from excel "excel:ButtonData.Submit"

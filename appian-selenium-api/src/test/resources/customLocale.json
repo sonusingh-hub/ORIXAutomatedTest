@@ -1,0 +1,30 @@
+{
+  "dateFormats": [
+    {
+      "label": "dateFormat",
+      "value": "dd"
+    },
+    {
+      "label": "dateDisplayFormat",
+      "value": "d"
+    },
+    {
+      "label": "timeFormat",
+      "value": "mm"
+    },
+    {
+      "label": "timeDisplayFormat",
+      "value": "mm"
+    },
+    {
+      "label": "datetimeFormat",
+      "value": "dd"
+    },
+    {
+      "label": "datetimeDisplayFormat",
+      "value": "d"
+    }
+  ],
+  "labels": [],
+  "locale": "aj_SILLY"
+}

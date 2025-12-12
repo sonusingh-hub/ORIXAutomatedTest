@@ -1,0 +1,270 @@
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.masterthought:cucumber-reporting:5.7.4'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'checkstyle'
+    id 'io.qameta.allure' version '2.11.2'
+
+}
+
+checkstyle {
+    toolVersion =  '10.23.0'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.deprecation = true
+}
+
+group 'com.appiancorp.ps.automatedtest'
+
+// Load common gradle properties
+project.ext["repo_root"] = "$rootDir"
+def commonPropertiesFile = file("$rootDir/shared/gradle/common_gradle.properties")
+if (commonPropertiesFile.exists()) {
+    commonPropertiesFile.withReader { reader ->
+        def properties = new Properties()
+        properties.load(reader)
+        properties.each { key, value ->
+            project.ext[key] = value
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.11.0'
+    testImplementation 'io.cucumber:cucumber-junit:7.21.1'
+    testImplementation 'io.cucumber:cucumber-picocontainer:7.21.1'
+    testImplementation 'io.qameta.allure:allure-cucumber7-jvm:2.20.0'
+
+    implementation 'io.cucumber:cucumber-java:7.21.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.24.3'
+    implementation project(':appian-selenium-api')
+    implementation 'org.seleniumhq.selenium:selenium-java:4.24.0'
+
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'net.masterthought:cucumber-reporting:5.7.4'
+
+    implementation "org.apache.poi:poi:5.2.3"
+    implementation "org.apache.poi:poi-ooxml:5.2.3"
+}
+
+test {
+    useJUnit()
+
+    // Force tests to run every time (prevents caching)
+    outputs.upToDateWhen { false }
+
+    // Show detailed output
+    testLogging {
+        events "started", "passed", "skipped", "failed"
+        showStandardStreams = true
+        exceptionFormat "full"
+    }
+
+    // Ensure all test classes are included
+    include '**/*Test.class'
+}
+
+def finalDestinationDir = file("${buildDir}/RELEASE-FILES")
+version = project["version"]
+def cucumberForAppianBuildDir = file("${buildDir}/${project.name}-${version}")
+apply from: "$rootDir/shared/gradle/commons.gradle"
+
+
+/*
+  Overwriting the default jar task in order to create a fat jar that will contain the
+  FitNesseForAppian dependency jar.
+ */
+
+jar {
+    manifest {
+        attributes "Main-Class": "com.appiancorp.ps.automatedtest"
+    }
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+/*
+  These tasks build the correct directory structure for the TestExample that we ship with the release
+ */
+
+task copyOutputJARIntoTestExampleLib(type: Copy) {
+    /*
+      jar.outputs.files is only valid after the build task runs so the dependence is implicit. But adding an
+      explicit dependsOn to make all the tasks consistent and easy to read.
+     */
+    dependsOn build
+    from jar.outputs.files
+    into "build/resources/main/TestExample/lib"
+}
+
+task copyConfigsIntoTestExample(type: Copy) {
+    dependsOn build
+    from "${projectDir}/../shared/configs"
+    into "build/resources/main/TestExample/src/main/resources/configs"
+}
+
+task copyTestExampleIntoFinalReleaseDirectory(type: Copy) {
+    dependsOn copyOutputJARIntoTestExampleLib, copyConfigsIntoTestExample
+    from "build/resources/main/TestExample"
+    into cucumberForAppianBuildDir
+
+    version = project["version"]
+    doLast {
+        def path = "${cucumberForAppianBuildDir}/pom.xml"
+        def updated = file(path).text.replaceAll('CUCUMBER_FOR_APPIAN_VERSION_REPLACEMENT_KEY', version)
+        new File(path).text = updated
+    }
+}
+
+/*
+  These tasks are for copying setup scripts and drivers from the base project directory into the current
+  release directory
+ */
+
+task copyScriptsIntoFinalReleaseDirectory(type: Copy) {
+    dependsOn build
+    from "${projectDir}/setupCustomPropertiesForMac.sh"
+    into cucumberForAppianBuildDir
+    from "${projectDir}/setupCustomPropertiesForLinux.sh"
+    into cucumberForAppianBuildDir
+}
+
+/**
+ * ------------------------Release Tasks-----------------------
+ */
+
+task setReleaseVersion() {
+    validateReleaseNumbers(project)
+}
+
+task zipCucumberForAppian(type: Zip) {
+    dependsOn clean, build, copyScriptsIntoFinalReleaseDirectory, copyTestExampleIntoFinalReleaseDirectory
+    from cucumberForAppianBuildDir
+    version = project["version"]
+    archiveFileName = "${project.name}.zip"
+    destinationDirectory = finalDestinationDir
+}
+
+/**
+ * Execute this task from terminal in this format: ./gradlew releaseCucumberForAppian
+ */
+task releaseCucumberForAppian(type: Zip) {
+    dependsOn setReleaseVersion, clean, build, zipCucumberForAppian
+    build.mustRunAfter('clean')
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+task cucumber() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--plugin', 'junit:results/cucumber-junit-report.xml', '--glue', 'com.appiancorp.ps.cucumber', 'src/test/resources']
+        }
+    }
+}
+
+/**
+ * Cucumber Report
+ */
+import net.masterthought.cucumber.Configuration
+import net.masterthought.cucumber.ReportBuilder
+
+// --- Define custom Gradle task to generate and open the report ---
+tasks.register('generateCucumberReport') {
+    doLast {
+        def jsonFiles = files("target/cucumber-reports/cucumber.json")
+        def outputDir = file("build/reports/cucumber")
+
+        if (!jsonFiles.singleFile.exists()) {
+            throw new GradleException("❌ JSON report not found at: ${jsonFiles.singleFile}. Run your Cucumber tests first.")
+        }
+
+        // Configure metadata
+        def config = new Configuration(outputDir, "ORIX SMB Automated Tests")
+        config.setBuildNumber("1.0")
+
+        // Generate report
+        def reportBuilder = new ReportBuilder(jsonFiles.files.collect { it.absolutePath }, config)
+        reportBuilder.generateReports()
+
+        def reportPath = "${outputDir}/cucumber-html-reports/overview-features.html"
+        println "✅ Cucumber HTML report generated at: ${reportPath}"
+
+        // --- Auto-open report in default browser ---
+        if (System.properties['os.name'].toLowerCase().contains('windows')) {
+            "cmd /c start ${reportPath}".execute()
+        } else if (System.properties['os.name'].toLowerCase().contains('mac')) {
+            ["open", reportPath].execute()
+        } else {
+            ["xdg-open", reportPath].execute()
+        }
+    }
+}
+
+// --- Automatically run the report after tests ---
+test.finalizedBy(generateCucumberReport)
+
+//task cucumber() {
+//    dependsOn assemble, testClasses
+//    doLast {
+//        javaexec {
+//            main = "io.cucumber.core.cli.Main"
+//            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+//            args = [
+//                    '--plugin', 'pretty',
+//                    '--plugin', 'io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm',
+//                    '--glue', 'com.appiancorp.ps.cucumber',
+//                    'src/test/resources'
+//            ]
+//        }
+//    }
+//}
+//
+//task generateAllureReport(type: Exec) {
+//    description = 'Generates Allure HTML report from test results'
+//    group = 'Reporting'
+//
+//    commandLine 'allure', 'generate', 'build/allure-results', '--clean', '-o', 'build/allure-report'
+//}
+//
+//task openAllureReport(type: Exec) {
+//    description = 'Opens the generated Allure report in default browser'
+//    group = 'Reporting'
+//
+//    commandLine 'allure', 'open', 'build/allure-report'
+//}
+//
+//// Automatically generate and open report after tests
+//test.finalizedBy(generateAllureReport)
+//generateAllureReport.finalizedBy(openAllureReport)

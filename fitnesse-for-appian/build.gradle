@@ -1,0 +1,151 @@
+plugins {
+    id 'java'
+    id 'checkstyle'
+}
+
+checkstyle {
+    toolVersion =  '10.23.0'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.deprecation = true
+}
+
+group 'com.appiancorp.ps.automatedtest'
+
+// Load common gradle properties
+project.ext["repo_root"] = "$rootDir"
+def commonPropertiesFile = file("$rootDir/shared/gradle/common_gradle.properties")
+if (commonPropertiesFile.exists()) {
+    commonPropertiesFile.withReader { reader ->
+        def properties = new Properties()
+        properties.load(reader)
+        properties.each { key, value ->
+            project.ext[key] = value
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    implementation.extendsFrom release
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
+def finalDestinationDir = file("${buildDir}/RELEASE-FILES")
+def fitNesseForAppianBuildDir = file("${buildDir}/${project.name}-${project.version}")
+apply from: "$rootDir/shared/gradle/commons.gradle"
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+    release 'org.fitnesse:fitnesse:20250223:standalone'
+    implementation 'org.json:json:20250107'
+
+    implementation project(':appian-selenium-api')
+}
+
+/**
+ * ------------------------Development Tasks-----------------------
+ */
+jar {
+    include "com/**/*", "metadata.json"
+    manifest {
+        attributes "Project-Name": "FitNesse-For-Appian-${project.version}"
+    }
+}
+
+task setReleaseVersion() {
+    validateReleaseNumbers(project)
+}
+
+task assembleFitNesseForAppian() {
+    dependsOn clean, build
+    build.mustRunAfter('clean')
+    doLast {
+        version = project["version"]
+        copy {
+            from "${projectDir}/src/main/resources"
+            into fitNesseForAppianBuildDir
+            filter {
+                line ->
+                    line.replaceAll('DEFAULT_APPIAN_VERSION_REPLACEMENT_KEY', version.toString().substring(0, 4))
+                            .replaceAll('FITNESSE_FOR_APPIAN_VERSION_REPLACEMENT_KEY', version)
+                            .replaceAll('CURRENT_SUPPORT_APPIAN_VERSIONS_REPLACEMENT_KEY', getStringForCurrentSupportAppianVersions(version))
+            }
+            exclude "runFitNesseTest.sh", "setupCustomProperties.sh", "fitnesse-automation.properties"
+        }
+        copy {
+            from configurations.runtimeClasspath
+            into "${fitNesseForAppianBuildDir}/lib"
+            exclude '**/appian-selenium-api*.jar'
+        }
+        copy {
+            from project(':appian-selenium-api').jar.outputs.files
+            into "${fitNesseForAppianBuildDir}/lib/appian"
+        }
+        /*Copy over shared properties including configs and drivers*/
+        copy {
+            from "${buildDir}/../../shared"
+            into fitNesseForAppianBuildDir
+        }
+        copy {
+            from "${projectDir}/../CHANGELOG.md"
+            into "${fitNesseForAppianBuildDir}/FitNesseRoot/FitNesseForAppian/ReleaseNotes"
+            filter {
+                line ->
+                    line.replaceAll(/^v(\d+\.)?((1|2|3|4)\.)?(\d+)/, "!3 ${line}")
+            }
+            rename("CHANGELOG.md", "content.txt")
+        }
+    }
+}
+
+task zipFitNesseForAppian(type: Zip) {
+    dependsOn assembleFitNesseForAppian
+    from fitNesseForAppianBuildDir
+    version = project["version"]
+    archiveFileName = "${project.name}.zip"
+    destinationDirectory = finalDestinationDir
+}
+
+/**
+ * ------------------------Release Tasks-----------------------
+ */
+
+
+/**
+ * Execute this task from terminal in this format: ./gradlew releaseFitNesseForAppian
+ */
+task releaseFitNesseForAppian() {
+    dependsOn setReleaseVersion, clean, build, zipFitNesseForAppian
+    build.mustRunAfter('clean')
+    doLast {
+        copy {
+            from project(':appian-selenium-api').jar.outputs.files
+            into finalDestinationDir
+        }
+        version = project["version"]
+        copy {
+            from "${projectDir}/../apps/Automated Testing - ${version.toString().substring(0, 4)}.zip"
+            into finalDestinationDir
+        }
+    }
+}
+
+
+def getStringForCurrentSupportAppianVersions(version) {
+    return project["oldestSupportAppianVersion"].toString() + " - " + version.toString().substring(0, 4);
+}
+

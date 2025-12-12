@@ -1,0 +1,2267 @@
+{
+    "appianVersions": [
+        {
+            "byConstants": [
+                {
+                    "label": "xpathParent",
+                    "value": ".."
+                },
+                {
+                    "label": "xpathAbsoluteMenuLink",
+                    "value": "//a[starts-with(@class, 'appian-menu-item') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteSitePageLink",
+                    "value": "//li[contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]/descendant::a"
+                },
+                {
+                    "label": "xpathAbsoluteSiteLogoutLink",
+                    "value": ""
+                },
+                {
+                    "label": "xpathAbsoluteSiteUserProfileLink",
+                    "value": ""
+                },
+                {
+                    "label": "xpathAbsoluteLoginAgreeButton",
+                    "value": "//form[@id = 'notification']/descendant::input[contains(@class, 'btn')]"
+                },
+                {
+                    "label": "xpathAbsoluteLoginSubmitButton",
+                    "value": "//form[@id = 'loginForm']/descendant::input[contains(@class, 'btn')]"
+                },
+                {
+                    "label": "xpathAbsoluteLogoutLink",
+                    "value": "//a[contains(text(),'Sign Out')]"
+                },
+                {
+                    "label": "xpathAbsoluteSearchField",
+                    "value": "//div[contains(@class, 'appian-tempo-search')]/descendant::input"
+                },
+                {
+                    "label": "xpathAbsoluteFeedEntry",
+                    "value": "//div[contains(@class, 'appian-feed-entry')] | //table"
+                },
+                {
+                    "label": "xpathAbsoluteError",
+                    "value": "//h1[contains(text(), 'Application Error')] | //div[contains(@class, 'gwt-PopupPanel') and contains(@class, 'error')] "
+                },
+                {
+                    "label": "xpathAbsoluteWorking",
+                    "value": "//div[@class = 'appian-indicator-message']"
+                },
+                {
+                    "label": "xpathAbsoluteNewsItem",
+                    "value": "//div[starts-with(@class, 'appian-feed-entry-message') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]"
+                },
+                {
+                    "label": "xpathConcatNewsItemMoreInfoLink",
+                    "value": "/following-sibling::div[starts-with(@class, 'appian-feed-entry-metadata')]/descendant::a[contains(text(), 'More Info') or contains(text(), 'Hide Info')]"
+                },
+                {
+                    "label": "xpathConcatNewsItemMoreInfoLabel",
+                    "value": "/following-sibling::table/descendant::td[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %2$s)]"
+                },
+                {
+                    "label": "xpathConcatNewsItemMoreInfoValue",
+                    "value": "/following-sibling::table/descendant::td[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %2$s)]"
+                },
+                {
+                    "label": "xpathConcatNewsItemRecordTag",
+                    "value": "/parent::div/descendant::a[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %2$s)]"
+                },
+                {
+                    "label": "xpathConcatNewsItemComment",
+                    "value": "/parent::div/descendant::div[starts-with(@class, 'appian-feed-entry-message') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %2$s)]"
+                },
+                {
+                    "label": "xpathConcatNewsItemDeleteLink",
+                    "value": "/following-sibling::div[starts-with(@class, 'appian-feed-entry-metadata')]/descendant::a[contains(text(),'Delete')]"
+                },
+                {
+                    "label": "xpathAbsoluteDeleteLink",
+                    "value": "//a[contains(text(), 'Delete')]"
+                },
+                {
+                    "label": "xpathAbsoluteTaskLink",
+                    "value": "//a[contains(@class, 'appian-feed-entry-author') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteTaskDeadline",
+                    "value": "//a[contains(@class, 'appian-feed-entry-author') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::span/following-sibling::div[contains(@class, 'metadata')]/descendant::span[contains(@title, 'deadline')]/span[text() = %2$s]"
+                },
+                {
+                    "label": "xpathAbsoluteTaskReportLink",
+                    "value": "//a[span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]]"
+                },
+                {
+                    "label": "xpathAbsoluteSocialTaskItem",
+                    "value": "//div[starts-with(@class, 'appian-feed-entry') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]"
+                },
+                {
+                    "label": "xpathConcatSocialTaskItemComment",
+                    "value": "/following-sibling::div[starts-with(@class, 'appian-feed-entry-metadata')]/descendant::a[contains(text(),'Comment')]"
+                },
+                {
+                    "label": "xpathConcatSocialTaskItemClose",
+                    "value": "/following-sibling::div[starts-with(@class, 'appian-feed-entry-metadata')]/descendant::a[contains(text(),'Close')]"
+                },
+                {
+                    "label": "xpathConcatSocialTaskItemDelete",
+                    "value": "/following-sibling::div[starts-with(@class, 'appian-feed-entry-metadata')]/descendant::a[contains(text(),'Delete')]"
+                },
+                {
+                    "label": "xpathConcatSocialTaskItemCloseCommentBox",
+                    "value": "/following-sibling::div/descendant::textarea[contains(@placeholder, 'Type comments here (optional)')]"
+                },
+                {
+                    "label": "xpathConcatSocialTaskItemCloseCommentButton",
+                    "value": "/following-sibling::div/descendant::button[contains(text(), 'Close')]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordTypeLink",
+                    "value": "//a[contains(@href, '/tempo/records/type') and contains(@href, '/view/all') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordTypeUserFilterDropdown",
+                    "value": ""
+                },
+                {
+                    "label": "xpathAbsoluteRecordTypeUserFilterLabel",
+                    "value": "//ol[@class='facetgroup']/descendant::a[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordTypeUserFilterValue",
+                    "value": ""
+                },
+                {
+                    "label": "xpathAbsoluteRecordTypeUserFilterClear",
+                    "value": ""
+                },
+                {
+                    "label": "xpathAbsoluteRecordLink",
+                    "value": "//a[contains(@href, '/tempo/records/type') and contains(@href, '/item/') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordIndexLink",
+                    "value": "(//a[contains(@href, '/tempo/records/type') and contains(@href, '/item/')])[%1$d]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordViewLink",
+                    "value": "//a[contains(@href, '/tempo/records/type') and contains(@href, '/item/')]/span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordRelatedActionLink",
+                    "value": "//a[(starts-with(@class, 'aui-ActionLink') or starts-with(@class, 'gwt-Anchor')) and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteReportLink",
+                    "value": "//a[contains(@class, 'appian-feed-entry-author') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteActionLink",
+                    "value": "//a[starts-with(@class, 'aui-ActionLink') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathConcatActionStar",
+                    "value": "/following-sibling::img[contains(@class, 'aui-Action-Star')]"
+                },
+                {
+                    "label": "xpathAbsoluteActionsAppFilterLink",
+                    "value": "//ol[@class='facetgroup']/descendant::span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteFormTitle",
+                    "value": "//h2"
+                },
+                {
+                    "label": "xpathAbsoluteFormInstructions",
+                    "value": "//h2/following-sibling::p"
+                },
+                {
+                    "label": "xpathAbsoluteFieldLayoutLabel",
+                    "value": "//*[(self::label or self::span) and starts-with(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::*/following-sibling::div/descendant::div[contains(@class, 'aui_FieldLayout_InputContainer')]"
+                },
+                {
+                    "label": "xpathAbsoluteFieldLayoutIndex",
+                    "value": "(//div[contains(@class, 'aui_FieldLayout_InputContainer')])[%1$d]"
+                },
+                {
+                    "label": "xpathConcatAncestorFieldLayout",
+                    "value": "/ancestor::div[contains(@class, 'aui_FieldLayout_InputContainer')][position()=1]"
+                },
+                {
+                    "label": "xpathAbsoluteButton",
+                    "value": "//button[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s) and not(contains(@class, 'button-disabled'))]"
+                },
+                {
+                    "label": "xpathRelativeButton",
+                    "value": ".//button"
+                },
+                {
+                    "label": "xpathAbsoluteAcceptButton",
+                    "value": "//button[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s) and not(contains(@class, 'button-disabled'))]"
+                },
+                {
+                    "label": "xpathAbsoluteTextFieldLabel",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::span/following-sibling::div/descendant::input"
+                },
+                {
+                    "label": "xpathAbsoluteTextFieldIndex",
+                    "value": "(//input[contains(@class, 'aui-TextInput')])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeTextFieldInput",
+                    "value": ".//input[contains(@class, 'aui-TextInput')]"
+                },
+                {
+                    "label": "xpathAbsoluteImageFieldLabel",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::span/following-sibling::div/descendant::img"
+                },
+                {
+                    "label": "xpathAbsoluteImageFieldIndex",
+                    "value": "(//img[contains(@class, 'SafeImage')])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeImageFieldInput",
+                    "value": ".//img[contains(@class, 'SafeImage')]"
+                },
+                {
+                    "label": "xpathAbsoluteIntegerFieldLabel",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::span/following-sibling::div/div/input"
+                },
+                {
+                    "label": "xpathRelativeIntegerFieldInput",
+                    "value": ".//input[contains(@class, 'aui-TextInput')]"
+                },
+                {
+                    "label": "xpathAbsoluteParagraphFieldLabel",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::span/following-sibling::div/descendant::textarea"
+                },
+                {
+                    "label": "xpathAbsoluteParagraphFieldIndex",
+                    "value": "(//textarea[contains(@class, 'aui-TextAreaInput')])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeParagraphFieldInput",
+                    "value": ".//textarea[contains(@class, 'aui-TextAreaInput')]"
+                },
+                {
+                    "label": "xpathAbsoluteCheckboxFieldLabel",
+                    "value": "//span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::span/following-sibling::div/descendant::input[type='checkbox']"
+                },
+                {
+                    "label": "xpathAbsoluteCheckboxFieldIndex",
+                    "value": "(//input[@type='checkbox'])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeCheckboxFieldChoiceLabel",
+                    "value": ".//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]/preceding-sibling::input"
+                },
+                {
+                    "label": "xpathRelativeCheckboxFieldChoiceIndex",
+                    "value": "(.//input[@type='checkbox'])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeCheckboxFieldInput",
+                    "value": ".//input[contains(@type, 'checkbox')]"
+                },
+                {
+                    "label": "xpathRelativeCheckboxFieldInputSpan",
+                    "value": ".//span[input[contains(@type, 'checkbox')]]"
+                },
+                {
+                    "label": "xpathAbsoluteCheckboxFieldOption",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]/preceding-sibling::input[@type='checkbox']"
+                },
+                {
+                    "label": "xpathAbsoluteRadioFieldLabel",
+                    "value": "//span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::span/following-sibling::div/descendant::input"
+                },
+                {
+                    "label": "xpathRelativeRadioFieldChoiceLabel",
+                    "value": ".//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]/preceding-sibling::input"
+                },
+                {
+                    "label": "xpathRelativeRadioFieldChoiceIndex",
+                    "value": "(.//input[@type='radio'])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeRadioButtonGroup",
+                    "value": ".//div[contains(@class, 'RadioButtonGroup')]"
+                },
+                {
+                    "label": "xpathRelativeRadioFieldInputSpan",
+                    "value": ".//span[input[@type='radio']]"
+                },
+                {
+                    "label": "xpathAbsoluteRadioFieldOption",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]/preceding-sibling::input[@type='radio']"
+                },
+                {
+                    "label": "xpathAbsoluteDropdownFieldIndex",
+                    "value": "//span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::span/following-sibling::div/descendant::div/select"
+                },
+                {
+                    "label": "xpathRelativeDropdownFieldInput",
+                    "value": ".//select"
+                },
+                {
+                    "label": "xpathAbsoluteDateFieldInput",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::span/following-sibling::div/descendant::input[contains(@class, 'aui-DateInput-TextBox')]"
+                },
+                {
+                    "label": "xpathRelativeDateFieldPlaceholder",
+                    "value": ".//input[contains(@class, 'aui-DateInput-Placeholder')]"
+                },
+                {
+                    "label": "xpathRelativeDateFieldInput",
+                    "value": ".//input[contains(@class, 'aui-DateInput-TextBox')]"
+                },
+                {
+                    "label": "xpathAbsoluteDatetimeFieldDateInput",
+                    "value": "//span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::span/following-sibling::div/descendant::input[contains(@class, 'aui-DateInput-TextBox')]"
+                },
+                {
+                    "label": "xpathRelativeDatetimeFieldDatePlaceholder",
+                    "value": ".//input[contains(@class, 'aui-DateInput-Placeholder')]"
+                },
+                {
+                    "label": "xpathRelativeDatetimeFieldDateInput",
+                    "value": ".//input[contains(@class, 'aui-DateInput-TextBox')]"
+                },
+                {
+                    "label": "xpathAbsoluteDatetimeFieldTimeInput",
+                    "value": "//span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::span/following-sibling::div/descendant::input[contains(@class, 'aui-TimeInput-TextBox')]"
+                },
+                {
+                    "label": "xpathRelativeDatetimeFieldTimePlaceholder",
+                    "value": ".//input[contains(@class, 'aui-TimeInput-Placeholder')]"
+                },
+                {
+                    "label": "xpathRelativeDatetimeFieldTimeInput",
+                    "value": ".//input[contains(@class, 'aui-TimeInput-TextBox')]"
+                },
+                {
+                    "label": "xpathAbsoluteFileUploadFieldLabel",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::span/following-sibling::div/descendant::input"
+                },
+                {
+                    "label": "xpathAbsoluteFileUploadFieldIndex",
+                    "value": "(//input[contains(@class, 'gwt-FileUpload')])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeFileUploadFieldInput",
+                    "value": ".//input[contains(@class, 'gwt-FileUpload')]"
+                },
+                {
+                    "label": "xpathRelativeFileUploadFieldFile",
+                    "value": ".//span[contains(@class, 'filename')]"
+                },
+                {
+                    "label": "xpathRelativeFileUploadFieldRemoveLink",
+                    "value": ".//a[starts-with(text(), 'Remove')]"
+                },
+                {
+                    "label": "xpathRelativeFileUploadFieldWaiting",
+                    "value": ".//div[contains(@class, 'prgbar-msg')]"
+                },
+                {
+                    "label": "xpathAbsolutePickerLabel",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::span"
+                },
+                {
+                    "label": "xpathRelativePickerInput",
+                    "value": ".//input[contains(@class, 'gwt-SuggestBox')]"
+                },
+                {
+                    "label": "xpathAbsolutePickerSuggestion",
+                    "value": "//div[contains(@class, 'SuggestBoxPopup')]/descendant::p[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)] | //div[contains(@class, 'SuggestBoxPopup')]/descendant::h2[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathRelativePickerSelection",
+                    "value": ".//a[@title]"
+                },
+                {
+                    "label": "xpathRelativePickerSpecificSelection",
+                    "value": "/descendant::a[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathRelativePickerSelectionRemoveLink",
+                    "value": ".//a/following-sibling::a"
+                },
+                {
+                    "label": "xpathRelativePickerSpecificSelectionRemoveLink",
+                    "value": ".//a[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/following-sibling::a"
+                },
+                {
+                    "label": "xpathRelativePickerSuggestBox",
+                    "value": "/descendant::input[contains(@class, 'SuggestBox')]"
+                },
+                {
+                    "label": "xpathAbsoluteMilestoneFieldLabel",
+                    "value": "//span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/descendant::div[contains(text(), 'Step:')]"
+                },
+                {
+                    "label": "xpathAbsoluteMilestoneFieldIndex",
+                    "value": "(//div[contains(text(), 'Step:')]/ancestor::ul)[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepGeneral",
+                    "value": ".//descendant::div[contains(text(), 'Step:')]"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepSelected",
+                    "value": ".//descendant::div[contains(@class, 'accessibilityhidden') and starts-with(text(), 'Current Step:')]/following-sibling::*[1]"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStep",
+                    "value": ".//descendant::*[starts-with(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepIndex",
+                    "value": "(.//descendant::div[contains(@class, 'accessibilityhidden') and contains(text(), 'Step:')])[%1$d]/following-sibling::div/descendant::a"
+                },
+                {
+                    "label": "xpathAbsoluteLink",
+                    "value": "//a[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)] | //a//*[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/.."
+                },
+                {
+                    "label": "xpathAbsoluteLinkFieldLabel",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/descendant::div/a"
+                },
+                {
+                    "label": "xpathAbsoluteLinkFieldIndex",
+                    "value": "(//div/a"
+                },
+                {
+                    "label": "xpathRelativeLinkFieldLink",
+                    "value": ".//div/a"
+                },
+                {
+                    "label": "xpathAbsoluteGridByIndex",
+                    "value": "((//div[contains(@class, 'DataGrid-Table')]/descendant::table)[%1$d])/ancestor::div[contains(@class, 'aui_FieldLayout_InputContainer')][position()=1]"
+                },
+                {
+                    "label": "xpathAbsoluteGridByLabel",
+                    "value": "//span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/descendant::table/ancestor::div[contains(@class, 'aui_FieldLayout_InputContainer')][position()=1]"
+                },
+                {
+                    "label": "xpathRelativeColumnLabelCount",
+                    "value": "./descendant::thead/descendant::th[descendant::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç')=%1$s]]/preceding-sibling::th"
+                },
+                {
+                    "label": "xpathRelativeGridCell",
+                    "value": ".//tbody/tr[%1$d]/*[(self::td or self::th)][%2$d]"
+                },
+                {
+                    "label": "xpathRelativeGridField",
+                    "value": ".//div[contains(@class, 'DataGrid-Table')]"
+                },
+                {
+                    "label": "xpathRelativeGridCheckbox",
+                    "value": ".//input[@type='checkbox']"
+                },
+                {
+                    "label": "xpathRelativeGridAddRowLink",
+                    "value": ".//tfoot//a"
+                },
+                {
+                    "label": "xpathRelativeGridHeaderRow",
+                    "value": ".//thead/descendant::tr"
+                },
+                {
+                    "label": "xpathRelativeGridRow",
+                    "value": ".//tbody/descendant::tr"
+                },
+                {
+                    "label": "xpathRelativeGridColumn",
+                    "value": "./descendant::*[(self::td or self::th)]"
+                },
+                {
+                    "label": "xpathRelativeGridCellLink",
+                    "value": ".//img|.//a"
+                },
+                {
+                    "label": "xpathRelativeGridFirstPageLink",
+                    "value": ".//img[contains(@aria-label, 'First page')]"
+                },
+                {
+                    "label": "xpathRelativeGridPreviousPageLink",
+                    "value": ".//img[contains(@aria-label, 'Previous page')]"
+                },
+                {
+                    "label": "xpathRelativeGridNextPageLink",
+                    "value": ".//img[contains(@aria-label, 'Next page')]"
+                },
+                {
+                    "label": "xpathRelativeGridLastPageLink",
+                    "value": ".//img[contains(@aria-label, 'Last page')]"
+                },
+                {
+                    "label": "xpathRelativeGridColumnLink",
+                    "value": ".//thead//a[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]"
+                },
+                {
+                    "label": "xpathRelativeGridSelectAllColumn",
+                    "value": ".//thead//input[@type='checkbox']"
+                },
+                {
+                    "label": "xpathRelativeGridPagingLabel",
+                    "value": ".//div[contains(@class, 'gwt-HTML')]"
+                },
+                {
+                    "label": "xpathConditionSectionContains",
+                    "value": ""
+                },
+                {
+                    "label": "xpathAbsoluteSectionFieldLayout",
+                    "value": "//h3[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/descendant::*[starts-with(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%2$s)]/parent::*/following-sibling::div/descendant::div[contains(@class, 'aui_FieldLayout_InputContainer')]"
+                },
+                {
+                    "label": "xpathAbsoluteSectionFieldLayoutIndex",
+                    "value": "//h3[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/descendant::div[contains(@class, 'aui_FieldLayout_InputContainer')][%2$d]"
+                },
+                {
+                    "label": "xpathRelativeSectionValidationMessageSpecificValue",
+                    "value": "/descendant::p[contains(@class, 'validationMessage') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]"
+                },
+                {
+                    "label": "xpathRelativeSectionValidationMessage",
+                    "value": "./descendant::p[contains(@class, 'validationMessage')]"
+                },
+                {
+                    "label": "xpathAbsoluteSectionLayout",
+                    "value": "//h3[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/ancestor::div[contains(@class, 'aui-Section')]"
+                },
+                {
+                    "label": "xpathRelativeSectionToggle",
+                    "value": ".//a[contains(@title, 'Collapse') or contains(@title, 'Expand')]"
+                },
+                {
+                    "label": "xpathRelativeFieldLayout",
+                    "value": ".//div[contains(@class, 'aui_FieldLayout_InputContainer')]"
+                },
+                {
+                    "label": "xpathRelativeReadOnlyField",
+                    "value": ".//p[contains(@class, 'readonly')] | div[ancestor::div[contains(@class, 'DataGrid-Container')]]"
+                },
+                {
+                    "label": "xpathRelativeFieldValidationMessageSpecificValue",
+                    "value": "/ancestor::div[contains(@class, 'aui_FieldLayout')][position()=1]/descendant::p[contains(@class, 'component_error') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]"
+                },
+                {
+                    "label": "xpathRelativeFieldValidationMessage",
+                    "value": "./ancestor::div[contains(@class, 'aui_FieldLayout')][position()=1]/descendant::p[contains(@class, 'component_error')]"
+                },
+                {
+                    "label": "xpathAbsoluteChartLabel",
+                    "value": "//span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteSaveChanges",
+                    "value": "//a[contains(@class,'appian-form-close') and contains(text(), 'Save Changes')]"
+                },
+                {
+                    "label": "xpathAbsoluteFormSavedConfirmation",
+                    "value": "//div[@id='inlineConfirmMessage' and contains(text(), 'Form saved successfully')]"
+                }
+            ],
+            "locales": [
+                {
+                    "dateFormats": [
+                        {
+                            "label": "dateFormat",
+                            "value": "M/d/yyyy"
+                        },
+                        {
+                            "label": "dateDisplayFormat",
+                            "value": "MMM d, yyyy"
+                        },
+                        {
+                            "label": "timeFormat",
+                            "value": "h:mm aa"
+                        },
+                        {
+                            "label": "timeDisplayFormat",
+                            "value": "h:mm aa"
+                        },
+                        {
+                            "label": "datetimeFormat",
+                            "value": "M/d/yyyy h:mm aa"
+                        },
+                        {
+                            "label": "datetimeDisplayFormat",
+                            "value": "MMM d, yyyy, h:mm aa"
+                        }
+                    ],
+                    "labels": [
+                        {
+                            "label": "acceptButton",
+                            "value": "Accept"
+                        }
+                    ],
+                    "locale": "en_US"
+                },
+                {
+                    "dateFormats": [
+                        {
+                            "label": "dateFormat",
+                            "value": "dd/MM/yyyy"
+                        },
+                        {
+                            "label": "dateDisplayFormat",
+                            "value": "d MMM yyyy"
+                        },
+                        {
+                            "label": "timeFormat",
+                            "value": "HH:mm"
+                        },
+                        {
+                            "label": "timeDisplayFormat",
+                            "value": "HH:mm"
+                        },
+                        {
+                            "label": "datetimeFormat",
+                            "value": "dd/MM/yyyy HH:mm"
+                        },
+                        {
+                            "label": "datetimeDisplayFormat",
+                            "value": "d MMM yyyy HH:mm"
+                        }
+                    ],
+                    "labels": [
+                        {
+                            "label": "acceptButton",
+                            "value": "Accept"
+                        }
+                    ],
+                    "locale": "en_GB"
+                }
+            ],
+            "version": "7.10"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathRelativeFileUploadFieldRemoveLink",
+                    "value": ".//a[@title='Remove']"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "7.11"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteRecordLink",
+                    "value": "//a[contains(@href, '/tempo/records/item/') and contains(@href, '/view/summary') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordIndexLink",
+                    "value": "(//a[contains(@href, '/view/summary')])[%1$d]"
+                },
+                {
+                    "label": "xpathAbsoluteSearchField",
+                    "value": "//div[contains(@class, 'appian-tempo-search')]/descendant::input | //div[contains(@class, 'filters')]/descendant::input[@type='text']"
+                },
+                {
+                    "label": "xpathAbsoluteRecordGridColumnSortLink",
+                    "value": "//div[contains(@class, 'DataGrid-Table')]/descendant::table/thead//a[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç')=%1$s]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordGridNavigationFirst",
+                    "value": "//div[contains(@class, 'DataGrid-Table')]/descendant::table/tfoot//a[@title='First']"
+                },
+                {
+                    "label": "xpathAbsoluteRecordGridNavigationPrevious",
+                    "value": "//div[contains(@class, 'DataGrid-Table')]/descendant::table/tfoot//a[text()='Previous']"
+                },
+                {
+                    "label": "xpathAbsoluteRecordGridNavigationNext",
+                    "value": "//div[contains(@class, 'DataGrid-Table')]/descendant::table/tfoot//a[text()='Next']"
+                },
+                {
+                    "label": "xpathAbsoluteRecordGridNavigationLast",
+                    "value": "//div[contains(@class, 'DataGrid-Table')]/descendant::table/tfoot//a[@title='Last']"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "16.1"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteRecordLink",
+                    "value": "//a[contains(@href, '/view/summary') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%s)]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordViewLink",
+                    "value": "//a[contains(@href, '/tempo/records/type') and contains(@href, '/item/')]/span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)] | //a[contains(@href, '/sites/') and contains(@href, '/view/') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteLoginBox",
+                    "value": "//div[@class='login_box_inner']"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "16.2"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteSaveChanges",
+                    "value": "//button[i[contains(@class, 'fa-save')]]"
+                },
+                {
+                    "label": "xpathRelativeDropdownFieldInputHidden",
+                    "value": "."
+                },
+                {
+                    "label": "xpathAbsoluteRecordTypeUserFilterClear",
+                    "value": "//div[contains(@class, 'column_panel')]//li[contains(@title,'Show All')]/a[contains(@class, 'gwt-Anchor')]"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "16.3"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteWorking",
+                    "value": "//div[contains(@class, 'appian-indicator-message')]|//div[contains(@class, 'LoadingBar---loading_bar')]"
+                },
+                {
+                    "label": "xpathAbsoluteLoginAgreeButton",
+                    "value": "//input[@class='btn primary' and @value='I Agree']"
+                },
+                {
+                    "label": "xpathAbsoluteError",
+                    "value": "//div[@role='dialog' and starts-with(@class,'ModalDialogLayout')]"
+                },
+                {
+                    "label": "xpathConcatNewsItemMoreInfoLink",
+                    "value": "//following-sibling::div[starts-with(@class, 'appian-feed-entry-metadata')]/descendant::a[contains(text(), 'More Info') or contains(text(), 'Hide Info')]"
+                },
+                {
+                    "label": "xpathAbsoluteTaskDeadline",
+                    "value": "//span[contains(@title,'deadline') and @style='display: inline;']"
+                },
+                {
+                    "label": "xpathAbsoluteRecordRelatedActionLink",
+                    "value": "//a[starts-with(@class, 'elements---global_a')]/descendant-or-self::*[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)] | //button[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteFormTitle",
+                    "value": "//h1[@class='TitleText---page_header']|//table[@class='GridWidget---table GridWidget---striped GridWidget---distribute']/thead/tr/th[@scope='col']"
+                },
+                {
+                    "label": "xpathAbsoluteFormInstructions",
+                    "value": "//h1/following-sibling::p"
+                },
+                {
+                    "label": "xpathAbsoluteFieldLayoutLabel",
+                    "value": "//*[(self::label or self::span) and starts-with(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/ancestor::div[contains(@class, 'FieldLayout---field_layout')][position()=1]"
+                },
+                {
+                    "label": "xpathAbsoluteFieldLayoutPlaceholder",
+                    "value": "//*[starts-with(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/ancestor::div[contains(@class, 'FieldLayout---field_layout')][position()=1]"
+                },
+                {
+                    "label": "xpathAbsoluteFieldLayoutInstructions",
+                    "value": "//div[contains(@class, FieldLayout---field_instructions) and starts-with(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/ancestor::div[contains(@class, 'FieldLayout---field_layout')][position()=1]"
+                },
+                {
+                    "label": "xpathAbsoluteFieldLayoutTooltip",
+                    "value": "//*[local-name()='svg']/child::*[local-name()='desc' and starts-with(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/ancestor::div[contains(@class, 'FieldLayout---field_layout')]"
+                },
+                {
+                    "label": "xpathAbsoluteFieldLayoutIndex",
+                    "value": "(//div[contains(@class, 'FieldLayout---field_layout')])[%1$d]"
+                },
+                {
+                    "label": "xpathConcatAncestorFieldLayout",
+                    "value": "/ancestor::div[contains(@class, 'FieldLayout---field_layout')]"
+                },
+                {
+                    "label": "xpathAbsoluteTextFieldLabel",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/descendant::input"
+                },
+                {
+                    "label": "xpathAbsoluteTextFieldIndex",
+                    "value": "(//input[contains(@class, 'TextWidget---text')])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeTextFieldInput",
+                    "value": ".//input[@type='text' and contains(@class,'TextWidget---text')]"
+                },
+                {
+                    "label": "xpathAbsoluteLinkFieldLabel",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/descendant::p[contains(@class, 'LinkGroup')]"
+                },
+                {
+                    "label": "xpathAbsoluteLinkFieldIndex",
+                    "value": "(//p[contains(@class, 'LinkGroup')])[%1$d]/a"
+                },
+                {
+                    "label": "xpathRelativeLinkFieldLink",
+                    "value": ".//p[contains(@class, 'LinkGroup')]/a"
+                },
+                {
+                    "label": "xpathAbsoluteBarcodeFieldLabel",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/descendant::input"
+                },
+                {
+                    "label": "xpathAbsoluteBarcodeFieldIndex",
+                    "value": "(//input[contains(@class, 'BarcodeWidget---text')])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeBarcodeFieldInput",
+                    "value": ".//input[@type='text' and contains(@class,'BarcodeWidget---text')]"
+                },
+                {
+                    "label": "xpathAbsoluteImageFieldLabel",
+                    "value": "//span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/descendant::img"
+                },
+                {
+                    "label": "xpathAbsoluteImageFieldIndex",
+                    "value": "(//img[contains(@class,'DocumentImage---image')])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeImageFieldInput",
+                    "value": ".//img[contains(@class,'DocumentImage---image')]"
+                },
+                {
+                    "label": "xpathAbsoluteIntegerFieldLabel",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/div/input"
+                },
+                {
+                    "label": "xpathRelativeIntegerFieldInput",
+                    "value": ".//input[@type='text' and contains(@class,'TextWidget---text')]"
+                },
+                {
+                    "label": "xpathAbsoluteParagraphFieldLabel",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/descendant::textarea"
+                },
+                {
+                    "label": "xpathAbsoluteParagraphFieldIndex",
+                    "value": "(//textarea[contains(@class,'ParagraphWidget---textarea ParagraphWidget') and @role='textbox'])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeParagraphFieldInput",
+                    "value": ".//textarea[contains(@class,'ParagraphWidget---textarea')]"
+                },
+                {
+                    "label": "xpathAbsoluteCheckboxFieldLabel",
+                    "value": "//span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/descendant::div[contains(@class,'CheckboxGroup---choice_pair')]"
+                },
+                {
+                    "label": "xpathAbsoluteCheckboxFieldIndex",
+                    "value": "(//div[contains(@class,'CheckboxGroup---choice_pair')])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeCheckboxFieldChoiceLabel",
+                    "value": ".//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]/parent::div[contains(@class,'CheckboxGroup---choice_pair')]"
+                },
+                {
+                    "label": "xpathRelativeCheckboxFieldChoiceIndex",
+                    "value": "(.//div[contains(@class,'CheckboxGroup---choice_pair')])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeCheckboxFieldInput",
+                    "value": ".//div[contains(@class,'CheckboxGroup---choice_pair')]"
+                },
+                {
+                    "label": "xpathRelativeCheckboxFieldInputSpan",
+                    "value": ".//div[contains(@class,'CheckboxGroup---choice_pair')]"
+                },
+                {
+                    "label": "xpathAbsoluteCheckboxFieldOption",
+                    "value": "//div[contains(@class,'CheckboxGroup---choice_pair')]//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteRadioFieldLabel",
+                    "value": "//span[contains(@class, 'FieldLayout---field_label') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::*/following-sibling::*/div[@class='RadioButtonGroup---choice_group']/div"
+                },
+                {
+                    "label": "xpathRelativeRadioButtonGroup",
+                    "value": ".//div[@role='radiogroup']"
+                },
+                {
+                    "label": "xpathRelativeRadioFieldInputSpan",
+                    "value": ".//div[@class='RadioButtonGroup---choice_pair']"
+                },
+                {
+                    "label": "xpathAbsoluteRadioFieldOption",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s) and parent::div[contains(@class,'RadioButtonGroup---choice_pair')]]"
+                },
+                {
+                    "label": "xpathAbsoluteDropdownFieldIndex",
+                    "value": "//span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/descendant::div/div"
+                },
+                {
+                    "label": "xpathRelativeDropdownFieldInput",
+                    "value": ".//div[contains(@class, 'DropdownWidget---dropdown_value')]"
+                },
+                {
+                    "label": "xpathDropdownFieldMultiple",
+                    "value": "MultipleDropdownWidget"
+                },
+                {
+                    "label": "xpathDropdownOptionSelected",
+                    "value": "aria-selected"
+                },
+                {
+                    "label": "xpathDropdownOptionChecked",
+                    "value": "aria-checked"
+                },
+                {
+                    "label": "xpathDropdownOptionActive",
+                    "value": "MenuWidgetItem---active"
+                },
+                {
+                    "label": "xpathAbsoluteDropdownOptionList",
+                    "value": "//div[contains(@class,'TetherComponent---sailcontents') and contains(@class,'DropdownWidget---tether_dropdown')]//ul"
+                },
+                {
+                    "label": "xpathAbsoluteDateFieldInput",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/descendant::input[contains(@class, 'DatePickerWidget---text')]"
+                },
+                {
+                    "label": "xpathRelativeDateFieldPlaceholder",
+                    "value": ".//input[contains(@class,'DatePickerWidget---text')]"
+                },
+                {
+                    "label": "xpathRelativeDateFieldInput",
+                    "value": ".//input[contains(@class,'DatePickerWidget---text')]"
+                },
+                {
+                    "label": "xpathAbsoluteDatetimeFieldDateInput",
+                    "value": "//span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/descendant::input[contains(@class, 'DatePickerWidget---text')]"
+                },
+                {
+                    "label": "xpathRelativeDatetimeFieldDatePlaceholder",
+                    "value": ".//input[@type='text' and contains(@class,'DatePickerWidget---text DatePickerWidget---align_start')]"
+                },
+                {
+                    "label": "xpathRelativeDatetimeFieldDateInput",
+                    "value": ".//input[contains(@class,'DatePickerWidget---text')]"
+                },
+                {
+                    "label": "xpathAbsoluteDatetimeFieldTimeInput",
+                    "value": "//span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/descendant::input[contains(@class, 'TimeWidget---dropdown_value')]"
+                },
+                {
+                    "label": "xpathRelativeDatetimeFieldTimePlaceholder",
+                    "value": ".//input[@type='text' and contains(@class,'TimeWidget---dropdown_value')]"
+                },
+                {
+                    "label": "xpathRelativeDatetimeFieldTimeInput",
+                    "value": ".//input[contains(@class,'TimeWidget---dropdown_value')]"
+                },
+                {
+                    "label": "xpathAbsoluteFileUploadFieldLabel",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/descendant::input"
+                },
+                {
+                    "label": "xpathAbsoluteFileUploadFieldIndex",
+                    "value": "(//input[@type='file'])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeFileUploadFieldInput",
+                    "value": ".//input[@type='file']"
+                },
+                {
+                    "label": "xpathRelativeFileUploadFieldFile",
+                    "value": ".//p[contains(@class, 'FileUploadWidget---nowrap elements---global_p')]"
+                },
+                {
+                    "label": "xpathRelativeFileUploadFieldRemoveLink",
+                    "value": ".//a[contains(@aria-label,'Clear file:')]"
+                },
+                {
+                    "label": "xpathRelativeFileUploadFieldWaiting",
+                    "value": ".//svg[contains(@class,'FileUploadWidget---progress_circle')]"
+                },
+                {
+                    "label": "xpathAbsolutePickerLabel",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div"
+                },
+                {
+                    "label": "xpathRelativePickerInput",
+                    "value": ".//input[contains(@class, 'PickerWidget---picker_input')]"
+                },
+                {
+                    "label": "xpathAbsolutePickerSuggestion",
+                    "value": "//div[contains(@class,'TetherComponent---sailcontents') and contains(@class,'PickerWidget---picker_suggestions')]//p[not(p) and not(contains(text(),'Searching'))][descendant-or-self::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç')=%1$s]]"
+                },
+                {
+                    "label": "xpathAbsolutePickerSuggestionContains",
+                    "value": "//div[contains(@class,'TetherComponent---sailcontents') and contains(@class,'PickerWidget---picker_suggestions')]//p[not(p) and not(contains(text(),'Searching'))][descendant-or-self::*[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]]"
+                },
+                {
+                    "label": "xpathRelativePickerSelection",
+                    "value": ".//span[contains(@class,'PickerTokenWidget---label')]"
+                },
+                {
+                    "label": "xpathRelativePickerSpecificSelection",
+                    "value": ".//span[contains(@class,'PickerTokenWidget---label') and (contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s) or child::a[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)])]"
+                },
+                {
+                    "label": "xpathRelativePickerSelectionRemoveLink",
+                    "value": ".//a[contains(@class,'PickerTokenWidget---remove')]"
+                },
+                {
+                    "label": "xpathRelativePickerSpecificSelectionRemoveLink",
+                    "value": ".//a[contains(@class,'PickerTokenWidget---remove')]"
+                },
+                {
+                    "label": "xpathRelativePickerSuggestBox",
+                    "value": "//div[contains(@class,'PickerWidget---picker_value')]"
+                },
+                {
+                    "label": "xpathAbsoluteMilestoneFieldLabel",
+                    "value": "//div[@class='MilestoneWidget---step_label']"
+                },
+                {
+                    "label": "xpathAbsoluteMilestoneFieldIndex",
+                    "value": "(//a[contains(text(), 'Step')]/ancestor::ol)[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepGeneral",
+                    "value": ".//ol[@class='MilestoneWidget---milestone']/li"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepSelected",
+                    "value": ".//ol[@class='MilestoneWidget---milestone']/li[@class='MilestoneWidget---current']"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepIndex",
+                    "value": "(.//descendant::span[contains(@class, 'accessibilityhidden') and contains(text(), 'Step')])[%1$d]/parent::a"
+                },
+                {
+                    "label": "xpathAbsoluteGridByIndex",
+                    "value": "((//table[contains(@class, '---table')])[%1$d])/ancestor::div[contains(@class, 'FieldLayout---field_layout')][position()=1]"
+                },
+                {
+                    "label": "xpathAbsoluteGridByLabel",
+                    "value": "//span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/descendant::table[contains(@class, '---table')]/ancestor::div[contains(@class, 'FieldLayout---field_layout')][position()=1]"
+                },
+                {
+                    "label": "xpathRowSelected",
+                    "value": "aria-selected"
+                },
+                {
+                    "label": "xpathRowSelection",
+                    "value": "---selectable"
+                },
+                {
+                    "label": "xpathRelativeGridCheckboxClick",
+                    "value": ".//div[contains(@class,'CheckboxGroup---choice_group')]"
+                },
+                {
+                    "label": "xpathRelativeGridAddRowLink",
+                    "value": ".//a[contains(@class,'GridFooter---add_grid_row_link')]"
+                },
+                {
+                    "label": "xpathRelativeGridRow",
+                    "value": ".//tbody/descendant::tr[not(contains(@class,'---empty_msg'))]"
+                },
+                {
+                    "label": "xpathRelativeGridFirstPageLink",
+                    "value": ".//i[contains(@class,'GridFooter---fa-angle-double-left-svg')]"
+                },
+                {
+                    "label": "xpathRelativeGridPreviousPageLink",
+                    "value": ".//i[contains(@class,'GridFooter---fa-angle-left-svg')]"
+                },
+                {
+                    "label": "xpathRelativeGridNextPageLink",
+                    "value": ".//i[contains(@class,'GridFooter---fa-angle-right-svg')]"
+                },
+                {
+                    "label": "xpathRelativeGridLastPageLink",
+                    "value": ".//i[contains(@class,'GridFooter---fa-angle-double-right-svg')]"
+                },
+                {
+                    "label": "xpathRelativeGridColumnLink",
+                    "value": ".//th[descendant::div[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]]"
+                },
+                {
+                    "label": "xpathRelativeGridSelectAllColumn",
+                    "value": ".//thead//div[contains(@class,'CheckboxGroup---choice_group')]"
+                },
+                {
+                    "label": "xpathRelativeGridPagingLabel",
+                    "value": ".//span[contains(@class, 'GridFooter---count')]"
+                },
+                {
+                    "label": "xpathRelativeGridField",
+                    "value": ".//table[contains(@class, '---table')]"
+                },
+                {
+                    "label": "xpathAbsoluteSectionFieldLayout",
+                    "value": "//div/h2[descendant-or-self::*[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]]/parent::div//div[contains(@class, 'FieldLayout---field_layout') and descendant::*[(self::span or self::label) and contains(@class,'FieldLayout---field_label') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%2$s)]]"
+                },
+                {
+                    "label": "xpathAbsoluteSectionFieldLayoutIndex",
+                    "value": "//div/h2[descendant-or-self::*[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]]/parent::div//div[contains(@class, 'FieldLayout---field_layout')][%2$d]"
+                },
+                {
+                    "label": "xpathRelativeSectionValidationMessageSpecificValue",
+                    "value": "//div[@class='MessageLayout---message MessageLayout---error' and @role='alert']/p[descendant-or-self::*[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]]"
+                },
+                {
+                    "label": "xpathRelativeSectionValidationMessage",
+                    "value": ".//div[contains(@class,'MessageLayout---message')]/p"
+                },
+                {
+                    "label": "xpathAbsoluteSectionLayout",
+                    "value": "//div/h2[descendant-or-self::*[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]]/parent::div"
+                },
+                {
+                    "label": "xpathRelativeSectionToggle",
+                    "value": ".//a[contains(@class,'SectionLayout2---section_toggle')]"
+                },
+                {
+                    "label": "xpathRelativeFieldLayout",
+                    "value": ".//div[contains(@class, 'FieldLayout---field_layout')]"
+                },
+                {
+                    "label": "xpathRelativeFieldLayoutLabel",
+                    "value": ".//*[(self::span or self::label) and contains(@class, 'FieldLayout---field_label')]"
+                },
+                {
+                    "label": "xpathRelativeReadOnlyField",
+                    "value": ".//p[contains(@class,'ParagraphText---richtext_paragraph')] | ./div[contains(@class, 'FieldLayout---input_below')]/div[not(descendant::*)]"
+                },
+                {
+                    "label": "xpathRelativeFieldValidationMessageSpecificValue",
+                    "value": "/descendant::div[contains(@class, 'FieldLayout---field_error') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]"
+                },
+                {
+                    "label": "xpathRelativeFieldValidationMessage",
+                    "value": "./descendant::div[contains(@class, 'FieldLayout---field_error')]"
+                },
+                {
+                    "label": "xpathAbsoluteSearchField",
+                    "value": "//div[contains(@class, 'appian-tempo-search')]/descendant::input | //div[contains(@class, 'filters')]/descendant::input[@type='text'] | //label[contains(@class,'FieldLayout---field_label') and contains(text(),'Search')]/ancestor::div[contains(@class,'FieldLayout---field_layout')]//div[contains(@class,'FieldLayout---input_below')]//input"
+                },
+                {
+                    "label": "xpathAbsoluteFeedEntry",
+                    "value": "//div[contains(@class, 'appian-feed-entry')] | //table | //div[contains(@class,'SectionLayout2---section_contents')]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordGridColumnSortLink",
+                    "value": "//table[contains(@class, '---table')]/thead//div[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç')=%1$s]//parent::th"
+                },
+                {
+                    "label": "xpathAbsoluteRecordGridNavigationFirst",
+                    "value": "//i[contains(@class,'GridFooter---fa-angle-double-left-svg')]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordGridNavigationPrevious",
+                    "value": "//i[contains(@class,'GridFooter---fa-angle-left-svg')]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordGridNavigationNext",
+                    "value": "//i[contains(@class,'GridFooter---fa-angle-right-svg')]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordGridNavigationLast",
+                    "value": "//i[contains(@class,'GridFooter---fa-angle-double-right-svg')]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordLink",
+                    "value": "//a[contains(@href, '/view/summary')]/descendant-or-self::*[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%s)]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordViewLink",
+                    "value": "//a[@role='tab'][contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteSiteLogoutLink",
+                    "value": "//button[i[contains(@class,'fa-sign-out')]]"
+                },
+                {
+                    "label": "xpathAbsoluteSiteUserProfileLink",
+                    "value": "//a[contains(@aria-label,'Open user options menu')]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordTypeUserFilterDropdown",
+                    "value": "//div[contains(@class, 'DropdownWidget---dropdown_value')]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordTypeUserFilterLabel",
+                    "value": "//div[contains(@class, 'DropdownWidget---dropdown_value')]/descendant::span[contains(@class, 'DropdownWidget---inline_label') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%s)]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordTypeUserFilterValue",
+                    "value": "//div[contains(@class,'DropdownWidget---tether_dropdown')]//li/descendant-or-self::*[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordTypeUserFilterClear",
+                    "value": "//div[contains(@class, 'DropdownWidget---dropdown_value')]/descendant::span[contains(@class, 'DropdownWidget---inline_label') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%s)]/following-sibling::a[contains(@class, 'DropdownWidget---input_clear_link')]"
+                },
+                {
+                    "label": "xpathAbsoluteAcceptButton",
+                    "value": "//div[contains(@class, 'MessageLayout')]/descendant::button[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s) and not(contains(@class, 'button-disabled'))]"
+                },
+                {
+                    "label": "xpathClickToPost",
+                    "value": "//div[contains(@class, 'social_box_container')]//input[not(contains(@class, 'gwt-SuggestBox'))]"
+                },
+                {
+                    "label": "xpathTogglePostParticipants",
+                    "value": ".//a[contains(@aria-label, 'Add participants')]/*[1]"
+                },
+                {
+                    "label": "xpathAddPostParticipants",
+                    "value": "//input[contains(@placeholder, 'Add participants to notify')]"
+                },
+                {
+                    "label": "xpathClickPostMessageBox",
+                    "value": ".//textarea[contains(@placeholder,'Type post here')]"
+                },
+                {
+                    "label": "xpathClickPostSubmit",
+                    "value": ".//button[text()='Post']"
+                },
+                {
+                    "label": "xpathClickToKudos",
+                    "value": ".//a[text()='Kudos']"
+                },
+                {
+                    "label": "xpathClickToAddKudosRecipient",
+                    "value": "//input[contains(@placeholder,'Select kudos recipient')]"
+                },
+                {
+                    "label": "xpathSocialBoxContainer",
+                    "value": "//*[@class='gwt-SuggestBoxPopup social_box_container']"
+                },
+                {
+                    "label": "xpathClickKudosMessageBox",
+                    "value": ".//textarea[contains(@placeholder,'Type kudos here')]"
+                },
+                {
+                    "label": "xpathClickKudosSubmit",
+                    "value": ".//button[text()='Give Kudos']"
+                },
+                {
+                    "label": "xpathClickToMessage",
+                    "value": ".//a[text()='Message']"
+                },
+                {
+                    "label": "xpathClickToAddMessageRecipients",
+                    "value": ".//input[contains(@placeholder,'Add recipients')]"
+                },
+                {
+                    "label": "xpathClickToLockMessage",
+                    "value": "//button[contains(@aria-label, 'Participants may be added')]"
+                },
+                {
+                    "label": "xpathClickMessageBox",
+                    "value": ".//textarea[contains(@placeholder,'Type message here')]"
+                },
+                {
+                    "label": "xpathClickMessageSubmit",
+                    "value": ".//button[text()='Send Message']"
+                },
+                {
+                    "label": "xpathClickToTask",
+                    "value": ".//a[text()='Task']"
+                },
+                {
+                    "label": "xpathClickToAddTaskRecipient",
+                    "value": "//input[contains(@placeholder,'Select task assignee')]"
+                },
+                {
+                    "label": "xpathClickTaskMessageBox",
+                    "value": ".//textarea[contains(@placeholder,'Type task description here')]"
+                },
+                {
+                    "label": "xpathClickTaskSubmit",
+                    "value": ".//button[text()='Send Task']"
+                },
+                {
+                    "label": "xpathConcatNewsItemStar",
+                    "value": "/following-sibling::div[starts-with(@class, 'appian-feed-entry-metadata')]/descendant::img[contains(@alt, 'Starred') or contains(@alt, 'Unstarred')]"
+                },
+                {
+                    "label": "xpathConcatNewsAddComment",
+                    "value": "/following-sibling::div[starts-with(@class, 'appian-feed-entry-metadata')]/descendant::a[contains(text(), 'Comment')]"
+                },
+                {
+                    "label": "xpathConcatNewsAddCommentBox",
+                    "value": "/following-sibling::div/descendant::textarea[contains(@title, 'Type comment here')]"
+                },
+                {
+                    "label": "xpathConcatNewsSubmitCommentButton",
+                    "value": "/following-sibling::div/descendant::button[contains(text(), 'Comment')]"
+                },
+                {
+                    "label": "xpathAbsoluteNewsFilterLink",
+                    "value": "//span[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathConcatNewsItemPostedAtLink",
+                    "value": "/following-sibling::div[starts-with(@class, 'appian-feed-entry-metadata')]/descendant::a[contains(@class, 'appian-relative-time-format-anchor')]"
+                },
+                {
+                    "label": "xpathConcatNewsPostedByCircle",
+                    "value": "/../../preceding-sibling::div/descendant::span[contains(@class, 'appian-user-photo') and not(contains(@class, 'container'))]"
+                },
+                {
+                    "label": "xpathConcatNewsPostedByLink",
+                    "value": "/preceding-sibling::div/descendant::span/a[contains(@class, 'appian-feed-entry-author')]"
+                },
+                {
+                    "label": "xpathTaskSorting",
+                    "value": "//img[contains(@alt, 'Sort Order')]/.."
+                },
+                {
+                    "label": "xpathUserProfileHoverCardUserName",
+                    "value": "//div[@class='popupContent']/descendant::p[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]"
+                },
+                {
+                    "label": "xpathTaskNewest",
+                    "value": "//a[@class='gwt-Anchor' and text()='Newest']"
+                },
+                {
+                    "label": "xpathTaskOldest",
+                    "value": "//a[@class='gwt-Anchor' and text()='Oldest']"
+                },
+                {
+                    "label": "xpathAbsoluteProgressBar",
+                    "value": "//div[@id='appian-nprogress']"
+                }
+            ],
+            "locales": [
+                {
+                    "dateFormats": [
+                        {
+                            "label": "dateFormat",
+                            "value": "MM/dd/yyyy"
+                        },
+                        {
+                            "label": "datetimeFormat",
+                            "value": "MM/dd/yyyy h:mm aa"
+                        },
+                        {
+                            "label": "datetimeDisplayFormat",
+                            "value": "MMM d, yyyy h:mm aa"
+                        }
+                    ],
+                    "labels": [
+                        
+                    ],
+                    "locale": "en_US"
+                }
+            ],
+            "version": "17.1"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteLogoutLink",
+                    "value": "//a/descendant-or-self::*[contains(text(),'Sign Out')]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordViewLink",
+                    "value": "//div[contains(@class,'TabButtonWidget---tab_label')][contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathRelativeFileUploadFieldFile",
+                    "value": ".//p[contains(@class, '---file_metadata')]"
+                },
+                {
+                    "label": "xpathRelativeFileUploadFieldWaiting",
+                    "value": ".//svg[contains(@class,'---progress_circle')]"
+                },
+                {
+                    "label": "xpathSitesDiscoverabilityMenu",
+                    "value": "//div[@class='SiteHeaderLayout---minimize SiteHeaderLayout---contextWidget']"
+                },
+                {
+                    "label": "xpathAbsoluteSiteProfileMenuLink",
+                    "value": ".//button[text()='Profile'][1]"
+                },
+                {
+                    "label": "xpathAbsoluteSiteSettingsMenuLink",
+                    "value": ".//button[text()='Settings'][1]"
+                },
+                {
+                    "label": "xpathRelativeSiteNameMenuLink",
+                    "value": "//span[@class='MenuItem---primary_text' and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAuthenticationPage",
+                    "value": "//a[@class='elements---global_a' and text()='Appian']"
+                },
+                {
+                    "label": "xpathPageContainsText",
+                    "value": "//*[text()[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %s)]]"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "17.2"
+        },
+        {
+            "byConstants": [
+                
+            ],
+            "locales": [
+                
+            ],
+            "version": "17.3"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathRelativeDropdownFieldInputHidden",
+                    "value": ".//span"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "17.4"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteSiteLogoutLink",
+                    "value": ".//button[text()='Sign Out'][1]"
+                },
+                {
+                    "label": "xpathAbsoluteSaveChanges",
+                    "value": ".//button[text()='Save Draft'][1]"
+                },
+                {
+                    "label": "xpathAbsoluteVideo",
+                    "value": "//video[contains(translate(@src,'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteWebContent",
+                    "value": "//iframe[contains(translate(@src,'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div[contains(@class, 'WebContentWidget---webcontent')] | //a[contains(translate(@href,'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteIconLinkField",
+                    "value": "(//a[descendant::*[contains(@class, 'IconWidget---svg')]])"
+                },
+                {
+                    "label": "xpathAbsoluteIconLinkFieldAltText",
+                    "value": "(//a[descendant::*[contains(@class, 'IconWidget---svg')] and descendant::*[contains(local-name(), 'desc') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]])"
+                },
+                {
+                    "label": "xpathAbsoluteButtonTooltip",
+                    "value": "//button[.//descendant::span[contains(@class, 'accessibilityhidden') and starts-with(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]]"
+                },
+                {
+                    "label": "xpathAbsoluteMenuWidgetItemText",
+                    "value": "//li[@class='MenuWidgetItem---default_direction' and .//descendant::span[contains(@class, 'MenuItem---primary_text') and starts-with(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]]"
+                },
+                {
+                    "label": "xpathAbsoluteMenuWidgetItem",
+                    "value": "//li[@class='MenuWidgetItem---default_direction']"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "18.1"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteSectionFieldLayout",
+                    "value": "//div/h2[descendant-or-self::*[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]]/parent::div//*[(self::span or self::label) and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%2$s)]/parent::div/parent::div"
+                },
+                {
+                    "label": "xpathAbsoluteFieldLayoutLabel",
+                    "value": "//*[(self::label or self::span) and contains(@class, 'FieldLayout---field_label') and starts-with(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/parent::div | (//*[(self::span or self::label)and contains(@id, '_labelText') and starts-with(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),%1$s)]/ancestor::div/parent::div)[20]"
+                },
+              {
+                "label": "xpathAbsoluteFieldLayoutLabel2",
+                "value": "//*[(self::label or self::span) and contains(@class, 'FieldLayout---field_label') and starts-with(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ├ü├ë├ì├ô├Ü├£├æ├ç','abcdefghijklmnopqrstuvwxyz├í├⌐├¡├│├║├╝├▒├º'),'%1$s')]/ancestor::div[contains(@class,'FieldLayout---field_layout')]//input"
+              },
+                {
+                    "label": "xpathAbsoluteCard",
+                    "value": "//span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div[contains(@class,'CardLayout')]"
+                },
+                {
+                    "label": "xpathAbsoluteMilestoneFieldLabel",
+                    "value": "//ol[contains(@class, 'MilestoneWidget---milestone')]/parent::div/preceding-sibling::div/span[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç')=%1$s]/parent::div/parent::div"
+                },
+                {
+                    "label": "xpathConcatParentFieldLayout",
+                    "value": "/parent::div/parent::div"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "18.2"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteTextFieldIndex",
+                    "value": "(//input[contains(@class, 'TextInput---text')])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeTextFieldInput",
+                    "value": ".//input[@type='text' and contains(@class,'TextInput---text')]"
+                },
+                {
+                    "label": "xpathRelativeEncryptedTextFieldInput",
+                    "value": ".//input[@type='text' and contains(@class,'EncryptedTextWidget---text')]"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "18.3"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteBox",
+                    "value": "//div[(contains(@class, 'BoxLayout---box_label') or contains(@class, 'BoxLayout---box_heading'))and contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/ancestor::div[contains(concat(' ', @class, ' '), ' BoxLayout---box ')]"
+                },
+                {
+                    "label": "xpathRelativeBoxHeader",
+                    "value": ".//div[contains(@class, 'BoxLayout---box_heading_wrapper')]"
+                },
+                {
+                    "label": "xpathAbsoluteSearchClearX",
+                    "value": "//label[contains(@class,'FieldLayout---field_label') and contains(text(),'Search')]/ancestor::div[contains(@class,'FieldLayout---field_layout')]//div[contains(@class,'FieldLayout---input_below')]//i"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "18.4"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathRelativeMaskedBarcodeFieldInput",
+                    "value": ".//input[@type='password' and contains(@class,'BarcodeWidget---text')]"
+                },
+                {
+                    "label": "xpathAbsoluteFormTitle",
+                    "value": "//h1[@class='FormLayout---title']|//table[@class='GridWidget---table GridWidget---striped GridWidget---distribute']/thead/tr/th[@scope='col']"
+                },
+                {
+                    "label": "xpathAbsoluteFormInstructions",
+                    "value": "//h1[@class='FormLayout---title']/following-sibling::div/descendant::p[starts-with(@class, 'InstructionsText---page_instructions')]"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepVerticalGeneral",
+                    "value": ".//ol[@class='MilestoneWidget---milestone MilestoneWidget---vertical']/li"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepVerticalSelected",
+                    "value": ".//ol[@class='MilestoneWidget---milestone MilestoneWidget---vertical']/li[@class='MilestoneWidget---current']"
+                },
+                {
+                    "label": "xpathAbsoluteShowResultsLabelEntry",
+                    "value": ".//p[contains(@class, 'ParagraphText---richtext_paragraph ParagraphText---default_direction ParagraphText---align_start ParagraphText---inMessageLayout ParagraphText---info elements---global_p')]"
+                },
+                {
+                    "label": "xpathAbsolutePickerSuggestionBox",
+                    "value": "//ul[contains(@class,'MenuWidget---inPickerWidget')]"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "19.1"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteMenuLink",
+                    "value": "//div[starts-with(@class, 'SiteMenuTab') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "19.2"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteRecordTypeLink",
+                    "value": "//div[contains(@class, 'SideBySideGroup---side_by_side SideBySideGroup---default_direction SideBySideGroup---middle') and descendant::span[ contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]]"
+                },
+                {
+                    "label": "xpathRelativeGaugeField",
+                    "value": ".//div[@class='GaugeWidget---gauge_container GaugeWidget---medium GaugeWidget---accent']"
+                },
+                {
+                    "label": "xpathRelativeGaugeFieldPercentage",
+                    "value": ".//div[@class='GaugeWidget---gauge_container GaugeWidget---medium GaugeWidget---accent']/child::node()[1]/*[2]"
+                },
+                {
+                    "label": "xpathRelativeRadioFieldInputSpan",
+                    "value": ".//div[@class='RadioSelect---choice_pair']"
+                },
+                {
+                    "label": "xpathAbsoluteRadioFieldOption",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s) and parent::div[contains(@class,'RadioSelect---choice_pair')]]"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "19.3"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteCard",
+                    "value": "//a[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div[contains(@class,'CardLayout')] | //span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div[contains(@class,'CardLayout')]"
+                },
+                {
+                    "label": "xpathAbsoluteWorkingIndicator",
+                    "value": "//div[@id='appian-working-indicator-hidden']"
+                },
+                {
+                    "label": "xpathAbsoluteDocumentImageLink",
+                    "value": "//a[(contains(@class, 'DocumentImage---image_link')) or (contains(@class, 'DocumentImage---image') and @href)]"
+                },
+                {
+                    "label": "xpathAbsoluteDocumentImageLinkAltText",
+                    "value": "//a[((contains(@class, 'DocumentImage---image_link')) or (contains(@class, 'DocumentImage---image') and @href)) and (descendant::img[contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)] or descendant::span[contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)])]"
+                },
+                {
+                    "label": "xpathAbsoluteColumnChartIndex",
+                    "value": "((//span[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç')=%1$s])[%2$s]/parent::*[contains(@class, 'FieldLayout')]/following-sibling::*/descendant::*[name()='rect' and contains(@class, 'highcharts-point') and parent::*[name()='g' and contains(@class, 'highcharts-column-series') and not(contains(@class, 'highcharts-legend-item'))]])[%3$s]"
+                },
+                {
+                    "label": "xpathAbsoluteBarChartIndex",
+                    "value": "((//span[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç')=%1$s])[%2$s]/parent::*[contains(@class, 'FieldLayout')]/following-sibling::*/descendant::*[name()='rect' and contains(@class, 'highcharts-point') and parent::*[name()='g' and contains(@class, 'highcharts-bar-series') and not(contains(@class, 'highcharts-legend-item'))]])[%3$s]"
+                },
+                {
+                    "label": "xpathAbsolutePieChartIndex",
+                    "value": "((//span[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç')=%1$s])[%2$s]/parent::*[contains(@class, 'FieldLayout')]/following-sibling::*/descendant::*[name()='path' and contains(@class, 'highcharts-point') and parent::*[name()='g' and contains(@class, 'highcharts-pie-series')]])[%3$s]"
+                },
+                {
+                    "label": "xpathAbsoluteLineChartIndex",
+                    "value": "((//span[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç')=%1$s])[%2$s]/parent::*[contains(@class, 'FieldLayout')]/following-sibling::*/descendant::*[name()='path' and contains(@class, 'highcharts-point') and parent::*[name()='g' and contains(@class, 'highcharts-line-series') and not(contains(@class, 'highcharts-legend-item'))]])[%3$s]"
+                },
+                {
+                    "label": "xpathRelativeConfirmationDialogHeader",
+                    "value": ".//div[contains(@aria-labelledby, 'ConfirmationBoxRichTextDisplayFieldheader')]/*[1][contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathRelativeConfirmationDialogMessage",
+                    "value": ".//div[contains(@aria-labelledby, 'ConfirmationBoxRichTextDisplayFieldbody')]/*[1][contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteTagFieldLabel",
+                    "value": "//div[contains(@class, 'FieldLayout---field_layout') and descendant::span[contains(@class, 'FieldLayout---field_label') and contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)] and descendant::div[contains(@class,'TagGroup---tag_container')]]"
+                },
+                {
+                    "label": "xpathAbsoluteTagFieldIndex",
+                    "value": "(//div[contains(@class, 'FieldLayout---field_layout') and descendant::span[contains(@class, 'FieldLayout---field_label')] and descendant::div[contains(@class,'TagGroup---tag_container')]])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeTagGroup",
+                    "value": ".//div[contains(@class,'TagGroup---tag_container')]"
+                },
+                {
+                    "label": "xpathRelativeTagItem",
+                    "value": ".//div[contains(@class,'TagItem---tag')]"
+                },
+                {
+                    "label": "xpathRelativeTagItemLabel",
+                    "value": ".//div[contains(@class,'TagItem---tag') and descendant::span[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]]"
+                },
+                {
+                    "label": "xpathAbsoluteTagItemLabel",
+                    "value": "//div[contains(@class,'TagItem---tag') and descendant::span[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]]"
+                },
+                {
+                    "label": "xpathAbsoluteTagItemIndex",
+                    "value": "(//div[contains(@class,'TagItem---tag')])[%1$d]"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "19.4"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteRecordTypeLink",
+                    "value": "//div[contains(@class, 'CardLayout---card_item') and descendant::a[ contains(@class, 'CardLayout---accessibilityhidden') and starts-with(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]]"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "20.1"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathRelativeMilestoneStepGeneral",
+                    "value": ".//ol[@class='MilestoneWidget---milestone MilestoneWidget---accent']/li"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepSelected",
+                    "value": ".//ol[@class='MilestoneWidget---milestone MilestoneWidget---accent']/li[@class='MilestoneWidget---current']"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepVerticalGeneral",
+                    "value": ".//ol[@class='MilestoneWidget---milestone MilestoneWidget---accent MilestoneWidget---vertical']/li"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepVerticalSelected",
+                    "value": ".//ol[@class='MilestoneWidget---milestone MilestoneWidget---accent MilestoneWidget---vertical']/li[@class='MilestoneWidget---current']"
+                },
+                {
+                    "label": "xpathRelativeTagItem",
+                    "value": ".//*[contains(@class,'TagItem---tag')]"
+                },
+                {
+                    "label": "xpathRelativeTagItemLabel",
+                    "value": ".//*[contains(@class,'TagItem---tag') and descendant::span[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]]"
+                },
+                {
+                    "label": "xpathAbsoluteTagItemLabel",
+                    "value": "//*[contains(@class,'TagItem---tag') and descendant::span[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]]"
+                },
+                {
+                    "label": "xpathAbsoluteTagItemIndex",
+                    "value": "(//*[contains(@class,'TagItem---tag')])[%1$d]"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "20.2"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteDropdownSearchBoxField",
+                    "value": "//div[contains(@class, 'DropdownWidget---search_box_wrapper')]"
+                },
+                {
+                    "label": "xpathAbsoluteStampFieldLabel",
+                    "value": "//span[contains(@class, 'FieldLayout---field_label') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::*/following-sibling::*/div/div[contains(@class, 'StampWidget---stamp')]"
+                },
+                {
+                    "label": "xpathAbsoluteStampFieldIndex",
+                    "value": "(//div[contains(@class, 'StampWidget---stamp_wrapper')]/div[contains(@class, 'StampWidget---stamp')])[%1$d]"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "20.3"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathRelativeStampFieldText",
+                    "value": ".//descendant::span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteSignatureField",
+                    "value": "//div[contains(@class, 'FieldLayout---field_layout') and descendant::span[contains(@class, 'FieldLayout---field_label') and contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)] and descendant::div[contains(@class,'SignatureWidget---container')]]"
+                },
+                {
+                    "label": "xpathAbsoluteSignatureFieldIndex",
+                    "value": "(//div[contains(@class, 'FieldLayout---field_layout') and descendant::span[contains(@class, 'FieldLayout---field_label')] and descendant::div[contains(@class,'SignatureWidget---container')]])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeSignatureButton",
+                    "value": ".//button[contains(@class, 'Button---inSignatureWidget')]"
+                },
+                {
+                    "label": "xpathAbsoluteSignatureCanvas",
+                    "value": "//canvas[contains(@class, 'SignatureWidget---canvas')]"
+                },
+                {
+                    "label": "xpathAbsoluteSignatureDoneButton",
+                    "value": "//div[contains(@class, 'SignatureWidget---popup')]/descendant::button[2]"
+                },
+                {
+                    "label": "xpathRelativeConfirmationDialogHeader",
+                    "value": "//span[contains(@id,'ConfirmationBoxRichTextDisplayFieldheader')]/../following-sibling::div[contains(@class, 'FieldLayout---input_below')]//*[1][contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathRelativeConfirmationDialogMessage",
+                    "value": "//span[contains(@id,'ConfirmationBoxRichTextDisplayFieldbody')]/../following-sibling::div[contains(@class, 'FieldLayout---input_below')]//*[1][contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordActionFieldIndexButton",
+                    "value": "(//div[contains(@class, 'RecordActionWidget---menu_layout_wrapper')])[%1$d]//button"
+                },
+                {
+                    "label": "xpathHiddenRecordActionList",
+                    "value": "//ul[contains(@class,'MenuWidget---inRecordActionWidget')]"
+                },
+                {
+                    "label": "xpathAbsoluteFieldLayoutTooltip",
+                    "value": "//*[local-name()='svg' and contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/ancestor::div[contains(@class, 'FieldLayout---field_layout')]"
+                },
+                {
+                    "label": "xpathAbsoluteIconLinkFieldAltText",
+                    "value": "(//a[descendant::*[contains(@class, 'IconWidget---svg') and contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]])"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "20.4"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathRelativeRadioFieldInputSpan",
+                    "value": ".//div[@class='RadioSelect---choice_pair' or @class='CardStyleRadioSelects---choice_pair']"
+                },
+                {
+                    "label": "xpathAbsoluteRadioFieldOption",
+                    "value": "//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s) and parent::div[contains(@class,'RadioSelect---choice_pair') or contains(@class,'CardStyleRadioSelects---choice_pair')]]"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "21.1"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathRelativeRadioFieldInputSpan",
+                    "value": ".//div[@class='RadioSelect---choice_pair' or @class='CardStyleRadioSelects---choice_pair CardStyleRadioSelects---checked']"
+                },
+                {
+                    "label": "xpathAbsoluteSectionLayout",
+                    "value": "//div/*[self::h1 or self::h2 or self::h3 or self::h4][descendant-or-self::*[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]]/parent::div"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepGeneral",
+                    "value": ".//ol[contains(@class,'MilestoneWidget---milestone')]/li"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepSelected",
+                    "value": ".//ol[contains(@class,'MilestoneWidget---milestone')]/li[@class='MilestoneWidget---current']"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepVerticalGeneral",
+                    "value": ".//ol[contains(@class,'MilestoneWidget---milestone') and contains(@class,'MilestoneWidget---vertical')]/li"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepVerticalSelected",
+                    "value": ".//ol[contains(@class,'MilestoneWidget---milestone') and contains(@class,'MilestoneWidget---vertical')]/li[@class='MilestoneWidget---current']"
+                },
+                {
+                    "label": "xpathAbsoluteRecordRelatedActionLink",
+                    "value": "//a[contains(@class, 'elements---global_a')]/descendant-or-self::*[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)] | //button[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "21.2"
+        },
+        {
+            "byConstants": [
+                
+            ],
+            "locales": [
+                
+            ],
+            "version": "21.3"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteCardChoice",
+                    "value": "//div[contains(@class,'CardLayout') and descendant::span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)] | descendant::strong[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)] and ancestor::div[contains(@class, 'FieldLayout') and descendant::span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%2$s)]]]"
+                },
+                {
+                    "label": "xpathCardChoiceSelected",
+                    "value": "CardLayout---selected_card"
+                },
+                {
+                    "label": "xpathAbsoluteCardChoiceField",
+                    "value": "//div[contains(@class, 'FieldLayout---field_layout') and descendant::div[contains(@class, 'CardGroup---card_group')] and descendant::span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),'card choice')]]"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "21.4"
+        },
+        {
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteRecordTypeUserFilterLabel",
+                    "value": "//div[contains(@class, 'DropdownWidget---dropdown_value') or contains(@class, 'DateRangeWidget---dropdown_value')]/descendant::span[(contains(@class, 'DropdownWidget---inline_label') or contains(@class, 'DateRangeWidget---inline_label')) and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%s)]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordTypeUserFilterClear",
+                    "value": "//div[contains(@class, 'DropdownWidget---dropdown_value') or contains(@class, 'DateRangeWidget---dropdown_value')]/descendant::span[(contains(@class, 'DropdownWidget---inline_label') or contains(@class, 'DateRangeWidget---inline_label')) and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%s)]/following-sibling::a[contains(@class, 'DropdownWidget---input_clear_link') or contains(@class, 'DateRangeWidget---input_clear_link')]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordTypeDateRange",
+                    "value": "//div[contains(@class, 'DateRangeWidget---date_range_outer_box')]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordTypeDateRangeStartDate",
+                    "value": "//input[contains(@class, 'DateRangeInputPicker---date_range_input') and ancestor::div[@data-testid='DateRangeWidget-startDateContainer']]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordTypeDateRangeEndDate",
+                    "value": "//input[contains(@class, 'DateRangeInputPicker---date_range_input') and ancestor::div[@data-testid='DateRangeWidget-endDateContainer']]"
+                }
+            ],
+            "locales": [
+                
+            ],
+            "version": "22.1"
+        },
+        {
+            "version": "22.2",
+            "locales": [
+                
+            ],
+            "byConstants": [
+                {
+                    "label": "xpathRelativeGridColumnLink",
+                    "value": ".//th[descendant::span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordGridColumnSortLink",
+                    "value": "//table[contains(@class, '---table')]/thead//span[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç')=%1$s]//ancestor::th"
+                },
+                {
+                    "label": "xpathGeneralText",
+                    "value": "//div/descendant::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]]"
+                }
+            ]
+        },
+        {
+            "version": "22.3",
+            "locales": [
+                
+            ],
+            "byConstants": [
+                
+            ]
+        },
+        {
+            "version": "22.4",
+            "locales": [
+                
+            ],
+            "byConstants": [
+                
+            ]
+        },
+        {
+            "version": "23.1",
+            "locales": [
+                
+            ],
+            "byConstants": [
+                
+            ]
+        },
+        {
+            "version": "23.2",
+            "locales": [
+                
+            ],
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteSiteUserProfileLink",
+                    "value": "//a[contains(@aria-label,'User options') and ancestor::nav[not(contains(@class, 'hidden'))]]"
+                },
+                {
+                    "label": "xpathSitesDiscoverabilityMenu",
+                    "value": "//div[@class='VirtualNavigationHeaderLayout_HELIUM---minimize VirtualNavigationHeaderLayout_HELIUM---contextWidget']"
+                },
+                {
+                    "label": "xpathAbsoluteSiteLogoutLink",
+                    "value": "//button[descendant::span[text()='Sign Out']]"
+                },
+                {
+                    "label": "xpathAbsoluteSiteProfileMenuLink",
+                    "value": "//button[descendant::span[text()='Profile']]"
+                },
+                {
+                    "label": "xpathAbsoluteSiteSettingsMenuLink",
+                    "value": "//button[descendant::span[text()='Settings']]"
+                },
+                {
+                    "label": "xpathAbsoluteSitePageLink",
+                    "value": "//li[contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s) and ancestor::nav[not(contains(@class, 'hidden'))]]/descendant::a"
+                },
+                {
+                    "label": "xpathAbsoluteSaveChanges",
+                    "value": "//button[descendant::span[text()='Save Draft']]"
+                },
+                {
+                    "label": "xpathAbsoluteButton",
+                    "value": "//button[descendant::span[descendant::span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]] and not(contains(@class, 'button-disabled'))]"
+                },
+                {
+                    "label": "xpathRelativeSectionValidationMessageSpecificValue",
+                    "value": "//div[@class='MessageLayout---message MessageLayout---error']/p[descendant-or-self::*[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]]"
+                },
+                {
+                    "label": "xpathAbsoluteRecordRelatedActionLink",
+                    "value": "//a[contains(@class, 'elements---global_a')]/descendant-or-self::*[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)] | //button[descendant::span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]] | //li[descendant::span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]]"
+                },
+                {
+                    "label": "xpathAbsoluteAcceptButton",
+                    "value": "//button[descendant::span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)] and not(contains(@class, 'button-disabled'))]"
+                }
+            ]
+        },
+        {
+            "version": "23.3",
+            "locales": [
+                
+            ],
+            "byConstants": [
+                {
+                    "label": "xpathRelativeSiteGroup",
+                    "value": "//button[@data-testid = 'VirtualNavigationMenuTab-pulldownButton' and descendant::span[text()[contains(translate(. ,'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]]]"
+                },
+                {
+                    "label": "xpathRelativeSitePageInGroup",
+                    "value": "//li[contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s) and ancestor::section[@data-testid = 'VirtualNavigationMenuTab-popupMenuContents']]/descendant::a"
+                },
+                {
+                    "label": "xpathAbsoluteCheckboxFieldLabel",
+                    "value": "//span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/following-sibling::div/descendant::div[contains(@class, 'CheckboxGroup---choice_pair') or contains(@class, 'CardStyleCheckboxes---choice_pair')]"
+                },
+                {
+                    "label": "xpathAbsoluteCheckboxFieldIndex",
+                    "value": "(//div[contains(@class, 'CheckboxGroup---choice_pair') or contains(@class, 'CardStyleCheckboxes---choice_pair')])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeCheckboxFieldChoiceLabel",
+                    "value": ".//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]/parent::div[contains(@class, 'CheckboxGroup---choice_pair') or contains(@class, 'CardStyleCheckboxes---choice_pair')]"
+                },
+                {
+                    "label": "xpathRelativeCheckboxFieldChoiceIndex",
+                    "value": "(.//div[contains(@class, 'CheckboxGroup---choice_pair') or contains(@class, 'CardStyleCheckboxes---choice_pair')])[%1$d]"
+                },
+                {
+                    "label": "xpathRelativeCheckboxFieldInput",
+                    "value": ".//div[contains(@class, 'CheckboxGroup---choice_pair') or contains(@class, 'CardStyleCheckboxes---choice_pair')]"
+                },
+                {
+                    "label": "xpathRelativeCheckboxFieldInputSpan",
+                    "value": ".//div[contains(@class, 'CheckboxGroup---choice_pair') or contains(@class, 'CardStyleCheckboxes---choice_pair')]"
+                },
+                {
+                    "label": "xpathAbsoluteCheckboxFieldOption",
+                    "value": "//div[contains(@class, 'CheckboxGroup---choice_pair') or contains(@class, 'CardStyleCheckboxes---choice_pair')]//label[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s)]"
+                }
+            ]
+        },
+        {
+            "version": "23.4",
+            "locales": [
+                
+            ],
+            "byConstants": [
+                {
+                    "label": "xpathRelativeSitePageInGroup",
+                    "value": "//li[@data-testid = 'VirtualNavigationMenuTab-nav-tab' and contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'), %1$s) and parent::ul[@data-testid = 'VirtualNavigationMenuTab-children-tabs']]/child::a"
+                },
+                {
+                    "label": "xpathRelativeChartDownload",
+                    "value": "//span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/ancestor::div[contains(@class, 'FieldLayout---field_layout')]/descendant::button[@title = 'Download PNG Image']"
+                }
+            ]
+        },
+        {
+            "version": "24.1",
+            "locales": [
+                
+            ],
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteDropdownOptionList",
+                    "value": "//div[(contains(@class,'TetherComponent---sailcontents') and (contains(@class,'DropdownWidget---tether_dropdown')) or contains(@class,'DropdownWidget---popup_menu'))]//ul"
+                },
+                {
+                    "label": "xpathAbsoluteRecordTypeUserFilterValue",
+                    "value": "//div[contains(@class,'DropdownWidget---tether_dropdown') or contains(@class,'DropdownWidget---popup_menu')]//li/descendant-or-self::*[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathSideBarCollapseButton",
+                    "value": "//button[@data-testid = 'VirtualNavigationHeaderSideBarLayout-collapse-button']"
+                }
+            ]
+        },
+        {
+            "version": "24.2",
+            "locales": [
+                
+            ],
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteMenuLink",
+                    "value": "//div[starts-with(@class, 'TempoSiteMenuTab') and contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathRelativeStyledTextFieldInput",
+                    "value": ".//div[contains(@class,'StyledTextEditor---textarea')]"
+                }
+            ]
+        },
+        {
+            "version": "24.3",
+            "locales": [
+                
+            ],
+            "byConstants": [
+                {
+                    "label": "xpathAbsoluteMilestoneFieldLabel",
+                    "value": "//ol[contains(@class, 'MilestoneWidget---milestone')]/parent::div/parent::div/preceding-sibling::div/span[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç')=%1$s]/parent::div/parent::div"
+                }
+            ]
+        },
+        {
+            "version": "24.4",
+            "locales": [
+                
+            ],
+            "byConstants": [
+                
+            ]
+        },
+        {
+            "version": "25.1",
+            "locales": [
+                
+            ],
+            "byConstants": [
+                {
+                    "label": "xpathRelativeMilestoneStepGeneral",
+                    "value": ".//ol[contains(@class,'MilestoneWidget---list')]/li"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepVerticalGeneral",
+                    "value": ".//ol[contains(@class,'MilestoneWidget---list') and contains(@class,'MilestoneWidget---vertical')]/li"
+                },
+                {
+                    "label": "xpathAbsoluteMilestoneFieldLabel",
+                    "value": "//ol[contains(@class, 'MilestoneWidget---list')]/parent::div/parent::div/parent::div/parent::div/preceding-sibling::div/span[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç')=%1$s]/parent::div/parent::div"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepSelected",
+                    "value": ".//ol[contains(@class,'MilestoneWidget---list')]/li[contains(@class,'MilestoneWidget---current')]"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepVerticalSelected",
+                    "value": ".//ol[contains(@class,'MilestoneWidget---list') and contains(@class,'MilestoneWidget---vertical')]/li[contains(@class,'MilestoneWidget---current')]"
+                },
+                {
+                    "label": "xpathRelativeMilestoneStepIndex",
+                    "value": "(.//descendant::span[contains(@class, 'accessibilityhidden') and contains(text(), 'Step')])[%1$d]/parent::a/parent::div"
+                },
+                {
+                    "label": "xpathRelativeRadioFieldInputSpan",
+                    "value": ".//div[@class='RadioSelect---choice_pair' or (contains(@class,'CardStyleRadioSelects---choice_pair') and contains(@class,'CardStyleRadioSelects---checked'))]"
+                }
+            ]
+        },
+        {
+            "version": "25.2",
+            "locales": [
+                
+            ],
+            "byConstants": [
+
+              {
+                "label": "xpathAbsoluteCard",
+                "value": "//div[contains(@class, 'CardLayout')]//span[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+              },
+
+              {
+                "label": "xpathAbsoluteTermCard",
+                "value": ".//p[contains(@class, 'ParagraphText---richtext_paragraph ParagraphText---default_direction ParagraphText') and contains(., %1$s)]"
+              },
+
+              {
+                "label": "xpathAbsoluteFileUploadLabel",
+                "value": "(//*[(self::span or self::label)and contains(@id, '_labelText') and starts-with(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'file upload')]/ancestor::div/parent::div)[20]"
+              }
+
+            ]
+        },
+        {
+            "version": "25.3",
+            "locales": [
+                
+            ],
+            "byConstants": [
+                {
+                    "label": "xpathRelativeSectionValidationMessageSpecificValue",
+                    "value": "//div[contains(@class,'MessageLayout---message MessageLayout---error')]/p[descendant-or-self::*[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]]"
+                }
+            ]
+        },
+        {
+            "version": "25.4",
+            "locales": [
+                
+            ],
+            "byConstants": [
+                {
+                    "label": "xpathRelativeSectionValidationMessageSpecificValue",
+                    "value": "//div[contains(@class,'MessageLayout---message MessageLayout---error')]/descendant::p[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]"
+                },
+                {
+                    "label": "xpathRelativeSectionValidationMessage",
+                    "value": ".//div[contains(@class,'MessageLayout---message')]/descendant::p"
+                },
+                {
+                    "label": "xpathRelativeFileUploadFieldFile",
+                    "value": ".//*[contains(@class,'FileInfoView---file_name') or contains(@class,'FileUploadWidget---file_metadata')]"
+                },
+                {
+                    "label": "xpathRelativeFileUploadFieldExtension",
+                    "value": ".//span[contains(@class,'FileInfoView---file_size')]"
+                }
+            ]
+        },
+        {
+            "version": "26.1",
+            "locales": [
+
+            ],
+            "byConstants": [
+
+            ]
+        }
+    ]
+}
