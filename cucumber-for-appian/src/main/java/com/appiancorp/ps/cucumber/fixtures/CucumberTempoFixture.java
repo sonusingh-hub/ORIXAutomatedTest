@@ -289,19 +289,16 @@ public class CucumberTempoFixture {
     @Given("^I click on record from excel \"([^\"]*)\"$")
     public void clickOnRecordFromExcel(String excelRef) {
 
-        // Remove "excel:" prefix
-        String cleaned = excelRef.replace("excel:", "");
+        // Remove excel: prefix if present
+        String columnName = excelRef.replace("excel:", "").trim();
 
-        // Split into Sheet.Key
-        String sheet = cleaned.substring(0, cleaned.indexOf("."));
-        String key   = cleaned.substring(cleaned.indexOf(".") + 1);
+        // Read value from loaded scenario data
+        String recordValue = TestDataManager.get(columnName);
 
-        // Read value from Excel
-        String recordValue = TestDataManager.get(sheet, key);
-
-        // Use the retrieved value to click record
+        // Click record using retrieved value
         fixture.clickOnRecord(recordValue);
     }
+
 
     @Given("^I get regex \"([^\"]*)\" group \"([^\"]*)\" from record name containing text \"([^\"]*)\"$")
     public String getRegexGroupFromRecordNameContainingText(String regex, String group, String recordText) {
@@ -682,22 +679,28 @@ public class CucumberTempoFixture {
         // Capture value from UI
         String capturedValue = fixture.getFieldValue(fieldName);
 
-        // Expect format: excel:SheetName.KeyName
-        if (!excelRef.startsWith("excel:") || !excelRef.contains(".")) {
-            throw new RuntimeException("Invalid excel reference format. Expected: excel:SheetName.KeyName");
-        }
+        // Clean column name (remove excel: if present)
+        String columnName = excelRef.startsWith("excel:")
+                ? excelRef.replace("excel:", "").trim()
+                : excelRef;
 
-        // Parse reference → excel:SheetName.KeyName
-        String ref = excelRef.replace("excel:", "");   // → VehicleData.Vehicle Category
-        String sheetName = ref.substring(0, ref.indexOf("."));  // → VehicleData
-        String keyName = ref.substring(ref.indexOf(".") + 1);   // → Vehicle Category
+        // Store for current execution (TC001 → TC002, same run)
+        TestDataManager.put(columnName, capturedValue);
 
-        // Store in Excel
-        ExcelWriter.write("TestData.xlsx", sheetName, keyName, capturedValue);
+        // Persist into Excel for future scenarios / reruns
+        ExcelWriter.write(
+                TestDataManager.getCurrentExcelFile(),   // already without .xlsx
+                TestDataManager.getCurrentScenarioId(),  // scenario row (TC001)
+                columnName,                              // clean column header
+                capturedValue
+        );
 
-        System.out.println("Stored field '" + fieldName + "' value '" + capturedValue +
-                "' into sheet '" + sheetName + "' with key '" + keyName + "'");
+        System.out.println(
+                "Stored value [" + capturedValue +
+                        "] into Excel column [" + columnName + "]"
+        );
     }
+
 
 
     @Given("^I get regex \"([^\"]*)\" group \"([^\"]*)\" from field \"([^\"]*)\" value$")
@@ -861,6 +864,7 @@ public class CucumberTempoFixture {
         return fixture.getGridColumnRowValue(gridName, columnName, rowNum);
     }
 
+
     @Given("^I get grid \"([^\"]*)\" column \"([^\"]*)\" row \"([^\"]*)\" value and store in excel \"([^\"]*)\"$")
     public void getGridColumnRowValueAndStoreExcel(
             String gridName,
@@ -868,29 +872,28 @@ public class CucumberTempoFixture {
             String rowNum,
             String excelRef) {
 
-        // Get the UI value from grid
-        String uiValue = fixture.getGridColumnRowValue(gridName, columnName, rowNum);
+        String uiValue =
+                fixture.getGridColumnRowValue(gridName, columnName, rowNum);
 
-        // Parse excel reference "excel:SheetName.KeyName"
         if (!excelRef.startsWith("excel:")) {
-            throw new RuntimeException("Excel reference must start with 'excel:' → provided: " + excelRef);
+            throw new RuntimeException(
+                    "Excel reference must start with excel:");
         }
 
-        String ref = excelRef.replace("excel:", "");  // VehicleData.Vehicle Category
-        String[] parts = ref.split("\\.");
+        String column = excelRef.replace("excel:", "").trim();
 
-        if (parts.length != 2) {
-            throw new RuntimeException("Excel reference must be in format excel:Sheet.Key → provided: " + excelRef);
-        }
+        // Runtime store
+        TestDataManager.put(column, uiValue);
 
-        String sheet = parts[0];
-        String key = parts[1];
-
-        // Write / Update Excel row
-        ExcelWriter.write("TestData.xlsx", sheet, key, uiValue);
-
-        System.out.println("Stored Grid Value in Excel → Sheet: " + sheet + ", Key: " + key + ", Value: " + uiValue);
+        // Persist to Excel
+        ExcelWriter.write(
+                TestDataManager.getCurrentExcelFile(),
+                TestDataManager.getCurrentScenarioId(),
+                column,
+                uiValue
+        );
     }
+
 
     @Given("^I get regex \"([^\"]*)\" group \"([^\"]*)\" from grid \"([^\"]*)\" column \"([^\"]*)\" Row \"([^\"]*)\" value$")
     public String getRegexGroupFromGridColumnRowValue(String regex, String group, String gridName, String columnName,
@@ -923,27 +926,12 @@ public class CucumberTempoFixture {
             String rowNum,
             String excelRef) {
 
-        // Must start with excel:
-        if (!excelRef.startsWith("excel:")) {
-            throw new RuntimeException("Excel reference must start with 'excel:' → provided: " + excelRef);
-        }
+        // Remove excel: prefix
+        String columnKey = excelRef.replace("excel:", "").trim();
 
-        // Remove prefix
-        String cleaned = excelRef.replace("excel:", "");  // e.g., ApplicationGridData.Last Updated User
-        String[] parts = cleaned.split("\\.");
+        // Fetch expected value from loaded scenario data
+        String expectedValue = TestDataManager.get(columnKey);
 
-        if (parts.length != 2) {
-            throw new RuntimeException("Excel reference must be in format excel:Sheet.Key → provided: " + excelRef);
-        }
-
-        // Extract sheet + key
-        String sheet = parts[0];
-        String key   = parts[1];
-
-        // Fetch expected value from Excel
-        String expectedValue = TestDataManager.get(sheet, key);
-
-        // Perform UI verification
         boolean result = fixture.verifyGridColumnRowContains(
                 gridName,
                 columnName,
@@ -952,12 +940,16 @@ public class CucumberTempoFixture {
         );
 
         if (!result) {
-            throw new RuntimeException("Verification failed: Grid [" + gridName + "] column [" +
-                    columnName + "] row [" + rowNum + "] DOES NOT contain expected Excel value: " + expectedValue);
+            throw new RuntimeException(
+                    "Verification failed: Grid [" + gridName + "] column [" +
+                            columnName + "] row [" + rowNum +
+                            "] does not contain expected value: " + expectedValue
+            );
         }
 
         return true;
     }
+
 
     @Given("^I verify grid \"([^\"]*)\" column \"([^\"]*)\" row \"([^\"]*)\" contains value \"([^\"]*)\"$")
     public boolean verifyGridColumnRowContainsValue(String gridName, String columnName, String rowNum,

@@ -1,54 +1,47 @@
 package com.appiancorp.ps.cucumber.utils;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class TestDataManager {
 
-    private static final String TEST_DATA_FILE =
-            "src/test/resources/testdata/TestData.xlsx";
+    private static Map<String, String> scenarioData = new HashMap<>();
+    private static String currentExcelFile;
+    private static String currentScenarioId;
 
-    private static final Map<String, Map<String, String>> sheetCache = new HashMap<>();
+    public static void loadScenario(String scenarioId, String excelFile) {
 
-    /**
-     * Supports formats:
-     * excel:Key
-     * excel:Sheet.Key
-     */
-    public static String get(String input) {
+        currentScenarioId = scenarioId;
+        currentExcelFile = excelFile;
 
-        // Case 1: excel:Sheet.Key
-        if (input.contains(".")) {
-            String sheet = input.substring(0, input.indexOf("."));
-            String key = input.substring(input.indexOf(".") + 1);
+        String filePath =
+                "src/test/resources/testdata/" + excelFile + ".xlsx";
 
-            return getValueFromSheet(sheet, key);
-        }
-
-        // Case 2: default "TestData" sheet
-        return getValueFromSheet("TestData", input);
+        scenarioData =
+                ExcelReader.readScenario(filePath, scenarioId);
     }
 
-    /**
-     * Overloaded method for calls like:
-     * TestDataManager.get("SheetName", "KeyName")
-     */
-    public static String get(String sheetName, String key) {
-        return getValueFromSheet(sheetName, key);
-    }
-
-    private static String getValueFromSheet(String sheetName, String key) {
-
-        if (!sheetCache.containsKey(sheetName)) {
-            Map<String, String> sheetData = ExcelReader.readSheet(TEST_DATA_FILE, sheetName);
-            sheetCache.put(sheetName, sheetData);
+    public static String get(String columnName) {
+        if (scenarioData == null || scenarioData.isEmpty()) {
+            throw new RuntimeException("Test data not loaded for scenario");
         }
-
-        Map<String, String> data = sheetCache.get(sheetName);
-
-        String value = data.get(key);
-        if (value == null)
-            throw new RuntimeException("Key '" + key + "' not found in sheet '" + sheetName + "'");
-
+        String value = scenarioData.get(columnName);
+        if (value == null) {
+            throw new RuntimeException(
+                    "Column '" + columnName + "' not found in loaded scenario");
+        }
         return value;
+    }
+
+    public static void put(String columnName, String value) {
+        scenarioData.put(columnName, value);
+    }
+
+    public static String getCurrentExcelFile() {
+        return currentExcelFile;
+    }
+
+    public static String getCurrentScenarioId() {
+        return currentScenarioId;
     }
 }
