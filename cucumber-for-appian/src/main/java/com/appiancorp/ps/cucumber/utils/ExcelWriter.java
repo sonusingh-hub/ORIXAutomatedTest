@@ -1,79 +1,65 @@
 package com.appiancorp.ps.cucumber.utils;
 
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.*;
 
 public class ExcelWriter {
 
     /**
-     * Updates a row if key exists; otherwise appends a new row.
-     *
-     * @param fileName  - Excel file (TestData.xlsx)
-     * @param sheetName - Excel sheet (VehicleData)
-     * @param keyName   - Column A value (Vehicle Category)
-     * @param value     - Column B value (Captured from UI)
+     * Update value in same scenario row
      */
-    public static void write(String fileName, String sheetName, String keyName, String value) {
-        try {
-            String filePath = "src/test/resources/testdata/" + fileName;
-            File file = new File(filePath);
+    public static void write(
+            String excelFile,
+            String scenarioId,
+            String columnName,
+            String value) {
 
-            Workbook workbook;
+        String filePath =
+                "src/test/resources/testdata/" + excelFile + ".xlsx";
 
-            // Load if exists, create if not
-            if (file.exists()) {
-                FileInputStream fis = new FileInputStream(file);
-                workbook = WorkbookFactory.create(fis);
-                fis.close();
-            } else {
-                workbook = new XSSFWorkbook();
-            }
+        try (FileInputStream fis = new FileInputStream(filePath);
+             Workbook wb = WorkbookFactory.create(fis)) {
 
-            Sheet sheet = workbook.getSheet(sheetName);
-            if (sheet == null) {
-                sheet = workbook.createSheet(sheetName);
-            }
+            Sheet sheet = wb.getSheetAt(0);
+            Row header = sheet.getRow(0);
 
-            boolean updated = false;
-
-            // Search for existing key
-            for (Row row : sheet) {
-                Cell keyCell = row.getCell(0); // Column A
-                if (keyCell != null && keyCell.getCellType() == CellType.STRING &&
-                        keyCell.getStringCellValue().equalsIgnoreCase(keyName)) {
-
-                    // Found → update existing row
-                    Cell valueCell = row.getCell(1);
-                    if (valueCell == null) {
-                        valueCell = row.createCell(1);
-                    }
-                    valueCell.setCellValue(value);
-                    updated = true;
+            int columnIndex = -1;
+            for (Cell cell : header) {
+                if (cell.getStringCellValue().equalsIgnoreCase(columnName)) {
+                    columnIndex = cell.getColumnIndex();
                     break;
                 }
             }
 
-            // If not updated → append new row
-            if (!updated) {
-                int lastRow = sheet.getLastRowNum() + 1;
-                Row newRow = sheet.createRow(lastRow);
-
-                newRow.createCell(0).setCellValue(keyName);   // Column A (Key)
-                newRow.createCell(1).setCellValue(value);     // Column B (Value)
+            if (columnIndex == -1) {
+                throw new RuntimeException(
+                        "Column not found in Excel: " + columnName);
             }
 
-            // Save file
-            FileOutputStream fos = new FileOutputStream(filePath);
-            workbook.write(fos);
-            fos.close();
-            workbook.close();
+            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 
-            System.out.println("Excel updated → Sheet: " + sheetName +
-                    " | Key: " + keyName + " | Value: " + value);
+                Row row = sheet.getRow(i);
+                if (row == null) continue;
+
+                Cell idCell = row.getCell(0);
+                if (idCell != null &&
+                        scenarioId.equalsIgnoreCase(idCell.getStringCellValue())) {
+
+                    Cell valueCell = row.getCell(columnIndex);
+                    if (valueCell == null) {
+                        valueCell = row.createCell(columnIndex);
+                    }
+                    valueCell.setCellValue(value);
+                    break;
+                }
+            }
+
+            try (FileOutputStream fos = new FileOutputStream(filePath)) {
+                wb.write(fos);
+            }
 
         } catch (Exception e) {
-            throw new RuntimeException("Excel write failed: " + e.getMessage(), e);
+            throw new RuntimeException("Excel write failed", e);
         }
     }
 }

@@ -3,6 +3,7 @@ package com.appiancorp.ps.cucumber.fixtures;
 import com.appiancorp.ps.automatedtest.common.PropertiesUtilities;
 import com.appiancorp.ps.automatedtest.common.Settings;
 import com.appiancorp.ps.automatedtest.fixture.BaseFixture;
+import com.appiancorp.ps.cucumber.utils.TestDataManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.After;
 import com.appiancorp.ps.automatedtest.common.ConfigReader;
@@ -195,6 +196,11 @@ public class CucumberBaseFixture {
     @Given("^I setup environment and login with role \"([^\"]*)\"$")
     public void setupEnvironmentAndLoginWithRole(String role) {
         fixture.loginWithRole(role);
+    }
+
+    @Given("^I load test data for \"([^\"]*)\" from \"([^\"]*)\"$")
+    public void loadTestData(String scenarioId, String excelName) {
+        TestDataManager.loadScenario(scenarioId, excelName);
     }
 
     @Given("^I login with terms with username \"([^\"]*)\" and password \"([^\"]*)\"$")

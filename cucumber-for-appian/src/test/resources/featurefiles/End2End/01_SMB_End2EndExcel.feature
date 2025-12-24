@@ -1,5 +1,5 @@
 @End2EndExcel
-Feature: 02 SMB End2End Excel feature
+Feature: 01 SMB End2End Excel feature
 
   Background: Setup background and environment
     Given I setup browser
@@ -9,7 +9,7 @@ Feature: 02 SMB End2End Excel feature
 
   Scenario: TC001_Verify an existing ORIX Introducer is able to create a quote and submit an application
     Given I setup environment and login with role "introducer"
-    Given I load test data for "TC001" from "02_SMB_End2End"
+    Given I load test data for "TC001" from "01_SMB_End2End"
     Then I click on button from excel "excel:RequestAQuote"
     Then I populate field "Search Journeys" with excel "excel:ABN"
     Then I click on button from excel "excel:SearchClient"
@@ -109,7 +109,7 @@ Feature: 02 SMB End2End Excel feature
 #
   Scenario: TC002_Verify if user is able to validate the credit rules and manually overwrite credit decision for Sole Trader
     Given I setup environment and login with role "creditManager"
-    Given I load test data for "TC002" from "02_SMB_End2End"
+    Given I load test data for "TC002" from "01_SMB_End2End"
     Then I verify grid "" column "Application" row "[1]" contains excel data "excel:Application Number"
     Then I verify grid "" column "Customer" row "[1]" contains excel data "excel:Registered Business Name"
     Then I verify grid "" column "Funding Value" row "[1]" contains excel data "excel:Funding Value"
