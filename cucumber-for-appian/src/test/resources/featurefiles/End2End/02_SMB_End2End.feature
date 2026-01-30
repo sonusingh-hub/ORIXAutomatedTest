@@ -1,5 +1,5 @@
-@End2EndExcel
-Feature: 01 SMB End2End Excel feature
+@End2End
+Feature: 02 SMB End2End feature
 
   Background: Setup background and environment
     Given I setup browser
@@ -7,21 +7,21 @@ Feature: 01 SMB End2End Excel feature
     And I setup appian version
     And I setup appian locale
 
-  Scenario: TC001_Verify an existing ORIX Introducer is able to create a quote and submit an application
+  Scenario: TC001_Verify Introducer is able to Request a quote and Submit the application for Used Asset and Seller Pricing with Chattel Mortgage for Passenger or LCV
     Given I setup environment and login with role "introducer"
-    Given I load test data for "TC001" from "01_SMB_End2End"
-    Then I click on button from excel "excel:RequestAQuote"
+    Given I load test data for "TC001" from "02_SMB_End2End"
+    Then I click on button "Request A Quote"
     Then I populate field "Search Journeys" with excel "excel:ABN"
-    Then I click on button from excel "excel:SearchClient"
+    Then I click on button "SEARCH[2]"
     Then I select grid "[2]" row "[1]"
-    Then I click on button from excel "excel:Next"
+    Then I click on button "Next"
     Then I click on element with text from excel "excel:What type of asset are you seeking to finance?"
     Then I click on element with text from excel "excel:Do you have a specific passenger or light commercial vehicle in mind?"
     Then I click on element with text from excel "excel:Is the passenger or light commercial vehicle new?"
-    Then I click on element with text from excel "excel:Do you want to use ORIX pricing?"
+    Then I click on element with text from excel "excel:Is your quote from a Dealer?"
     Then I click on card direct from excel "excel:What product suits you best?"
-    Then I populate field "Vehicle Category" with excel "excel:Vehicle Category"
-    Then I populate field "Vehicle Description" with excel "excel:Vehicle Description"
+    Then I populate field "Vehicle Category" with excel "excel:Vehicle or Asset Category"
+    Then I populate field "Vehicle Description" with excel "excel:Vehicle or Asset Description"
     Then I populate field "Total Asset Cost (incl. GST)" with excel "excel:Total Asset Cost (incl. GST)"
     Then I populating field "Deposit Amount[3]" with excel "excel:Deposit Amount"
     Then I populate field "Dealer Origination Fee (excl. GST)" with excel "excel:Dealer Origination Fee (excl. GST)"
@@ -30,9 +30,9 @@ Feature: 01 SMB End2End Excel feature
     Then I click on radio option from excel "excel:Payment Method"
     Then I click on card direct from excel "excel:What services would you like included with your quote?"
     Then I click on term card from excel "excel:Select a Term"
-    Then I get field "Vehicle Category" value and store in excel "excel:Output Vehicle Category"
-    Then I get field "Vehicle Description" value and store in excel "excel:Output Vehicle Description"
-    Then I click on button from excel "excel:Next"
+    Then I get field "Vehicle Category" value and store in excel "excel:Output Vehicle or Asset Category"
+    Then I get field "Vehicle Description" value and store in excel "excel:Output Vehicle or Asset Description"
+    Then I click on button "Next"
     Then I populate field "Make" with excel "excel:Make"
     Then I populate field "Model" with excel "excel:Model"
     Then I populate field "Sub Model" with excel "excel:Sub Model"
@@ -42,7 +42,7 @@ Feature: 01 SMB End2End Excel feature
     Then I populate field "Registration Number" with excel "excel:Registration Number"
     Then I populate field "Engine Number" with excel "excel:Engine Number"
     Then I populate field "Other Comments" with excel "excel:Other Comments"
-    Then I click on button from excel "excel:Next"
+    Then I click on button "Next"
     Then I verify text "A value is required" is present
     Then I populate field "Quote Document" with excel "excel:Quote Document"
     Then I click on button "Next"
@@ -57,7 +57,7 @@ Feature: 01 SMB End2End Excel feature
     Then I click on element with text from excel "excel:Application Type"
     Then I click on button "Next"
 #   Business tab Inputs and data verification
-#    Then I verify field "ABN" contains excel "excel:ClientData.ABN"
+    Then I verify field "ABN" contains excel "excel:ABN"
     Then I verify field "Registered Business Name" contains excel "excel:Registered Business Name"
     Then I verify field "Business Address" contains excel "excel:Business Address"
     Then I verify field "Industry ANZSIC Code" contains excel "excel:Industry ANZSIC Code"
@@ -66,6 +66,7 @@ Feature: 01 SMB End2End Excel feature
     Then I populate field "Asset Purpose" with excel "excel:Asset Purpose"
     Then I click on button "Next"
     Then I verify field "First Name" contains excel "excel:First Name"
+    Then I verify field "Middle Name" contains excel "excel:Middle Name"
     Then I verify field "Last Name" contains excel "excel:Last Name"
     Then I verify field "Citizenship Status" contains excel "excel:Citizenship Status"
     Then I verify field "Date Of Birth" contains excel "excel:Date Of Birth"
@@ -80,40 +81,36 @@ Feature: 01 SMB End2End Excel feature
     Then I verify field "Drivers Licence Number" contains excel "excel:Drivers Licence Number"
     Then I click on button "Next"
 #   Financial tab Inputs and data verification
-    Then I verify field "Income" contains excel "excel:Income"
-    Then I verify field "Expenses" contains excel "excel:Expenses"
+    Then I verify field "Justification" contains excel "excel:Justification"
     Then I click on button "Next"
 #   Summary tab Inputs and data verification
     Then I verify field "ABN" contains excel "excel:ABN"
     Then I verify field "Registered Business Name" contains excel "excel:Registered Business Name"
     Then I verify field "First Name" contains excel "excel:First Name"
     Then I verify field "Last Name" contains excel "excel:Last Name"
-    Then I verify field "Income" contains excel "excel:Income"
-    Then I verify field "Expenses" contains excel "excel:Expenses"
     Then I click on checkbox option "[1]"
     Then I click on checkbox option "[2]"
     Then I click on checkbox option "[3]"
     Then I click on checkbox option "[4]"
     Then I click on button "Submit"
-    Then I click on text "BEGIN[2]"
-    Then I click on text "Send SMS"
+    Then I click on element with text "BEGIN[2]"
+    Then I click on element with text "Send SMS"
     Then I verify text "The link sent via SMS will be active for 48 hours." is present
-    Then I populates field "File Upload" with excel "excel:File Upload"
+    Then I wait for "2" seconds
+    Then I populates field "File Upload[20]" with excel "excel:Rental Agreement"
+    Then I wait for "2" seconds
     Then I click on button "Submit"
+    Then I wait for "2" seconds
     Then I get grid "" column "Application Number" row "1" value and store in excel "excel:Application Number"
     Then I get grid "" column "Quote Number" row "1" value and store in excel "excel:Quote Number"
     Then I get grid "" column "Client (Applicant)" row "1" value and store in excel "excel:Client or Applicant"
     Then I get grid "" column "Application Status" row "1" value and store in excel "excel:Application Status"
     Then I get grid "" column "Date Created" row "1" value and store in excel "excel:Date Created"
     Then I get grid "" column "Last Updated User" row "1" value and store in excel "excel:Last Updated User"
-#
-  Scenario: TC002_Verify if user is able to validate the credit rules and manually overwrite credit decision for Sole Trader
+
+  Scenario: TC002_Verify creditManager is able to validate the credit rules and Allocate the Application
     Given I setup environment and login with role "creditManager"
-    Given I load test data for "TC002" from "01_SMB_End2End"
-    Then I verify grid "" column "Application" row "[1]" contains excel data "excel:Application Number"
-    Then I verify grid "" column "Customer" row "[1]" contains excel data "excel:Registered Business Name"
-    Then I verify grid "" column "Funding Value" row "[1]" contains excel data "excel:Funding Value"
-    Then I verify grid "" column "Channel Specialist" row "[1]" contains excel data "excel:Channel Specialist"
+    Given I load test data for "TC002" from "02_SMB_End2End"
     When I click on record from excel "excel:Application Number"
 #  Business tab Inputs and data verification
     Then I verify field "ABN" contains excel "excel:ABN"
@@ -134,16 +131,12 @@ Feature: 01 SMB End2End Excel feature
     Then I verify field "License Class" contains excel "excel:License Class"
     Then I verify field "License State" contains excel "excel:License State"
     Then I verify field "Drivers Licence Number" contains excel "excel:Drivers Licence Number"
-    Then I verify field "Income" contains excel "excel:Income"
-    Then I verify field "Expenses" contains excel "excel:Expenses"
-    Then I verify field "Income Frequency" contains excel "excel:Income Frequency"
-    Then I verify field "Expenses Frequency" contains excel "excel:Expenses Frequency"
     Then I verify text "Overall Decision" is present
     Then I verify text "Owner" is present
     Then I verify text "Funding Value" is present
-    Then I verify text "$58,225.00" is present
+    Then I verify text "$100,750.00" is present
     Then I verify text "Monthly Repayment" is present
-    Then I verify text "$1,378.66" is present
+    Then I verify text "$4,557.58" is present
     Then I verify text "Customer Tier" is present
     Then I verify text "Application Criteria" is present
     Then I verify text "Low-Doc" is present
@@ -152,32 +145,32 @@ Feature: 01 SMB End2End Excel feature
     Then I verify text "Credit Rule Details" is present
     Then I verify grid "" column "Name" row "[1]" contains "ABN Age"
     Then I verify grid "" column "Rule Description" row "[1]" contains "ABN age is older than 1 year"
-    Then I verify grid "" column "Value" row "[1]" contains "6 Years, 8 Months"
+    Then I verify grid "" column "Value" row "[1]" contains "11 Years, 0 Months"
     Then I verify grid "" column "Result" row "[1]" contains "Approved"
     Then I verify grid "" column "Name" row "[2]" contains "Max Loan Amount"
     Then I verify grid "" column "Rule Description" row "[2]" contains "Total Loan Amount is less than $200,000"
-    Then I verify grid "" column "Value" row "[2]" contains "$58,225.00"
+    Then I verify grid "" column "Value" row "[2]" contains "$100,750.00"
     Then I verify grid "" column "Result" row "[2]" contains "Approved"
     Then I verify grid "" column "Name" row "[3]" contains "Min Applicant Age"
     Then I verify grid "" column "Rule Description" row "[3]" contains "Applicant age is greater than 25 years"
-    Then I verify grid "" column "Value" row "[3]" contains "44 Years, 6 Months"
+    Then I verify grid "" column "Value" row "[3]" contains "44 Years, 8 Months"
     Then I verify grid "" column "Result" row "[3]" contains "Approved"
     Then I verify grid "" column "Name" row "[4]" contains "Max Applicant Age"
     Then I verify grid "" column "Rule Description" row "[4]" contains "Applicant age is less than 70 years"
-    Then I verify grid "" column "Value" row "[4]" contains "44 Years, 6 Months"
+    Then I verify grid "" column "Value" row "[4]" contains "44 Years, 8 Months"
     Then I verify grid "" column "Result" row "[4]" contains "Approved"
     Then I verify grid "" column "Name" row "[5]" contains "Citizenship Status"
     Then I verify grid "" column "Rule Description" row "[5]" contains "Applicant is an Australian citizen or permanent resident"
-    Then I verify grid "" column "Value" row "[5]" contains "True"
-    Then I verify grid "" column "Result" row "[5]" contains "Approved"
+    Then I verify grid "" column "Value" row "[5]" contains "False"
+    Then I verify grid "" column "Result" row "[5]" contains "Referred"
     Then I verify grid "" column "Name" row "[6]" contains "Residential Status"
     Then I verify grid "" column "Rule Description" row "[6]" contains "Applicant does not have a residential status of 'other'"
     Then I verify grid "" column "Value" row "[6]" contains "True"
     Then I verify grid "" column "Result" row "[6]" contains "Approved"
     Then I verify grid "" column "Name" row "[7]" contains "Credit File Age"
     Then I verify grid "" column "Rule Description" row "[7]" contains "Credit file age is equal to or greater than 12 months"
-    Then I verify grid "" column "Value" row "[7]" contains "8 Years, 0 Months"
-    Then I verify grid "" column "Result" row "[7]" contains "Approved"
+    Then I verify grid "" column "Value" row "[7]" contains "0 Years, 9 Months"
+    Then I verify grid "" column "Result" row "[7]" contains "Referred"
     Then I verify grid "" column "Name" row "[8]" contains "Credit File Activity"
     Then I verify grid "" column "Rule Description" row "[8]" contains "Credit file has activity recorded in the past 24 months from date of submission for current credit application"
     Then I verify grid "" column "Value" row "[8]" contains "True"
@@ -214,14 +207,14 @@ Feature: 01 SMB End2End Excel feature
     Then I verify grid "" column "Rule Description" row "[16]" contains "The Application falls under the Low Doc criteria"
     Then I verify grid "" column "Value" row "[16]" contains "True"
     Then I verify grid "" column "Result" row "[16]" contains "Approved"
-    Then I verify grid "" column "Name" row "[17]" contains "Luxury Vehicle (New)"
-    Then I verify grid "" column "Rule Description" row "[17]" contains "Asset being financed is a New Passenger Car valued over $160K."
-    Then I verify grid "" column "Value" row "[17]" contains "False"
-    Then I verify grid "" column "Result" row "[17]" contains "Approved"
+    Then I verify grid "" column "Name" row "[17]" contains "Luxury Vehicle (Used)"
+    Then I verify grid "" column "Rule Description" row "[17]" contains "Asset being financed is a Used Passenger Car valued over $100K."
+    Then I verify grid "" column "Value" row "[17]" contains "True"
+    Then I verify grid "" column "Result" row "[17]" contains "Referred"
     Then I verify grid "" column "Name" row "[18]" contains "NZ Citizen"
     Then I verify grid "" column "Rule Description" row "[18]" contains "An Individual with NZ Citizenship has been identified"
-    Then I verify grid "" column "Value" row "[18]" contains "False"
-    Then I verify grid "" column "Result" row "[18]" contains "Approved"
+    Then I verify grid "" column "Value" row "[18]" contains "True"
+    Then I verify grid "" column "Result" row "[18]" contains "Referred"
     Then I verify grid "" column "Name" row "[19]" contains "Overall Decision"
     Then I verify grid "" column "Result" row "[19]" contains "Referred"
     Then I click on record view "Identity Verification - Applicant"
@@ -232,6 +225,7 @@ Feature: 01 SMB End2End Excel feature
     Then I verify text "Background Checks" is present
     Then I verify text "DVS Checks" is present
     Then I click on record view "Identity Verification - Proprietors"
+    Then I verify text "No additional individuals have listed on this application have initiated their Identity Verification" is present
 #    Verifying content on 'Identity Verification - Proprietors'
     Then I click on record view "Credit Report - Applicant"
 #    Verifying content on 'Credit Report - Applicant'
@@ -241,14 +235,17 @@ Feature: 01 SMB End2End Excel feature
     Then I click on button "Done"
     Then I click on record view "Beneficial Owner Report - Applicant"
     Then I click on record view "Credit Report - Guarantors"
+    Then I verify text "No items available" is present
     Then I click on record view "Document Extraction"
+    Then I verify text "No items available" is present
     Then I click on record view "Documents"
 #    Verifying content on 'Documents'
     Then I verify text "Uploaded Documents" is present
     Then I verify grid "" column "Document Name" row "[1]" contains "Rental_Agreement_Document.pdf"
     Then I verify grid "" column "Document Type" row "[1]" contains "Rental Agreement"
-    Then I verify grid "" column "Uploaded By" row "[1]" contains "Andrew Wadham"
+    Then I verify grid "" column "Uploaded By" row "[1]" contains "Automation Introducer"
     Then I click on record view "Communications"
+    Then I verify text "No items available" is present
     Then I click on record view "Event History"
 #    Verifying content on 'Event History'
     Then I verify text "Created Application" is present
@@ -257,9 +254,8 @@ Feature: 01 SMB End2End Excel feature
     Then I click on record view "Quote Details"
 #    Verifying content on 'Quote Details'
     Then I verify text "Chattel Mortgage" is present
-    Then I verify text "TOYOTA BZ4X" is present
+    Then I verify text " AUDI A1" is present
     Then I verify field "Total Asset Cost" contains excel "excel:Total Asset Cost (incl. GST)"
-    Then I verify field "Balloon Payment" contains excel "excel:Balloon Payment"
     Then I verify field "Total Cost of Loan" contains excel "excel:Total Cost of Loan"
     Then I verify field "Monthly Payment" contains excel "excel:Monthly Payment"
     Then I verify field "Specific Asset" contains excel "excel:Specific Asset"
@@ -268,22 +264,55 @@ Feature: 01 SMB End2End Excel feature
     Then I verify field "Pricing Type" contains excel "excel:Pricing Type"
     Then I verify field "Asset Type" contains excel "excel:Asset Type"
     Then I verify field "Monthly GST" contains excel "excel:Monthly GST"
-    Then I verify field "Total GST" contains excel "excel:Total GST"
-    Then I verify field "Deposit Percentage" contains excel "excel:Deposit Percentage"
-    Then I verify field "Balloon Percentage" contains excel "excel:Balloon %"
-    Then I verify field "Make" contains excel "excel:Make"
-    Then I verify field "Model" contains excel "excel:Model"
+#    Then I verify field "GST" contains excel "excel:Total GST"
     Then I verify field "Status" contains excel "excel:Status"
     Then I verify field "Document" contains excel "excel:Document"
     Then I verify field "Dealer Quote Document" contains excel "excel:Dealer Quote Document"
     Then I click on record view "Summary"
-    Then I click on button "Take Ownership"
-    Then I click on button "Done"
-    Then I verify text "Testcredit Manager" is present
-    Then I click on button "Update Credit Decision"
-    Then I populate field "Decision" with excel "excel:Decision"
-    Then I populate field "Reason for Decline" with excel "excel:Reason for Decline"
+    Then I click on button "Allocate Application"
+    Then I wait for "3" seconds
+    Then I verify text "Allocate Credit Application" is present
+    Then I populate field "Credit Officer" with excel "excel:Credit Officer"
     Then I click on button "Submit"
     Then I verify text "Overall Decision" is present
-    Then I verify text "Declined" is present
-    Then I verify text "Reason: Serviceability is not established" is present
+    Then I verify text "Referred" is present
+    Then I verify text "Automation Credit Approver" is present
+
+  Scenario: TC003_Verify credit approver is able to update the credit decision and Allocate the Application
+    Given I setup environment and login with role "creditApprover"
+    Given I load test data for "TC003" from "02_SMB_End2End"
+    When I click on record from excel "excel:Application Number"
+    Then I verify field "ABN" contains excel "excel:ABN"
+    Then I verify field "Registered Business Name" contains excel "excel:Registered Business Name"
+    Then I verify field "Business Address" contains excel "excel:Business Address"
+    Then I click on button "Update Credit Decision"
+    Then I populate field "Decision" with excel "excel:Decision"
+    Then I populate field "Allocated Officer for Final Decision" with excel "excel:Credit Officer"
+    Then I populate field "Conditions" with excel "excel:Conditions of Approval"
+    Then I click on button "Submit"
+    Then I verify text "Overall Decision" is present
+    Then I verify text "Recommend Conditional Approval" is present
+    Then I verify text "Copy of current council rates notice to be provided to confirm property ownership." is present
+
+  Scenario: TC004_Verify credit Manager is able to manually update the credit decision
+    Given I setup environment and login with role "creditManager"
+    Given I load test data for "TC004" from "02_SMB_End2End"
+    When I click on record from excel "excel:Application Number"
+    Then I verify field "ABN" contains excel "excel:ABN"
+    Then I verify field "Registered Business Name" contains excel "excel:Registered Business Name"
+    Then I verify field "Business Address" contains excel "excel:Business Address"
+    Then I verify text "Failed Credit Rules" is present
+    Then I verify text "Citizenship Status" is present
+    Then I verify text "Credit File Age" is present
+    Then I verify text "Green ID - Identity Verification" is present
+    Then I verify text "Luxury Vehicle (Used)" is present
+    Then I verify text "NZ Citizen" is present
+    Then I verify text "Recommend Conditional Approval" is present
+    Then I verify text "Copy of current council rates notice to be provided to confirm property ownership." is present
+    Then I click on button "Update Credit Decision"
+    Then I populate field "Decision" with excel "excel:Decision"
+    Then I populate field "Conditions" with excel "excel:Conditions of Approval"
+    Then I click on button "Submit"
+    Then I verify text "Overall Decision" is present
+    Then I verify text "Conditional Approval" is present
+    Then I verify text "Copy of current council rates notice to be provided to confirm property ownership." is present
