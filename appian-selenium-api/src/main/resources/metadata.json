@@ -1489,7 +1489,7 @@
                 },
                 {
                     "label": "xpathAbsoluteFieldLayoutLabel",
-                    "value": "//*[(self::label or self::span) and contains(@class, 'FieldLayout---field_label') and starts-with(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/parent::div | (//*[(self::span or self::label)and contains(@id, '_labelText') and starts-with(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),%1$s)]/ancestor::div/parent::div)[20]"
+                    "value": "//*[(self::label or self::span) and contains(@class, 'FieldLayout---field_label') and starts-with(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÜÑÇ','abcdefghijklmnopqrstuvwxyzáéíóúüñç'),%1$s)]/parent::div/parent::div | (//*[(self::span or self::label)and contains(@id, '_labelText') and starts-with(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),%1$s)]/ancestor::div/parent::div)"
                 },
               {
                 "label": "xpathAbsoluteFieldLayoutLabel2",
@@ -2213,7 +2213,7 @@
 
               {
                 "label": "xpathAbsoluteFileUploadLabel",
-                "value": "(//*[(self::span or self::label)and contains(@id, '_labelText') and starts-with(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'file upload')]/ancestor::div/parent::div)[20]"
+                "value": "(//*[(self::span or self::label)and contains(@id, '_labelText') and starts-with(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'file upload')]/ancestor::div/parent::div)"
               }
 
             ]
