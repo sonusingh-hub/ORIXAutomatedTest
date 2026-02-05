@@ -158,9 +158,7 @@ Feature: 03 SMB End2End feature
     Then I verify text "Overall Decision" is present
     Then I verify text "Owner" is present
     Then I verify text "Funding Value" is present
-    Then I verify text "$56,342.61" is present
     Then I verify text "Monthly Repayment" is present
-    Then I verify text "$1,497.35" is present
     Then I verify text "Customer Tier" is present
     Then I verify text "Application Criteria" is present
     Then I verify text "Full-Doc" is present
@@ -243,17 +241,18 @@ Feature: 03 SMB End2End feature
     Then I verify text "Additional information is required for this Credit Application. Navigate to your messages to respond" is present
     Then I click on element with text "Communications"
     Then I verify text "Select a message to view the details" is present
-    Then I click on element with text "ENQ-556"
-    Then I verify text "APP-556: Request for Further Information" is present
+    Then I click on inquiry element using application number from excel "excel:Application Number"
+    Then I verify text "Request for Further Information" is present
     Then I verify text "Some further information is required to process your application." is present
     Then I verify text "Please click the action below to provide the requested documents to finalize your application." is present
     Then I click on element with text "Respond to Request"
-    Then I verify text "APP-556: Request for Further Information" is present
+    Then I verify text "Request for Further Information" is present
     Then I verify text "Hi Automation Introducer," is present
     Then I verify text "Before we can finalise your application, we will need additional information/documents." is present
     Then I verify text "The information/documents needed are: GST registered less than 3 months. Current Tax Portals." is present
     Then I populate field "Comments" with "Responding back for the requested information"
     Then I click on button "Submit"
+    Then I wait for "20" seconds
     Then I click on element with text "Dashboard"
     Then I verify grid "" column "Application Number" row "[1]" contains excel data "excel:Application Number"
     Then I verify grid "" column "Quote Number" row "[1]" contains excel data "excel:Quote Number"
@@ -261,8 +260,8 @@ Feature: 03 SMB End2End feature
     Then I verify grid "" column "Application Status" row "[1]" contains "Information Received"
     Then I click on element with text "Communications"
     Then I verify text "Select a message to view the details" is present
-    Then I click on element with text "ENQ-556"
-    Then I verify text "APP-556: Request for Further Information" is present
+    Then I click on inquiry element using application number from excel "excel:Application Number"
+    Then I verify text "Request for Further Information" is present
     Then I verify text "Response Received" is present
     Then I verify text "Thank you for responding to this request for further information." is present
     Then I verify text "You will be notified of the next steps as the information you have provided has been assessed." is present

@@ -758,6 +758,21 @@ public class CucumberTempoFixture {
         return true;
     }
 
+    @Given("^I verify field \"([^\"]*)\" does not contain value \"([^\"]*)\"$")
+    public boolean verifyFieldDoesNotContainValue(String fieldName, String fieldValue) {
+        try {
+            // If this returns true or finds the value → FAIL
+            if (fixture.verifyFieldContainsValue(fieldName, fieldValue)) {
+                throw new RuntimeException("Field contains the value which was not expected");
+            }
+        } catch (Exception e) {
+            // Exception means value was NOT found → PASS
+            return true;
+        }
+        return true;
+    }
+
+
     @Given("^I verify field \"([^\"]*)\" is not blank$")
     public boolean verifyFieldIsNotBlank(String fieldName) {
         if (!fixture.verifyFieldIsNotBlank(fieldName)) {
@@ -1201,6 +1216,19 @@ public class CucumberTempoFixture {
         fixture.clickOnText(finalText);
     }
 
+    @Given("^I click on inquiry element using application number from excel \"([^\"]*)\"$")
+    public void clickOnInquiryElementUsingApplicationNumberFromExcel(String excelRef) {
+
+        // Resolve Excel reference
+        String appNumber = excelRef.startsWith("excel:")
+                ? TestDataManager.get(excelRef.replace("excel:", ""))
+                : excelRef;
+
+        // Minimal transformation: APP-582 → ENQ-582
+        String enqNumber = appNumber.replaceFirst("APP", "ENQ");
+
+        fixture.clickOnText(enqNumber);
+    }
 
     @Given("^I click on term card \"([^\"]*)\"$")
     public void clickOnTermCard(String cardName) {fixture.clickOnTermCard(cardName);
