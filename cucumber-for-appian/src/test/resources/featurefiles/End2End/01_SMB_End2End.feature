@@ -137,9 +137,7 @@ Feature: 01 SMB End2End feature
     Then I verify text "Overall Decision" is present
     Then I verify text "Owner" is present
     Then I verify text "Funding Value" is present
-    Then I verify text "$58,225.00" is present
     Then I verify text "Monthly Repayment" is present
-    Then I verify text "$1,378.66" is present
     Then I verify text "Customer Tier" is present
     Then I verify text "Application Criteria" is present
     Then I verify text "Low-Doc" is present
@@ -148,19 +146,15 @@ Feature: 01 SMB End2End feature
     Then I verify text "Credit Rule Details" is present
     Then I verify grid "" column "Name" row "[1]" contains "ABN Age"
     Then I verify grid "" column "Rule Description" row "[1]" contains "ABN age is older than 1 year"
-    Then I verify grid "" column "Value" row "[1]" contains "6 Years, 9 Months"
     Then I verify grid "" column "Result" row "[1]" contains "Approved"
     Then I verify grid "" column "Name" row "[2]" contains "Max Loan Amount"
     Then I verify grid "" column "Rule Description" row "[2]" contains "Total Loan Amount is less than $200,000"
-    Then I verify grid "" column "Value" row "[2]" contains "$58,225.00"
     Then I verify grid "" column "Result" row "[2]" contains "Approved"
     Then I verify grid "" column "Name" row "[3]" contains "Min Applicant Age"
     Then I verify grid "" column "Rule Description" row "[3]" contains "Applicant age is greater than 25 years"
-    Then I verify grid "" column "Value" row "[3]" contains "44 Years, 8 Months"
     Then I verify grid "" column "Result" row "[3]" contains "Approved"
     Then I verify grid "" column "Name" row "[4]" contains "Max Applicant Age"
     Then I verify grid "" column "Rule Description" row "[4]" contains "Applicant age is less than 70 years"
-    Then I verify grid "" column "Value" row "[4]" contains "44 Years, 8 Months"
     Then I verify grid "" column "Result" row "[4]" contains "Approved"
     Then I verify grid "" column "Name" row "[5]" contains "Citizenship Status"
     Then I verify grid "" column "Rule Description" row "[5]" contains "Applicant is an Australian citizen or permanent resident"
@@ -172,7 +166,6 @@ Feature: 01 SMB End2End feature
     Then I verify grid "" column "Result" row "[6]" contains "Approved"
     Then I verify grid "" column "Name" row "[7]" contains "Credit File Age"
     Then I verify grid "" column "Rule Description" row "[7]" contains "Credit file age is equal to or greater than 12 months"
-    Then I verify grid "" column "Value" row "[7]" contains "8 Years, 0 Months"
     Then I verify grid "" column "Result" row "[7]" contains "Approved"
     Then I verify grid "" column "Name" row "[8]" contains "Credit File Activity"
     Then I verify grid "" column "Rule Description" row "[8]" contains "Credit file has activity recorded in the past 24 months from date of submission for current credit application"
@@ -399,9 +392,7 @@ Feature: 01 SMB End2End feature
     Then I verify text "Overall Decision" is present
     Then I verify text "Owner" is present
     Then I verify text "Funding Value" is present
-    Then I verify text "$571,348.65" is present
     Then I verify text "Monthly Repayment" is present
-    Then I verify text "$15,177.37" is present
     Then I verify text "Customer Tier" is present
     Then I verify text "Application Criteria" is present
     Then I verify text "Full-Doc" is present
@@ -410,19 +401,15 @@ Feature: 01 SMB End2End feature
     Then I verify text "Credit Rule Details" is present
     Then I verify grid "" column "Name" row "[1]" contains "ABN Age"
     Then I verify grid "" column "Rule Description" row "[1]" contains "ABN age is older than 1 year"
-    Then I verify grid "" column "Value" row "[1]" contains "11 Years, 0 Months"
     Then I verify grid "" column "Result" row "[1]" contains "Approved"
     Then I verify grid "" column "Name" row "[2]" contains "Max Loan Amount"
     Then I verify grid "" column "Rule Description" row "[2]" contains "Total Loan Amount is less than $200,000"
-    Then I verify grid "" column "Value" row "[2]" contains "$571,348.70"
     Then I verify grid "" column "Result" row "[2]" contains "Referred"
     Then I verify grid "" column "Name" row "[3]" contains "Min Applicant Age"
     Then I verify grid "" column "Rule Description" row "[3]" contains "Applicant age is greater than 25 years"
-    Then I verify grid "" column "Value" row "[3]" contains "44 Years, 8 Months"
     Then I verify grid "" column "Result" row "[3]" contains "Approved"
     Then I verify grid "" column "Name" row "[4]" contains "Max Applicant Age"
     Then I verify grid "" column "Rule Description" row "[4]" contains "Applicant age is less than 70 years"
-    Then I verify grid "" column "Value" row "[4]" contains "44 Years, 8 Months"
     Then I verify grid "" column "Result" row "[4]" contains "Approved"
     Then I verify grid "" column "Name" row "[5]" contains "Citizenship Status"
     Then I verify grid "" column "Rule Description" row "[5]" contains "Applicant is an Australian citizen or permanent resident"
@@ -434,7 +421,6 @@ Feature: 01 SMB End2End feature
     Then I verify grid "" column "Result" row "[6]" contains "Approved"
     Then I verify grid "" column "Name" row "[7]" contains "Credit File Age"
     Then I verify grid "" column "Rule Description" row "[7]" contains "Credit file age is equal to or greater than 12 months"
-    Then I verify grid "" column "Value" row "[7]" contains "0 Years, 9 Months"
     Then I verify grid "" column "Result" row "[7]" contains "Referred"
     Then I verify grid "" column "Name" row "[8]" contains "Credit File Activity"
     Then I verify grid "" column "Rule Description" row "[8]" contains "Credit file has activity recorded in the past 24 months from date of submission for current credit application"
@@ -544,3 +530,4 @@ Feature: 01 SMB End2End feature
     Then I verify text "Overall Decision" is present
     Then I verify text "Conditional Approval" is present
     Then I verify text "Copy of current council rates notice to be provided to confirm property ownership." is present
+

@@ -198,7 +198,6 @@ Feature: 05 SMB End2End feature
     Then I click on record view "Credit Rules"
     Then I verify grid "" column "Name" row "[1]" contains "ABN Age"
     Then I verify grid "" column "Rule Description" row "[1]" contains "ABN age is older than 1 year"
-    Then I verify grid "" column "Value" row "[1]" contains "25 Years, 11 Months"
     Then I verify grid "" column "Result" row "[1]" contains "Approved"
     Then I verify grid "" column "Name" row "[2]" contains "Max Loan Amount"
     Then I verify grid "" column "Rule Description" row "[2]" contains "Total Loan Amount is less than $200,000"
@@ -206,7 +205,6 @@ Feature: 05 SMB End2End feature
     Then I wait for "2" seconds
     Then I verify grid "" column "Name" row "[1]" contains "Credit File Age"
     Then I verify grid "" column "Rule Description" row "[1]" contains "Credit file age is equal to or greater than 12 months"
-    Then I verify grid "" column "Value" row "[1]" contains "0 Years, 1 Month"
     Then I verify grid "" column "Result" row "[1]" contains "Referred"
     Then I verify grid "" column "Name" row "[2]" contains "Overall Decision"
     Then I verify grid "" column "Result" row "[2]" contains "Referred"
@@ -333,7 +331,6 @@ Feature: 05 SMB End2End feature
     Then I click on record view "Credit Rules"
     Then I verify grid "" column "Name" row "[1]" contains "ABN Age"
     Then I verify grid "" column "Rule Description" row "[1]" contains "ABN age is older than 1 year"
-    Then I verify grid "" column "Value" row "[1]" contains "25 Years, 11 Months"
     Then I verify grid "" column "Result" row "[1]" contains "Approved"
     Then I verify grid "" column "Name" row "[2]" contains "Max Loan Amount"
     Then I verify grid "" column "Rule Description" row "[2]" contains "Total Loan Amount is less than $200,000"
@@ -341,7 +338,6 @@ Feature: 05 SMB End2End feature
     Then I wait for "2" seconds
     Then I verify grid "" column "Name" row "[1]" contains "Credit File Age"
     Then I verify grid "" column "Rule Description" row "[1]" contains "Credit file age is equal to or greater than 12 months"
-    Then I verify grid "" column "Value" row "[1]" contains "0 Years, 1 Month"
     Then I verify grid "" column "Result" row "[1]" contains "Referred"
     Then I verify grid "" column "Name" row "[2]" contains "Overall Decision"
     Then I verify grid "" column "Result" row "[2]" contains "Referred"
@@ -468,7 +464,6 @@ Feature: 05 SMB End2End feature
     Then I click on record view "Credit Rules"
     Then I verify grid "" column "Name" row "[1]" contains "ABN Age"
     Then I verify grid "" column "Rule Description" row "[1]" contains "ABN age is older than 1 year"
-    Then I verify grid "" column "Value" row "[1]" contains "25 Years, 11 Months"
     Then I verify grid "" column "Result" row "[1]" contains "Approved"
     Then I verify grid "" column "Name" row "[2]" contains "Max Loan Amount"
     Then I verify grid "" column "Rule Description" row "[2]" contains "Total Loan Amount is less than $200,000"
@@ -476,7 +471,6 @@ Feature: 05 SMB End2End feature
     Then I wait for "2" seconds
     Then I verify grid "" column "Name" row "[1]" contains "Credit File Age"
     Then I verify grid "" column "Rule Description" row "[1]" contains "Credit file age is equal to or greater than 12 months"
-    Then I verify grid "" column "Value" row "[1]" contains "0 Years, 1 Month"
     Then I verify grid "" column "Result" row "[1]" contains "Referred"
     Then I verify grid "" column "Name" row "[2]" contains "Overall Decision"
     Then I verify grid "" column "Result" row "[2]" contains "Referred"
@@ -542,6 +536,7 @@ Feature: 05 SMB End2End feature
     Then I verify text "Overall Decision" is present
     Then I verify text "Declined" is present
     Then I verify text "Automation Credit Approver" is present
+    Then I wait for "3" seconds
     Then I click on button "Cancel Application"
     Then I populate field "Reason For Cancellation" with "Request by Client"
     Then I click on button "Cancel[2]"

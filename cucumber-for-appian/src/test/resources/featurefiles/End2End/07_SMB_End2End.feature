@@ -1,0 +1,489 @@
+@End2End
+Feature: 07 SMB End2End feature
+
+  Background: Setup background and environment
+    Given I setup browser
+    Then I setup appian URL to "appian.active.url"
+    And I setup appian version
+    And I setup appian locale
+
+  Scenario: TC001_PTY LTD_Verify Introducer is able to Request a quote and Submit the application for New Asset and ORIX Pricing with Finance Lease with Services for Passenger or LCV
+    Given I setup environment and login with role "introducer"
+    Given I load test data for "TC001" from "07_SMB_End2End"
+    Then I click on button "Request A Quote"
+    Then I populate field "Search Journeys" with excel "excel:ABN"
+    Then I click on button "SEARCH[2]"
+    Then I select grid "[2]" row "[1]"
+    Then I click on button "Next"
+    Then I click on element with text from excel "excel:What type of asset are you seeking to finance?"
+    Then I click on element with text from excel "excel:Do you have a specific passenger or light commercial vehicle in mind?"
+    Then I click on element with text from excel "excel:Is the passenger or light commercial vehicle new?"
+    Then I click on element with text from excel "excel:Do you want to use ORIX pricing?"
+    Then I click on card direct from excel "excel:What product suits you best?"
+    Then I populate field "Make" with excel "excel:Make"
+    Then I populate field "Model" with excel "excel:Model"
+    Then I populate field "Sub Model" with excel "excel:Sub Model"
+    Then I click on button "SEARCH[2]"
+    Then I click on button "SELECT VEHICLE"
+    Then I populate field "Colour" with excel "excel:Colour"
+    Then I populate field "Trim" with excel "excel:Trim"
+    Then I populate field "Term" with excel "excel:Select a Term"
+    Then I wait for "2" seconds
+    Then I populate field "Annual Usage[3]" with excel "excel:Annual Usage"
+    Then I populate field "Delivery State" with excel "excel:Delivery State"
+    Then I populate field "Dealer Origination Fee" with excel "excel:Dealer Origination Fee (excl. GST)"
+    Then I populate field "Vehicle Category" with excel "excel:Vehicle or Asset Category"
+    Then I click on checkbox option "[1]"
+    Then I click on button "Next"
+    Then I click on element with text from excel "excel:Services"
+    Then I wait for "6" seconds
+    Then I click on button "Generate Quote"
+    Then I wait for "6" seconds
+    Then I verify text "Indicative Quote Summary" is present
+    Then I verify text "Finance Lease with Services" is present
+    Then I verify text "Your Passenger or Light Commercial Vehicle" is present
+    Then I verify text "Passenger or Light Commercial Vehicle Description" is present
+    Then I verify text "Total Cost of Lease" is present
+    Then I verify text "Total Asset Cost (incl GST)" is present
+    Then I click on button "Close"
+    Then I wait for "3" seconds
+    Then I click on button "Proceed Quote"
+    Then I click on element with text from excel "excel:Application Type"
+    Then I click on button "Next"
+#   Applicant Company Details tab Inputs and data verification
+    Then I verify field "ABN" contains excel "excel:ABN"
+    Then I verify field "Business Name" contains excel "excel:Registered Business Name"
+    Then I verify field "ACN" contains excel "excel:ACN"
+    Then I verify field "Company Name" contains excel "excel:Company Name"
+    Then I verify field "Business Address" contains excel "excel:Business Address"
+    Then I verify field "Company Website" contains excel "excel:Company Website"
+    Then I verify field "Industry ANZSIC Code" contains excel "excel:Industry ANZSIC Code"
+    Then I verify field "Industry Classification" contains excel "excel:Industry Classification"
+    Then I populate field "Business Background" with excel "excel:Business Background"
+    Then I populate field "Asset Purpose" with excel "excel:Asset Purpose"
+    Then I click on button "Next"
+#    Financial tab Inputs and data verification
+    Then I verify field "Income" contains excel "excel:Income"
+    Then I verify field "Expenses" contains excel "excel:Expenses"
+    Then I verify field "Income Frequency" contains excel "excel:Income Frequency"
+    Then I verify field "Expenses Frequency" contains excel "excel:Expenses Frequency"
+    Then I click on button "Next"
+#    Owner Individuals tab Inputs and data verification
+    Then I verify text "Please identify any individuals who may be a Director, Shareholder, Beneficial Owner, and/or Guarantor to your company" is present
+    Then I verify text "Applications without a Director's Guarantee will require further assessment, you will be required to provide 3 years worth of financial statements." is present
+    Then I verify field "First Name" contains excel "excel:First Name"
+    Then I verify field "Last Name" contains excel "excel:Last Name"
+    Then I verify field "First Name[2]" contains excel "excel:First Name 2"
+    Then I verify field "Last Name[2]" contains excel "excel:Last Name 2"
+    Then I click on button "Next"
+    Then I verify text "Charlie Smith Details" is present
+    Then I verify field "First Name" contains excel "excel:First Name"
+    Then I verify field "Last Name" contains excel "excel:Last Name"
+    Then I verify field "Gender" contains excel "excel:Gender"
+    Then I verify field "Date Of Birth" contains excel "excel:Date Of Birth"
+    Then I verify field "Citizenship Status" contains excel "excel:Citizenship Status"
+    Then I verify field "Residential Status" contains excel "excel:Residential Status"
+    Then I verify field "Phone Number" contains excel "excel:Phone Number"
+    Then I verify field "Email" contains excel "excel:Email"
+    Then I verify field "License Type" contains excel "excel:License Type"
+    Then I verify field "License Class" contains excel "excel:License Class"
+    Then I verify field "License State" contains excel "excel:License State"
+    Then I verify field "Licence Number" contains excel "excel:Drivers Licence Number"
+    Then I click on button "Next"
+    Then I verify text "John Smith Details" is present
+    Then I verify field "First Name" contains excel "excel:First Name 2"
+    Then I verify field "Last Name" contains excel "excel:Last Name 2"
+    Then I verify field "Gender" contains excel "excel:Gender 2"
+    Then I verify field "Date Of Birth" contains excel "excel:Date Of Birth 2"
+    Then I verify field "Citizenship Status" contains excel "excel:Citizenship Status 2"
+    Then I verify field "Residential Status" contains excel "excel:Residential Status 2"
+    Then I verify field "Phone Number" contains excel "excel:Phone Number 2"
+    Then I verify field "Email" contains excel "excel:Email 2"
+    Then I verify field "License Type" contains excel "excel:License Type 2"
+    Then I verify field "License Class" contains excel "excel:License Class 2"
+    Then I verify field "License State" contains excel "excel:License State 2"
+    Then I verify field "Licence Number" contains excel "excel:Drivers Licence Number 2"
+    Then I click on button "Next"
+    #    Owner Companies tab Inputs and data verification
+    Then I verify text "Owners - Companies" is present
+    Then I verify text "Please identify any additional companies who may be a Shareholder and/or Guarantor to the applicant company" is present
+    Then I verify field "ABN" contains "42685968898"
+    Then I verify field "ACN" contains "685968898"
+    Then I verify field "Company Name" contains "ABN CHARLIE BOY LEGACY PTY LTD"
+    Then I click on button "Next"
+    #    Owner Trusts tab Inputs and data verification
+    Then I verify text "Owners - Trusts" is present
+    Then I verify text "Please identify any additional trusts who may be a Shareholder and/or Guarantor to your company" is present
+    Then I verify field "ABN" contains "59004027749"
+    Then I verify field "Trust Name" contains "THE TRUST COMPANY LIMITED"
+    Then I click on button "Next"
+    #   Summary tab Inputs and data verification
+    Then I verify text "Applicant Company Details" is present
+    Then I verify field "Company Name" contains excel "excel:Company Name"
+    Then I verify field "ABN" contains excel "excel:ABN"
+    Then I verify field "ACN" contains excel "excel:ACN"
+    Then I verify field "Business Name" contains excel "excel:Registered Business Name"
+    Then I verify field "Company Website" contains excel "excel:Company Website"
+    #    Financial Details data verification
+    Then I verify text "Financial Details" is present
+    Then I verify field "Income" contains excel "excel:Income"
+    Then I verify field "Expenses" contains excel "excel:Expenses"
+    Then I verify field "Income Frequency" contains excel "excel:Income Frequency"
+    Then I verify field "Expenses Frequency" contains excel "excel:Expenses Frequency"
+    #Owners - Individuals Details data verification
+    Then I verify text "Owners - Individuals" is present
+    Then I verify text "Applications without a Director's Guarantee will require further assessment, you will be required to provide 3 years worth of financial statements." is present
+    #Owners - Individual 1 Details
+    Then I verify field "First Name" contains excel "excel:First Name"
+    Then I verify field "Last Name" contains excel "excel:Last Name"
+    Then I verify field "Roles" contains "Director, Guarantor"
+#Owners - Individual 2 Details
+    Then I verify field "First Name[2]" contains excel "excel:First Name 2"
+    Then I verify field "Last Name[2]" contains excel "excel:Last Name 2"
+    Then I verify field "Roles[2]" contains "Guarantor"
+    Then I verify text "Charlie Smith Details" is present
+    Then I verify text "John Smith Details" is present
+#    Owner Companies data verification
+    Then I verify text "Owners - Companies" is present
+    Then I verify field "ABN" contains "42685968898"
+    Then I verify field "ACN" contains "685968898"
+    Then I verify field "Company Name" contains "ABN CHARLIE BOY LEGACY PTY LTD"
+    Then I verify field "Roles[3]" contains "Beneficial Owner, Guarantor"
+    #    Owner Trusts data verification
+    Then I verify text "Owners - Trusts" is present
+    Then I verify field "Trust Name" contains "THE TRUST COMPANY LIMITED"
+    Then I verify field "Roles[4]" contains "Guarantor"
+    Then I click on checkbox option "[1]"
+    Then I click on checkbox option "[2]"
+    Then I click on checkbox option "[3]"
+    Then I click on checkbox option "[4]"
+    Then I click on button "Submit"
+    Then I wait for "2" seconds
+    Then I click on element with text "BEGIN[2]"
+    Then I verify text "Mobile Number - Charlie Smith" is present
+    Then I verify text "Mobile Number - John Smith" is present
+    Then I click on element with text "Send SMS"
+    Then I verify text "The link sent via SMS will be active for 48 hours." is present
+    Then I populates field "File Upload[20]" with excel "excel:Financial Statements"
+    Then I wait for "3" seconds
+    Then I populates field "File Upload[26]" with excel "excel:Privacy Consent Form"
+    Then I wait for "3" seconds
+    Then I populates field "File Upload[26]" with excel "excel:Privacy Consent Form"
+    Then I click on button "Submit"
+    Then I wait for "2" seconds
+    Then I get grid "" column "Application Number" row "1" value and store in excel "excel:Application Number"
+    Then I get grid "" column "Quote Number" row "1" value and store in excel "excel:Quote Number"
+    Then I get grid "" column "Client (Applicant)" row "1" value and store in excel "excel:Client or Applicant"
+    Then I get grid "" column "Application Status" row "1" value and store in excel "excel:Application Status"
+    Then I get grid "" column "Date Created" row "1" value and store in excel "excel:Date Created"
+    Then I get grid "" column "Last Updated User" row "1" value and store in excel "excel:Last Updated User"
+
+
+  Scenario: TC002_PTY LTD_Verify creditManager is able to validate the credit rules and manually overwrite credit decision
+    Given I setup environment and login with role "creditManager"
+    Given I load test data for "TC002" from "07_SMB_End2End"
+    When I click on record from excel "excel:Application Number"
+#  Applicant Company Details verification
+    Then I verify text "Applicant Company Details" is present
+    Then I verify field "Company Name" contains excel "excel:Company Name"
+    Then I verify field "ABN" contains excel "excel:ABN"
+    Then I verify field "ACN" contains excel "excel:ACN"
+    Then I verify field "Business Name" contains excel "excel:Registered Business Name"
+    Then I verify field "Business Address" contains excel "excel:Business Address"
+    Then I verify field "GST Registration Date" contains excel "excel:GST Registration Date"
+    Then I verify field "Company Website" contains excel "excel:Company Website"
+    Then I verify field "Industry ANZSIC Code" contains excel "excel:Industry ANZSIC Code"
+    Then I verify field "Industry Classification" contains excel "excel:Industry Classification"
+    Then I verify field "Business Background" contains excel "excel:Business Background"
+    Then I verify field "Asset Purpose" contains excel "excel:Asset Purpose"
+#  Financial Details verification
+    Then I verify field "Income" contains excel "excel:Income"
+    Then I verify field "Expenses" contains excel "excel:Expenses"
+    Then I verify field "Income Frequency" contains excel "excel:Income Frequency"
+    Then I verify field "Expenses Frequency" contains excel "excel:Expenses Frequency"
+#  Owners - Individuals Details verification
+    Then I verify text "Applications without a Director's Guarantee will require further assessment, you will be required to provide 3 years worth of financial statements." is present
+    #Owners - Individual 1 Details
+    Then I verify field "First Name" contains excel "excel:First Name"
+    Then I verify field "Last Name" contains excel "excel:Last Name"
+    Then I verify field "Roles" contains "Director, Guarantor"
+    Then I verify field "Citizenship Status" contains excel "excel:Citizenship Status"
+    Then I verify field "Residential Status" contains excel "excel:Residential Status"
+    Then I verify field "Gender" contains excel "excel:Gender"
+    Then I verify field "Residential Address" contains excel "excel:Residential Address"
+    Then I verify field "Phone Number[2]" contains excel "excel:Phone Number"
+    Then I verify field "Email" contains excel "excel:Email"
+    Then I verify field "License Type" contains excel "excel:License Type"
+    Then I verify field "License Class" contains excel "excel:License Class"
+    Then I verify field "License State" contains excel "excel:License State"
+    Then I verify field "Licence Number" contains excel "excel:Drivers Licence Number"
+#Owners - Individual 2 Details
+    Then I verify field "First Name[2]" contains excel "excel:First Name 2"
+    Then I verify field "Last Name[2]" contains excel "excel:Last Name 2"
+    Then I verify field "Roles[2]" contains "Guarantor"
+    Then I verify text "Charlie Smith Details" is present
+    Then I verify text "John Smith Details" is present
+    Then I verify field "Citizenship Status[2]" contains excel "excel:Citizenship Status 2"
+    Then I verify field "Residential Status[2]" contains excel "excel:Residential Status 2"
+    Then I verify field "Gender[2]" contains excel "excel:Gender 2"
+    Then I verify field "Residential Address[2]" contains excel "excel:Residential Address 2"
+    Then I verify field "Phone Number[3]" contains excel "excel:Phone Number 2"
+    Then I verify field "Email[2]" contains excel "excel:Email 2"
+    Then I verify field "License Type[2]" contains excel "excel:License Type 2"
+    Then I verify field "License Class[2]" contains excel "excel:License Class 2"
+    Then I verify field "License State[2]" contains excel "excel:License State 2"
+    Then I verify field "Licence Number[2]" contains excel "excel:Drivers Licence Number 2"
+    #  Company Information 1 Details verification
+    Then I verify text "Company 1" is present
+    Then I verify field "ABN[3]" contains "42685968898"
+    Then I verify field "ACN[2]" contains "685968898"
+    Then I verify field "Company Name[2]" contains "ABN CHARLIE BOY LEGACY PTY LTD"
+    Then I verify field "Roles[3]" contains "Beneficial Owner, Guarantor"
+    #  Owners - Trusts 1 Details verification
+    Then I verify text "Trust 1" is present
+    Then I verify field "ABN[4]" contains "59004027749"
+    Then I verify field "Trust Name" contains "THE TRUST COMPANY LIMITED"
+    Then I verify field "Roles[4]" contains "Guarantor"
+#  Right side pane Details verification
+    Then I verify text "Overall Decision" is present
+    Then I verify text "Unassigned" is present
+    Then I verify text "Funding Value" is present
+    Then I verify text "Monthly Repayment" is present
+    Then I verify text "Customer Tier" is present
+    Then I verify text "Application Criteria" is present
+    Then I verify text "Full-Doc" is present
+    #   Verifying content on 'Credit Rules'
+    Then I refresh
+    Then I wait for "5" seconds
+    Then I click on record view "Credit Rules"
+    Then I wait for "3" seconds
+    Then I verify grid "" column "Name" row "[1]" contains "ABN Age"
+    Then I verify grid "" column "Rule Description" row "[1]" contains "ABN age is older than 1 year"
+    Then I verify grid "" column "Result" row "[1]" contains "Referred"
+    Then I verify grid "" column "Name" row "[2]" contains "Max Loan Amount"
+    Then I verify grid "" column "Rule Description" row "[2]" contains "Total Loan Amount is less than $200,000"
+    Then I verify grid "" column "Result" row "[2]" contains "Approved"
+    Then I verify grid "" column "Name" row "[3]" contains "Credit File Age"
+    Then I verify grid "" column "Rule Description" row "[3]" contains "Credit file age is equal to or greater than 12 months"
+    Then I verify grid "" column "Value" row "[3]" contains "-"
+    Then I verify grid "" column "Result" row "[3]" contains "Referred"
+    Then I verify grid "" column "Name" row "[4]" contains "Credit File Activity"
+    Then I verify grid "" column "Rule Description" row "[4]" contains "Credit file has activity recorded in the past 24 months from date of submission for current credit application"
+    Then I verify grid "" column "Value" row "[4]" contains "-"
+    Then I verify grid "" column "Result" row "[4]" contains "Referred"
+    Then I verify grid "" column "Name" row "[5]" contains "Adverse Credit File"
+    Then I verify grid "" column "Rule Description" row "[5]" contains "Applicant has no adverse on their credit file"
+    Then I verify grid "" column "Value" row "[5]" contains "-"
+    Then I verify grid "" column "Result" row "[5]" contains "Referred"
+    Then I verify grid "" column "Name" row "[6]" contains "Lending Enquiries"
+    Then I verify grid "" column "Rule Description" row "[6]" contains "Applicant has made more than 5 lending enquiries in the past 30 days and more than 20 in the last 180 days. "
+    Then I verify grid "" column "Value" row "[6]" contains "-"
+    Then I verify grid "" column "Result" row "[6]" contains "Referred"
+    Then I verify grid "" column "Name" row "[7]" contains "Court Writs/Actions"
+    Then I verify grid "" column "Rule Description" row "[7]" contains "Applicant has no Court Writ and/or Court Action on their credit file"
+    Then I verify grid "" column "Value" row "[7]" contains "-"
+    Then I verify grid "" column "Result" row "[7]" contains "Referred"
+    Then I verify grid "" column "Name" row "[8]" contains "Credit Score (Tier D)"
+    Then I verify grid "" column "Rule Description" row "[8]" contains "Credit Score is greater than 649"
+    Then I verify grid "" column "Value" row "[8]" contains "-"
+    Then I verify grid "" column "Result" row "[8]" contains "Referred"
+    Then I verify grid "" column "Name" row "[9]" contains "ASIC File Status"
+    Then I verify grid "" column "Rule Description" row "[9]" contains "Applicant ASIC File Status is 'Pending'"
+    Then I verify grid "" column "Value" row "[9]" contains "False"
+    Then I verify grid "" column "Result" row "[9]" contains "Approved"
+    Then I verify grid "" column "Name" row "[10]" contains "Equifax - Individual Guarantor"
+    Then I verify grid "" column "Rule Description" row "[10]" contains "Individual guarantors have been identified. Please view the associated Consumer and Commercial Report"
+    Then I verify grid "" column "Value" row "[10]" contains "True"
+    Then I verify grid "" column "Result" row "[10]" contains "Referred"
+    Then I verify grid "" column "Name" row "[11]" contains "Green ID - Identity Verification"
+    Then I verify grid "" column "Rule Description" row "[11]" contains "Identity verification pass on GreenID"
+    Then I verify grid "" column "Value" row "[11]" contains "False"
+    Then I verify grid "" column "Result" row "[11]" contains "Referred"
+    Then I verify grid "" column "Name" row "[12]" contains "Green ID - PEP/Sanction check"
+    Then I verify grid "" column "Rule Description" row "[12]" contains "No match found on PEP/Sanctions check"
+    Then I verify grid "" column "Value" row "[12]" contains "True"
+    Then I verify grid "" column "Result" row "[12]" contains "Approved"
+    Then I verify grid "" column "Name" row "[13]" contains "Beneficial Owners Review Required"
+    Then I verify grid "" column "Rule Description" row "[13]" contains "Applicant is a private company with at least one organisation listed as a shareholder. Please review the Beneficial Owners Report"
+    Then I verify grid "" column "Value" row "[13]" contains "True"
+    Then I verify grid "" column "Result" row "[13]" contains "Referred"
+    Then I verify grid "" column "Name" row "[14]" contains "Company Guarantors"
+    Then I verify grid "" column "Rule Description" row "[14]" contains "At least one guarantor has been identified as a company. Please review the guarantors Company Scored Enquiry Report"
+    Then I verify grid "" column "Value" row "[14]" contains "False"
+    Then I verify grid "" column "Result" row "[14]" contains "Approved"
+    Then I verify grid "" column "Name" row "[15]" contains "ANZSIC Code"
+    Then I verify grid "" column "Rule Description" row "[15]" contains "ANZSIC Industry classification does not meet ORIX policy"
+    Then I verify grid "" column "Value" row "[15]" contains "False"
+    Then I verify grid "" column "Result" row "[15]" contains "Approved"
+    Then I verify grid "" column "Name" row "[16]" contains "Mercantile Agent Enquiries"
+    Then I verify grid "" column "Rule Description" row "[16]" contains "Applicant has no  Mercantile Agent Enquiries < 12 months on their credit file"
+    Then I verify grid "" column "Value" row "[16]" contains "False"
+    Then I verify grid "" column "Result" row "[16]" contains "Referred"
+    Then I verify grid "" column "Name" row "[17]" contains "Payment Defaults"
+    Then I verify grid "" column "Rule Description" row "[17]" contains "Applicant has no Payment Defaults on their credit file"
+    Then I verify grid "" column "Value" row "[17]" contains "True"
+    Then I verify grid "" column "Result" row "[17]" contains "Approved"
+    Then I verify grid "" column "Name" row "[18]" contains "Directors Adverse"
+    Then I verify grid "" column "Rule Description" row "[18]" contains "Applicant has no  Company Director's Adverse on their credit file"
+    Then I verify grid "" column "Value" row "[18]" contains "False"
+    Then I verify grid "" column "Result" row "[18]" contains "Referred"
+    Then I verify grid "" column "Name" row "[19]" contains "Directors Adverse (Related Entity)"
+    Then I verify grid "" column "Rule Description" row "[19]" contains "Applicant has no Company Director's Related Entity Adverse on their credit file"
+    Then I verify grid "" column "Value" row "[19]" contains "False"
+    Then I verify grid "" column "Result" row "[19]" contains "Referred"
+    Then I verify grid "" column "Name" row "[20]" contains "External Administrators"
+    Then I verify grid "" column "Rule Description" row "[20]" contains "Applicant has no  External Administrators on their credit file"
+    Then I verify grid "" column "Value" row "[20]" contains "True"
+    Then I verify grid "" column "Result" row "[20]" contains "Approved"
+    Then I verify grid "" column "Name" row "[21]" contains "Petitions"
+    Then I verify grid "" column "Rule Description" row "[21]" contains "Applicant has no Petitions on their credit file"
+    Then I verify grid "" column "Value" row "[21]" contains "True"
+    Then I verify grid "" column "Result" row "[21]" contains "Approved"
+    Then I verify grid "" column "Name" row "[22]" contains "Company Sub-Class"
+    Then I verify grid "" column "Rule Description" row "[22]" contains "Applicant ASIC File Sub-Class is 'Proprietary Company'"
+    Then I verify grid "" column "Value" row "[22]" contains "False"
+    Then I verify grid "" column "Result" row "[22]" contains "Referred"
+    Then I verify grid "" column "Name" row "[23]" contains "Application Criteria"
+    Then I verify grid "" column "Rule Description" row "[23]" contains "The Application falls under the Low Doc criteria"
+    Then I verify grid "" column "Value" row "[23]" contains "False"
+    Then I verify grid "" column "Result" row "[23]" contains "Referred"
+    Then I verify grid "" column "Name" row "[24]" contains "NZ Citizen"
+    Then I verify grid "" column "Rule Description" row "[24]" contains "An Individual with NZ Citizenship has been identified"
+    Then I verify grid "" column "Value" row "[24]" contains "False"
+    Then I verify grid "" column "Result" row "[24]" contains "Approved"
+    Then I verify grid "" column "Name" row "[25]" contains "Overall Decision"
+    Then I verify grid "" column "Result" row "[25]" contains "Referred"
+    Then I click on button "Individual Guarantor - Charlie St Smith"
+    Then I wait for "2" seconds
+    Then I verify grid "" column "Name" row "[1]" contains "Credit File Age"
+    Then I verify grid "" column "Rule Description" row "[1]" contains "Credit file age is equal to or greater than 12 months"
+    Then I verify grid "" column "Result" row "[1]" contains "Referred"
+    Then I verify grid "" column "Name" row "[2]" contains "Overall Decision"
+    Then I verify grid "" column "Result" row "[2]" contains "Referred"
+    Then I click on button "Individual Guarantor - John Mc Smith"
+    Then I wait for "2" seconds
+    Then I verify grid "" column "Name" row "[1]" contains "Credit File Age"
+    Then I verify grid "" column "Rule Description" row "[1]" contains "Credit file age is equal to or greater than 12 months"
+    Then I verify grid "" column "Result" row "[1]" contains "Referred"
+    Then I verify grid "" column "Name" row "[2]" contains "Overall Decision"
+    Then I verify grid "" column "Result" row "[2]" contains "Referred"
+#  Company Guarantor button visible after some time and the time is uncertain, hence commenting below steps
+#    Then I click on button "Company Guarantor -"
+#    Then I wait for "2" seconds
+#    Then I verify grid "" column "Name" row "[1]" contains "Credit File Age"
+#    Then I verify grid "" column "Rule Description" row "[1]" contains "Credit file age is equal to or greater than 12 months"
+#    Then I verify grid "" column "Result" row "[1]" contains "Referred"
+#    Then I verify grid "" column "Name" row "[2]" contains "Overall Decision"
+#    Then I verify grid "" column "Result" row "[2]" contains "Referred"
+    Then I click on record view "Identity Verification - Applicant"
+#    Verifying content on 'Identity Verification - Applicant'
+    Then I verify text "This application has not initiated their Identity Verification" is present
+    Then I click on record view "Identity Verification - Proprietors"
+    Then I verify grid "" column "Individual Name" row "[1]" contains "John Mc Smith"
+    Then I verify grid "" column "Role" row "[1]" contains "Guarantor"
+    Then I verify grid "" column "Verification Id" row "[1]" contains "bOQOoREO"
+    Then I verify grid "" column "Overall Result" row "[1]" contains "INITIATED"
+    Then I verify grid "" column "Individual Name" row "[2]" contains "Charlie St Smith"
+    Then I verify grid "" column "Role" row "[2]" contains "Director, Guarantor"
+    Then I verify grid "" column "Verification Id" row "[2]" contains "Qptaa7k8"
+    Then I verify grid "" column "Overall Result" row "[2]" contains "INITIATED"
+    Then I verify text "Identity Verification Summary" is present
+    Then I verify text "OCR Document" is present
+    Then I verify text "Background Checks" is present
+    Then I verify text "DVS Checks" is present
+#    Verifying content on 'Identity Verification - Proprietors'
+    Then I click on record view "Credit Report - Applicant"
+#    Verifying content on 'Credit Report - Applicant'
+    Then I verify text "No Equifax Credit Reports to Display for this application." is present
+    Then I click on record view "Beneficial Owner Report - Applicant"
+    Then I click on button "Re-Run Equifax Check"
+    Then I verify text "Equifax Check is in progress." is present
+    Then I verify text "Click 'Done' to return to home screen." is present
+    Then I click on button "Done"
+    Then I wait for "3" seconds
+    Then I click on record view "Credit Report - Guarantors"
+    Then I verify grid "" column "Name of the Guarantor" row "[1]" contains "Charlie St Smith"
+    Then I verify grid "" column "Credit Report Name(s)" row "[1]" contains "Equifax Commercial Individual Report"
+    Then I verify grid "" column "Status" row "[1]" contains "Success"
+    Then I verify grid "" column "Name of the Guarantor" row "[2]" contains "John Mc Smith"
+    Then I verify grid "" column "Credit Report Name(s)" row "[2]" contains "Equifax Commercial Individual Report"
+    Then I verify grid "" column "Status" row "[2]" contains "Success"
+    Then I verify grid "" column "Name of the Guarantor" row "[3]" contains "ABN CHARLIE BOY LEGACY PTY LTD"
+    Then I verify grid "" column "Status" row "[3]" contains "In Progress"
+    Then I click on record view "Document Extraction"
+    Then I verify text "No items available" is present
+    Then I click on record view "Documents"
+#    Verifying content on 'Documents'
+    Then I verify text "Uploaded Documents" is present
+    Then I verify grid "" column "Document Name" row "[1]" contains "Financial_Statement_Document.pdf"
+    Then I verify grid "" column "Document Type" row "[1]" contains "Financial Statements"
+    Then I verify grid "" column "Uploaded By" row "[1]" contains "Automation Introducer"
+    Then I verify grid "" column "Document Name" row "[2]" contains "Privacy_Consent_Form.pdf"
+    Then I verify grid "" column "Document Type" row "[2]" contains "Privacy Consent Form"
+    Then I verify grid "" column "Uploaded By" row "[2]" contains "Automation Introducer"
+    Then I verify grid "" column "Document Name" row "[3]" contains "Privacy_Consent_Form.pdf"
+    Then I verify grid "" column "Document Type" row "[3]" contains "Privacy Consent Form"
+    Then I verify grid "" column "Uploaded By" row "[3]" contains "Automation Introducer"
+    Then I click on record view "Communications"
+    Then I verify text "No items available" is present
+    Then I click on record view "Event History"
+#    Verifying content on 'Event History'
+    Then I verify text "Created Application" is present
+    Then I verify text "Signed Privacy Statement" is present
+    Then I verify text "Updated Application" is present
+    Then I click on record view "Quote Details"
+#    Verifying content on 'Quote Details'
+    Then I verify text "Finance Lease with Services" is present
+    Then I verify text "FORD MUSTANG" is present
+    Then I verify field "Total Asset Cost" contains excel "excel:Total Asset Cost (incl. GST)"
+    Then I verify field "GST" contains excel "excel:Total GST"
+    Then I verify field "Total Cost of Lease" contains excel "excel:Total Cost of Lease"
+    Then I verify field "Monthly Rental" contains excel "excel:Monthly Rental"
+    Then I verify field "Specific Asset" contains excel "excel:Specific Asset"
+    Then I verify field "New Asset" contains excel "excel:New Asset"
+    Then I verify field "Pricing Type" contains excel "excel:Pricing Type"
+    Then I verify field "Asset Type" contains excel "excel:Asset Type"
+    Then I verify field "Monthly GST" contains excel "excel:Monthly GST"
+    Then I verify field "Total GST" contains excel "excel:Total GST"
+    Then I verify field "Residual Percentage" contains excel "excel:Residual Percentage"
+    Then I verify field "Asset Category[2]" contains excel "excel:Vehicle or Asset Category"
+    Then I verify field "Business" contains excel "excel:Company Name"
+    Then I verify field "Introducer" contains "Dandenong Mits Pty Ltd"
+    Then I verify field "Status" contains excel "excel:Status"
+    Then I verify text "Services" is present
+    Then I verify text "Roadside Assistance" is present
+    Then I verify text "Accessories" is present
+    Then I verify text "Full tank of fuel" is present
+    Then I verify text "M1 - Window Tint - 2 Front Windows - F444699: $260.00" is present
+    Then I verify text "M1 - Window Tint - Canopy - F444698: $278.20" is present
+    Then I verify text "Rubbertree (Novated Bundle) CARPET Car Mats CARPET Boot Mat Bumper Protector Sunshade - All Vehicles: $450.00" is present
+    Then I verify text "Rubbertree (Novated Bundle) CARPET Car Mats RUBBER Boot Mat Bumper Protector Sunshade - All Vehicles: $450.00" is present
+    Then I verify text "Rubbertree (Novated Bundle) RUBBER Car Mats RUBBER Boot Mat Bumper Protector Sunshade - All Vehicles: $470.00" is present
+    Then I verify text "Third Party Accessories" is present
+    Then I click on record view "Summary"
+    Then I click on button "Take Ownership"
+    Then I wait for "2" seconds
+    Then I click on button "Done"
+    Then I verify text "Automation Credit Manager" is present
+    Then I wait for "2" seconds
+    Then I click on button "Update Credit Decision"
+    Then I populate field "Decision" with "Recommend Conditional Approval"
+    Then I verify field "Decision" contains value "Recommend Conditional Approval"
+    Then I populate field "Decision" with "Recommend Decline"
+    Then I verify field "Decision" contains value "Recommend Decline"
+    Then I populate field "Decision" with "Declined"
+    Then I verify field "Decision" contains value "Declined"
+    Then I populate field "Decision" with excel "excel:Decision"
+    Then I populate field "Conditions" with excel "excel:Conditions of Approval"
+    Then I click on button "Submit"
+    Then I verify text "Overall Decision" is present
+    Then I verify text "Conditional Approval" is present
+    Then I verify text "Documentary evidence to be provided to confirm the identity of the individual beneficial owners." is present
+    Then I refresh
+    Then I wait for "5" seconds
+    Then I click on element with text "Dashboard"
+    Then I wait for "5" seconds
+    Then I verify grid "" column "Application" row "[1]" contains excel data "excel:Application Number"
+    Then I verify grid "" column "Customer" row "[1]" contains excel data "excel:Client Name"
+    Then I verify grid "" column "Assignee" row "[1]" contains excel data "excel:Credit Officer"
+    Then I verify grid "" column "Application Status" row "[1]" contains "Conditional Approval"

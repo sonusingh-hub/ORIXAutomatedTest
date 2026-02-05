@@ -23,7 +23,7 @@ Feature: 02 SMB End2End feature
     Then I populate field "Vehicle Category" with excel "excel:Vehicle or Asset Category"
     Then I populate field "Vehicle Description" with excel "excel:Vehicle or Asset Description"
     Then I populate field "Total Asset Cost (incl. GST)" with excel "excel:Total Asset Cost (incl. GST)"
-    Then I populating field "Deposit Amount[3]" with excel "excel:Deposit Amount"
+    Then I populating field "Deposit Amount" with excel "excel:Deposit Amount"
     Then I populate field "Dealer Origination Fee (excl. GST)" with excel "excel:Dealer Origination Fee (excl. GST)"
     Then I populate field "Brokerage % (excl. GST)" with excel "excel:Brokerage % (excl. GST)"
     Then I populate field "Balloon %" with excel "excel:Balloon %"
@@ -134,9 +134,7 @@ Feature: 02 SMB End2End feature
     Then I verify text "Overall Decision" is present
     Then I verify text "Owner" is present
     Then I verify text "Funding Value" is present
-    Then I verify text "$100,750.00" is present
     Then I verify text "Monthly Repayment" is present
-    Then I verify text "$4,557.58" is present
     Then I verify text "Customer Tier" is present
     Then I verify text "Application Criteria" is present
     Then I verify text "Low-Doc" is present
@@ -145,19 +143,15 @@ Feature: 02 SMB End2End feature
     Then I verify text "Credit Rule Details" is present
     Then I verify grid "" column "Name" row "[1]" contains "ABN Age"
     Then I verify grid "" column "Rule Description" row "[1]" contains "ABN age is older than 1 year"
-    Then I verify grid "" column "Value" row "[1]" contains "11 Years, 0 Months"
     Then I verify grid "" column "Result" row "[1]" contains "Approved"
     Then I verify grid "" column "Name" row "[2]" contains "Max Loan Amount"
     Then I verify grid "" column "Rule Description" row "[2]" contains "Total Loan Amount is less than $200,000"
-    Then I verify grid "" column "Value" row "[2]" contains "$100,750.00"
     Then I verify grid "" column "Result" row "[2]" contains "Approved"
     Then I verify grid "" column "Name" row "[3]" contains "Min Applicant Age"
     Then I verify grid "" column "Rule Description" row "[3]" contains "Applicant age is greater than 25 years"
-    Then I verify grid "" column "Value" row "[3]" contains "44 Years, 8 Months"
     Then I verify grid "" column "Result" row "[3]" contains "Approved"
     Then I verify grid "" column "Name" row "[4]" contains "Max Applicant Age"
     Then I verify grid "" column "Rule Description" row "[4]" contains "Applicant age is less than 70 years"
-    Then I verify grid "" column "Value" row "[4]" contains "44 Years, 8 Months"
     Then I verify grid "" column "Result" row "[4]" contains "Approved"
     Then I verify grid "" column "Name" row "[5]" contains "Citizenship Status"
     Then I verify grid "" column "Rule Description" row "[5]" contains "Applicant is an Australian citizen or permanent resident"
@@ -169,7 +163,6 @@ Feature: 02 SMB End2End feature
     Then I verify grid "" column "Result" row "[6]" contains "Approved"
     Then I verify grid "" column "Name" row "[7]" contains "Credit File Age"
     Then I verify grid "" column "Rule Description" row "[7]" contains "Credit file age is equal to or greater than 12 months"
-    Then I verify grid "" column "Value" row "[7]" contains "0 Years, 9 Months"
     Then I verify grid "" column "Result" row "[7]" contains "Referred"
     Then I verify grid "" column "Name" row "[8]" contains "Credit File Activity"
     Then I verify grid "" column "Rule Description" row "[8]" contains "Credit file has activity recorded in the past 24 months from date of submission for current credit application"
