@@ -6,6 +6,9 @@ Feature: 06 SMB End2End feature
     Then I setup appian URL to "appian.active.url"
     And I setup appian version
     And I setup appian locale
+    And I set screenshot path to "screenshot.path"
+    And I set take error screenshots to "screenshot.boolean"
+    And I set stop on error to "screenshot.stop.on.error"
 
   Scenario: TC001_Verify Introducer is able to Request a quote and Submit the application for New Asset and Dealer Pricing with Chattel Mortgage for Passenger or LCV
     Given I setup environment and login with role "introducer"
@@ -23,7 +26,7 @@ Feature: 06 SMB End2End feature
     Then I populate field "Vehicle Category" with excel "excel:Vehicle or Asset Category"
     Then I populate field "Vehicle Description" with excel "excel:Vehicle or Asset Description"
     Then I populate field "Total Asset Cost (incl. GST)" with excel "excel:Total Asset Cost (incl. GST)"
-    Then I populating field "Deposit Amount" with excel "excel:Deposit Amount"
+    Then I populate field type "Text" named "Deposit Amount" with excel "excel:Deposit Amount"
     Then I populate field "Dealer Origination Fee (excl. GST)" with excel "excel:Dealer Origination Fee (excl. GST)"
     Then I populate field "Brokerage % (excl. GST)" with excel "excel:Brokerage % (excl. GST)"
     Then I populate field "Balloon %" with excel "excel:Balloon %"
@@ -100,7 +103,7 @@ Feature: 06 SMB End2End feature
     Then I populate field "Asset Category[3]" with excel "excel:Vehicle or Asset Category"
     Then I populate field "Asset Description" with excel "excel:Vehicle or Asset Description"
     Then I populate field "Total Asset Cost (incl. GST)" with excel "excel:Total Asset Cost (incl. GST)"
-    Then I populating field "Deposit Amount[3]" with excel "excel:Deposit Amount"
+    Then I populate field type "Text" named "Deposit Amount" with excel "excel:Deposit Amount"
     Then I populate field "Dealer Origination Fee (excl. GST)" with excel "excel:Dealer Origination Fee (excl. GST)"
     Then I populate field "Brokerage % (excl. GST)" with excel "excel:Brokerage % (excl. GST)"
     Then I populate field "Balloon %" with excel "excel:Balloon %"

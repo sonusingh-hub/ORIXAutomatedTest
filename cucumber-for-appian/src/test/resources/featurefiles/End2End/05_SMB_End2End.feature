@@ -6,6 +6,9 @@ Feature: 05 SMB End2End feature
     Then I setup appian URL to "appian.active.url"
     And I setup appian version
     And I setup appian locale
+    And I set screenshot path to "screenshot.path"
+    And I set take error screenshots to "screenshot.boolean"
+    And I set stop on error to "screenshot.stop.on.error"
 
   Scenario: TC001_Trust_Verify Introducer is able to Request a quote and Submit the application for Used Asset and Dealer Pricing with Finance Lease without Services for Construction & Mining
     Given I setup environment and login with role "introducer"
@@ -269,11 +272,11 @@ Feature: 05 SMB End2End feature
     Then I click on button "Submit"
     Then I verify text "Overall Decision" is present
     Then I verify text "Referred" is present
-    Then I verify text "Automation Channel Manager Admin" is present
+    Then I verify text "Automation Credit Manager" is present
 
 
-  Scenario: TC003_Trust_Verify channelManagerAdmin is able to overwrite credit decision for Trust
-    Given I setup environment and login with role "channelManagerAdmin"
+  Scenario: TC003_Trust_Verify creditManager is able to overwrite credit decision for Trust
+    Given I setup environment and login with role "creditManager"
     Given I load test data for "TC003" from "05_SMB_End2End"
     When I click on record from excel "excel:Application Number"
 #  Applicant Company Details verification

@@ -350,8 +350,18 @@ public class Settings {
         return this.refreshTimes;
     }
 
-    public void setScreenshotPath(String sp) {
-        screenshotPath = sp;
+//    public void setScreenshotPath(String sp) {
+//        screenshotPath = sp;
+//    }
+
+    public void setScreenshotPath(String path) {
+
+        this.screenshotPath = path;
+
+        File folder = new File(path);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
     }
 
     public String getScreenshotPath() {

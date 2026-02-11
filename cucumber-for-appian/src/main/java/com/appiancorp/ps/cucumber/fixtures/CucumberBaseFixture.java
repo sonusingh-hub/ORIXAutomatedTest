@@ -1,13 +1,19 @@
 package com.appiancorp.ps.cucumber.fixtures;
 
+import com.appiancorp.ps.automatedtest.common.Constants;
 import com.appiancorp.ps.automatedtest.common.PropertiesUtilities;
 import com.appiancorp.ps.automatedtest.common.Settings;
 import com.appiancorp.ps.automatedtest.fixture.BaseFixture;
 import com.appiancorp.ps.cucumber.utils.TestDataManager;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.After;
 import com.appiancorp.ps.automatedtest.common.ConfigReader;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
+import java.io.File;
 import java.util.Properties;
 
 public class CucumberBaseFixture {
@@ -129,20 +135,62 @@ public class CucumberBaseFixture {
         fixture.setTimeoutSecondsTo(Integer.parseInt(ts));
     }
 
+//    @Given("^I set screenshot path to \"([^\"]*)\"$")
+//    public void setScreenshotPathTo(String path) {
+//        fixture.setScreenshotPathTo(path);
+//    }
+
     @Given("^I set screenshot path to \"([^\"]*)\"$")
-    public void setScreenshotPathTo(String path) {
-        fixture.setScreenshotPathTo(path);
+    public void setScreenshotPathTo(String keyOrPath) {
+
+        Properties props = PropertiesUtilities.getProps();
+
+        String value = props.getProperty(keyOrPath, keyOrPath);
+
+        // Resolve ${env}
+        String env = props.getProperty("env", "").trim();
+        value = value.replace("${env}", env);
+
+        fixture.setScreenshotPathTo(value);
     }
+
+
+
+//    @Given("^I set stop on error to \"([^\"]*)\"$")
+//    public void setStopOnErrorTo(String bool) {
+//        fixture.setStopOnErrorTo(Boolean.parseBoolean(bool));
+//    }
 
     @Given("^I set stop on error to \"([^\"]*)\"$")
-    public void setStopOnErrorTo(String bool) {
-        fixture.setStopOnErrorTo(Boolean.parseBoolean(bool));
+    public void setStopOnErrorTo(String keyOrBool) {
+
+        Properties props = PropertiesUtilities.getProps();
+
+        String value = props.getProperty(keyOrBool, keyOrBool);
+
+        fixture.setStopOnErrorTo(
+                Boolean.parseBoolean(value)
+        );
     }
 
+
+//    @Given("^I set take error screenshots to \"([^\"]*)\"$")
+//    public void setTakeErrorScreenshotsTo(String bool) {
+//        fixture.setTakeErrorScreenshotsTo(Boolean.parseBoolean(bool));
+//    }
+
     @Given("^I set take error screenshots to \"([^\"]*)\"$")
-    public void setTakeErrorScreenshotsTo(String bool) {
-        fixture.setTakeErrorScreenshotsTo(Boolean.parseBoolean(bool));
+    public void setTakeErrorScreenshotsTo(String keyOrBool) {
+
+        Properties props = PropertiesUtilities.getProps();
+
+        String value = props.getProperty(keyOrBool, keyOrBool);
+
+        fixture.setTakeErrorScreenshotsTo(
+                Boolean.parseBoolean(value)
+        );
     }
+
 
     @Given("^I open \"([^\"]*)\"$")
     public void open(String url) {
@@ -164,9 +212,9 @@ public class CucumberBaseFixture {
         fixture.takeScreenshot(fileName);
     }
 
-    public void loginIntoWithUsernameAndPassword(String url, String userName, String password) {
-        fixture.loginIntoWithUsernameAndPassword(url, userName, password);
-    }
+//    public void loginIntoWithUsernameAndPassword(String url, String userName, String password) {
+//        fixture.loginIntoWithUsernameAndPassword(url, userName, password);
+//    }
 
     @Given("^I login with username \"([^\"]*)\" and password \"([^\"]*)\"$")
     public void loginWithUsernameAndPassword(String userName, String password) {
@@ -322,9 +370,107 @@ public class CucumberBaseFixture {
         return fixture.getSettings();
     }
 
-    @After
+
+    @After(order = 2)
+    public void captureScreenshotOnFailure(Scenario scenario) {
+
+        if (!scenario.isFailed()) return;
+
+        if (!fixture.getSettings().isTakeErrorScreenshots()) return;
+
+        if (fixture.getSettings().getDriver() == null) return;
+
+        // Base path from properties
+        String basePath =
+                fixture.getSettings().getScreenshotPath();
+
+        // Extract feature name
+        String featureName =
+                new File(scenario.getUri())
+                        .getName()
+                        .replace(".feature", "");
+
+        // Clean name (remove spaces/special chars)
+        featureName =
+                featureName.replaceAll("[^a-zA-Z0-9]", "_");
+
+        // Build feature folder path
+        String featurePath =
+                basePath + File.separator + featureName;
+
+        // Create folder if not exists
+        File folder = new File(featurePath);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+
+        // Update runtime screenshot path
+        fixture.getSettings()
+                .setScreenshotPath(featurePath);
+
+        // ===== ADD DATE + TIME HERE =====
+        String timestamp =
+                java.time.LocalDateTime.now()
+                        .format(java.time.format.DateTimeFormatter
+                                .ofPattern("yyyy-MM-dd_HH-mm-ss"));
+
+        // File name = scenario name + timestamp
+        String fileName =
+                scenario.getName()
+                        .replaceAll("[^a-zA-Z0-9]", "_")
+                        + "_" + timestamp;
+
+        // Save screenshot
+        fixture.takeScreenshot(fileName);
+
+        // Embed in report
+        byte[] bytes =
+                ((TakesScreenshot) fixture
+                        .getSettings()
+                        .getDriver())
+                        .getScreenshotAs(OutputType.BYTES);
+
+        scenario.attach(bytes, "image/png", fileName);
+    }
+
+    @After(order = 1)
     public void tearDownHook() {
-        fixture.tearDown();
+
+        if (fixture.getSettings().getDriver() != null) {
+            fixture.getSettings().getDriver().quit();
+        }
+    }
+
+
+    private static boolean screenshotsCleaned = false;
+
+    @Before(order = 0)
+    public void cleanScreenshotFolderBeforeRun() {
+
+        // Run only once
+        if (screenshotsCleaned) return;
+
+        String screenshotPath =
+                fixture.getSettings().getScreenshotPath();
+
+        if (screenshotPath == null || screenshotPath.isEmpty()) {
+            screenshotPath = "target/screenshots"; // fallback
+        }
+
+        File folder = new File(screenshotPath);
+
+        if (folder.exists()) {
+            try {
+                org.apache.commons.io.FileUtils.cleanDirectory(folder);
+                System.out.println("Old screenshots deleted: " + screenshotPath);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            folder.mkdirs();
+        }
+
+        screenshotsCleaned = true;
     }
 
 }
