@@ -207,7 +207,7 @@ tasks.register('generateCucumberReport') {
         def outputDir = file("build/reports/cucumber")
 
         if (!jsonFiles.singleFile.exists()) {
-            throw new GradleException("❌ JSON report not found at: ${jsonFiles.singleFile}. Run your Cucumber tests first.")
+            throw new GradleException(" JSON report not found at: ${jsonFiles.singleFile}. Run your Cucumber tests first.")
         }
 
         // Configure metadata
@@ -219,7 +219,7 @@ tasks.register('generateCucumberReport') {
         reportBuilder.generateReports()
 
         def reportPath = "${outputDir}/cucumber-html-reports/overview-features.html"
-        println "✅ Cucumber HTML report generated at: ${reportPath}"
+        println " Cucumber HTML report generated at: ${reportPath}"
 
         // --- Auto-open report in default browser ---
         if (System.properties['os.name'].toLowerCase().contains('windows')) {

@@ -6,6 +6,9 @@ Feature: 04 SMB End2End feature
     Then I setup appian URL to "appian.active.url"
     And I setup appian version
     And I setup appian locale
+    And I set screenshot path to "screenshot.path"
+    And I set take error screenshots to "screenshot.boolean"
+    And I set stop on error to "screenshot.stop.on.error"
 
   Scenario: TC001_Trust_Verify Introducer is able to Request a quote and Submit the application for New Asset and Dealer Pricing with Operating Lease for Passenger or LCV
     Given I setup environment and login with role "introducer"
@@ -29,7 +32,7 @@ Feature: 04 SMB End2End feature
     Then I populate field "Trim" with excel "excel:Trim"
     Then I populate field "Term" with excel "excel:Select a Term"
     Then I wait for "2" seconds
-    Then I populate field "Annual Usage[3]" with excel "excel:Annual Usage"
+    Then I populate field type "Text" named "Annual Usage" with excel "excel:Annual Usage"
     Then I populate field "Delivery State" with excel "excel:Delivery State"
     Then I populate field "Dealer Quote" with excel "excel:Quote Document"
     Then I populate field "Vehicle Category" with excel "excel:Vehicle or Asset Category"
@@ -44,8 +47,9 @@ Feature: 04 SMB End2End feature
     Then I populate field "Delivery Fee (excl GST)" with excel "excel:Delivery Fee (excl GST)"
     Then I click on button "Next"
     Then I click on element with text from excel "excel:Services"
-    Then I wait for "3" seconds
+    Then I wait for "6" seconds
     Then I click on button "Generate Quote"
+    Then I wait for "10" seconds
     Then I verify text "Indicative Quote Summary" is present
     Then I verify text "Operating Lease" is present
     Then I verify text "Your Passenger or Light Commercial Vehicle" is present
@@ -790,6 +794,7 @@ Feature: 04 SMB End2End feature
     Then I verify grid "" column "Document Name" row "[1]" contains "Privacy_Consent_Form.pdf"
     Then I verify grid "" column "Document Type" row "[1]" contains "Privacy Consent Form"
     Then I verify grid "" column "Uploaded By" row "[1]" contains "Automation Introducer"
+    Then I wait for "5" seconds
     Then I click on record view "Communications"
     Then I verify text "No items available" is present
     Then I click on record view "Event History"

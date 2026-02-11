@@ -602,6 +602,14 @@ public class CucumberTempoFixture {
         fixture.populateFieldWith(fieldType, fieldName, new String[] {fieldValue});
     }
 
+    @Given("^I populate field type \"([^\"]*)\" named \"([^\"]*)\" with excel \"([^\"]*)\"$")
+    public void populateFieldWithExcel(String fieldType, String fieldName, String fieldValue) {
+        String finalValue = fieldValue.startsWith("excel:")
+                ? TestDataManager.get(fieldValue.replace("excel:", ""))
+                : fieldValue;
+        fixture.populateFieldWith(fieldType, fieldName, new String[] {finalValue});
+    }
+
     @Given("^I populate field \"([^\"]*)\" with value \"([^\"]*)\"$")
     public void populateFieldWithValue(String fieldName, String fieldValue) {
         fixture.populateFieldWithValue(fieldName, fieldValue);
