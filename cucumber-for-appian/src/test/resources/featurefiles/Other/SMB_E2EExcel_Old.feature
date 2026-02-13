@@ -1,4 +1,4 @@
-@End2EndExcel
+@End2EndExcelOld
 Feature: 02 SMB End2End Excel Old feature
 
   Background: Setup background and environment
